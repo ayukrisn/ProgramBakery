@@ -22,14 +22,12 @@ typedef struct {
 } daftarDataMembership;
 daftarDataMembership dataMembership;
 
-/*
-    Union untuk data pemilik/karyawan
-    yang akan disimpan selama
-    program dijalankan
-
-    update 6/12: ganti struct ke union
-*/
 typedef union {
+    daftarDataMembership dataMembership;
+    char guest[];
+} tipePembeli;
+
+typedef struct {
     char username[10];
     char password[20];
     char email[30];
@@ -38,6 +36,7 @@ typedef union {
     char jabatan[20];
 } daftarDataPekerja;
 daftarDataPekerja dataKaryawan, dataPemilik;
+
 /*
     Union yang akan digunakan saat berurusan dengan file
 */
