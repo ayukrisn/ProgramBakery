@@ -1,11 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-void menuPertama(); void akunPemilik();
-    void signUpPemilik(); void signInPemilik();
-    void signUpKaryawan(); void signInKaryawan();
-
+#include "logIn.h"
 
 /*
     Struct untuk data membership
@@ -24,7 +20,7 @@ daftarDataMembership dataMembership;
 
 typedef union {
     daftarDataMembership dataMembership;
-    char guest[];
+    char guest[20];
 } tipePembeli;
 
 typedef struct {
