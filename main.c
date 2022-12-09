@@ -4,9 +4,11 @@
 #include "logIn.h"
 #include "variabel.h"
 #include "aksesPemilik.h"
+#include "pendukung.h"
 
-int main()
+int main(void)
 {
+    systemCLS();
     menuPertama();
     return 0;
 }
