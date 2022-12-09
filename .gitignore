@@ -1,3 +1,8 @@
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/settings.json
+variabel.exe
+bakery.exe
+logIn.c
+dataPemilik.txt
+dataKaryawan.txt

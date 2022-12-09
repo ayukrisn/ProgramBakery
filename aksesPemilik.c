@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-void menuAwalPemilik(); void manageKaryawan(); void listKaryawan();
+#include "logIn.h"
+#include "variabel.h"
+#include "aksesPemilik.h"
 
 /*
     Prosedur menu awal setelah melakukan sign in pemilik
