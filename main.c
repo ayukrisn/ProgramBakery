@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "logIn.h"
+#include "variabel.h"
+#include "aksesPemilik.h"
 
 int main()
 {

@@ -2,46 +2,36 @@
 #include <stdlib.h>
 #include <string.h>
 #include "logIn.h"
+#include "variabel.h"
+#include "aksesPemilik.h"
+
+
+daftarDataMembership dataMembership;
 
 /*
-    Struct untuk data membership
+    Union yang digunakan untuk menyimpan
+    data pembeli (membership/tidak)
+*/
+tipePembeli;
+
+/*
+    Struct untuk data pekerja
     yang akan disimpan selama
     program dijalankan
 */
-typedef struct {
-    char username[10];
-    char password[20];
-    char email[30];
-    char noTelp[20];
-    char nama[30];
-    char tipeMembership[10];
-} daftarDataMembership;
-daftarDataMembership dataMembership;
-
-typedef union {
-    daftarDataMembership dataMembership;
-    char guest[20];
-} tipePembeli;
-
-typedef struct {
-    char username[10];
-    char password[20];
-    char email[30];
-    char noTelp[20];
-    char nama[30];
-    char jabatan[20];
-} daftarDataPekerja;
-daftarDataPekerja dataKaryawan, dataPemilik;
+daftarDataPekerja dataKaryawan;
+daftarDataPekerja dataPemilik;
 
 /*
     Union yang akan digunakan saat berurusan dengan file
+    write: data dari input pengguna, yang nanti akan digunakan
+           untuk dimasukkan ke file/variabel program
+    read:  data yang dibaca dari file, yang nanti dimasukkan
+           ke variabel di dalam program
 */
-typedef union {
-    daftarDataMembership membership;
-    daftarDataPekerja karyawan;
-    daftarDataPekerja pemilik;
-} tipeData;
-tipeData write, read, data;
+tipeData write;
+tipeData read; //note: menghapus variabel struct 'data'
+
 
 /*
     Menu pertama yang akan keluar saat program dibuka
@@ -61,9 +51,9 @@ void menuPertama()
         //pemesananPelanggan();
     } else if (pilihan == 2) {
         signInKaryawan();
-    } else if (pilihan == 2) {
-        akunPemilik();
     } else if (pilihan == 3) {
+        akunPemilik();
+    } else if (pilihan == 4) {
         exit(0);
     }
 }
@@ -78,7 +68,7 @@ void akunPemilik()
     //Memeriksa apakah sudah ada akun yang terdaftar atau belum
     FILE *periksaData;
 
-    periksaData = fopen("dataPemilik.bin", "r");
+    periksaData = fopen("dataPemilik.txt", "r");
     if (periksaData == NULL)
     {
         printf("\n\t\t Anda belum memiliki akun. Silahkan melanjutkan ke Sign Un Pemilik.\n");
@@ -89,6 +79,7 @@ void akunPemilik()
         printf("\t\t [1] Ya, saya ingin melakukan sign in.\n");
         printf("\t\t [2] Tidak, saya ingin melakukan sign up.\n");
         printf("\t\t [3] Kembali ke menu awal.\n");
+        printf("\t\t CATATAN: Bila melakukan sign up, maka data yang sebelumnya ada akan terhapus.\n");
         printf("\t\t Ketik pilihan dengan angka yang tertera:");
         scanf("%d", &pilihan);
         if (pilihan == 1) {
@@ -130,9 +121,9 @@ void signUpPemilik()
     fflush(stdin);
 
     strcpy(write.pemilik.jabatan, "Pemilik");
-    //Membuka file dataPemilik.bin untuk memasukkan data tadi
+    //Membuka file dataPemilik.txt untuk memasukkan data tadi
     FILE *signUp;
-    signUp = fopen("dataPemilik.bin", "w");
+    signUp = fopen("dataPemilik.txt", "w");
 
     fwrite(&write, sizeof(write), 1, signUp);
     //fprintf(signUp, "%s\n%s\n%s\n%s\n%s", write.pemilik.username, write.pemilik.password, write.pemilik.email, write.pemilik.nama, write.pemilik.noTelp);
@@ -163,12 +154,18 @@ void signInPemilik () {
     fflush(stdin);
 
     FILE *signIn;
-    signIn = fopen("dataPemilik.bin", "r");
+    signIn = fopen("dataPemilik.txt", "r");
 
     //Memeriksa apakah username dan password yang diberikan benar atau tidak
     fread(&read.pemilik, sizeof(read.pemilik), 1, signIn);
         if(strcmp(write.pemilik.username, read.pemilik.username)==0 && strcmp(write.pemilik.password, read.pemilik.password)==0) {
+            strcpy(dataPemilik.email, read.pemilik.email);
+            strcpy(dataPemilik.jabatan, read.pemilik.jabatan);
             strcpy(dataPemilik.nama, read.pemilik.nama);
+            strcpy(dataPemilik.noTelp, read.pemilik.noTelp);
+            strcpy(dataPemilik.password, read.pemilik.password);
+            strcpy(dataPemilik.username, read.pemilik.username);
+
             printf("\n\t\t Sign In telah berhasil.\n");
             printf("\t\t Selamat datang, %s.\n", dataPemilik.nama);
             fclose(signIn);
@@ -213,9 +210,9 @@ void signUpKaryawan()
     fgets(write.karyawan.jabatan, 30 , stdin);
     write.karyawan.jabatan[strcspn(write.karyawan.jabatan, "\n")] = '\0';
 
-    //Membuka file dataPemilik.bin untuk memasukkan data tadi
+    //Membuka file dataPemilik.txt untuk memasukkan data tadi
     FILE *signUp;
-    signUp = fopen("dataKaryawan.bin", "a");
+    signUp = fopen("dataKaryawan.txt", "a");
 
     fwrite(&write, sizeof(write), 1, signUp);
     fclose(signUp);
@@ -237,7 +234,7 @@ void signUpKaryawan()
 void signInKaryawan () {
 
     FILE *signIn;
-    signIn = fopen("dataKaryawan.bin", "r");
+    signIn = fopen("dataKaryawan.txt", "r");
 
     if(signIn == NULL) {
         printf("\t\t Belum ada karyawan yang terdaftar.\n");
@@ -255,7 +252,13 @@ void signInKaryawan () {
         //Memeriksa apakah username dan password yang diberikan benar atau tidak
         fread(&read.karyawan, sizeof(read.karyawan), 1, signIn);
         if(strcmp(write.karyawan.username, read.karyawan.username)==0 && strcmp(write.karyawan.password, read.karyawan.password)==0) {
+            strcpy(dataKaryawan.email, read.karyawan.email);
+            strcpy(dataKaryawan.jabatan, read.karyawan.jabatan);
             strcpy(dataKaryawan.nama, read.karyawan.nama);
+            strcpy(dataKaryawan.noTelp, read.karyawan.noTelp);
+            strcpy(dataKaryawan.password, read.karyawan.password);
+            strcpy(dataKaryawan.username, read.karyawan.username);
+
             printf("\n\t\t Sign In telah berhasil.\n");
             printf("\t\t Selamat datang, %s.\n", dataKaryawan.nama);
             fclose(signIn);

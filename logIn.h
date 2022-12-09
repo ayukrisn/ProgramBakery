@@ -12,8 +12,8 @@
     Header guard yang digunakan untuk mencegah
     double inclusion saat menangani include directive
 */
-#ifndef LOG_IN
-#define LOG_IN
+#ifndef LOG_IN_H
+#define LOG_IN_H
 
 /*
     DEKLARASI VARIABEL
@@ -50,4 +50,4 @@ void signUpKaryawan(); void signInKaryawan();
 
 
 
-#endif // LOG_IN
+#endif // LOG_IN_H
