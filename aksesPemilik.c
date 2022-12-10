@@ -136,13 +136,15 @@ void hapusKaryawan()
     printf("\t\t Ketik nama karyawan yang ingin dihapus: ");
     fgets(write.karyawan.nama, 30 , stdin);
     write.karyawan.nama[strcspn(write.karyawan.nama, "\n")] = '\0';
+    getchar();
 
     FILE *fileKaryawan;
     fileKaryawan = fopen("dataKaryawan.txt", "a");
 
     rewind(fileKaryawan);
     int cari=0;
-    while ((fread(&read.karyawan, sizeof(read.karyawan), 1, fileKaryawan))==1) {
+    while (!feof(fileKaryawan)) {
+        fscanf(fileKaryawan, "%[^\n]\n%s\n%s\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
         printf("Data dari file: %s", read.karyawan.nama);
         printf("Data dari input: %s", write.karyawan.nama);
         if(strstr(read.karyawan.nama, write.karyawan.nama)!= 0){
@@ -162,9 +164,10 @@ void hapusKaryawan()
     FILE *tempKaryawan;
 	tempKaryawan=fopen("tempKaryawan.txt","w");
 	rewind(fileKaryawan);
-    while((fread(&read.karyawan, sizeof(read.karyawan), 1, fileKaryawan))==1) {
+    while(!feof(fileKaryawan)) {
+        fscanf(fileKaryawan, "%[^\n]\n%s\n%s\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
         if(strstr(read.karyawan.nama, write.karyawan.nama)== 0){
-           fwrite(&write, sizeof(write), 1, fileKaryawan);
+           fprintf(tempKaryawan, "%s\n%s\n%s\n", read)
         }
     }
     printf("\t\t Data telah dihapus dari file.\n");
