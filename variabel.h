@@ -14,45 +14,20 @@
 #ifndef VARIABEL_H
 #define VARIABEL_H
 
+
 /*
-    Struct untuk data membership
+    Struct untuk data pengguna
     yang akan disimpan selama
     program dijalankan
 */
 typedef struct {
     char username[10];
     char password[20];
-    char email[30];
-    char noTelp[20];
     char nama[30];
-    char tipeMembership[10];
-} daftarDataMembership;
-extern daftarDataMembership dataMembership;
-
-/*
-    Union yang digunakan untuk menyimpan
-    data pembeli (membership/tidak)
-*/
-typedef union {
-    daftarDataMembership dataMembership;
-    char guest[20];
-} tipePembeli;
-
-/*
-    Struct untuk data pekerja
-    yang akan disimpan selama
-    program dijalankan
-*/
-typedef struct {
-    char username[10];
-    char password[20];
-    char email[30];
-    char noTelp[20];
-    char nama[30];
-    char jabatan[20];
-} daftarDataPekerja;
-extern daftarDataPekerja dataKaryawan;
-extern daftarDataPekerja dataPemilik;
+} daftarData;
+extern daftarData dataKaryawan;
+extern daftarData dataPemilik;
+extern daftarData dataMembership;
 
 /*
     Union yang akan digunakan saat berurusan dengan file
@@ -62,11 +37,20 @@ extern daftarDataPekerja dataPemilik;
            ke variabel di dalam program
 */
 typedef union {
-    daftarDataMembership membership;
-    daftarDataPekerja karyawan;
-    daftarDataPekerja pemilik;
+    daftarData membership;
+    daftarData karyawan;
+    daftarData pemilik;
 } tipeData;
 extern tipeData write;
 extern tipeData read; //note: menghapus variabel struct 'data'
+
+/*
+    Union yang digunakan untuk menyimpan
+    data pembeli (membership/tidak)
+*/
+typedef union {
+    daftarData dataMembership;
+    char guest[20];
+} tipePembeli;
 
 #endif // VARIABEL_H

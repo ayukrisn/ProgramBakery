@@ -7,8 +7,6 @@
 #include "pendukung.h"
 
 
-daftarDataMembership dataMembership;
-
 /*
     Union yang digunakan untuk menyimpan
     data pembeli (membership/tidak)
@@ -20,8 +18,9 @@ tipePembeli;
     yang akan disimpan selama
     program dijalankan
 */
-daftarDataPekerja dataKaryawan;
-daftarDataPekerja dataPemilik;
+daftarData dataKaryawan;
+daftarData dataPemilik;
+daftarData dataMembership;
 
 /*
     Union yang akan digunakan saat berurusan dengan file
@@ -111,11 +110,6 @@ void signUpPemilik()
 
     printf("\t\t Password: ");
     scanf("%20s", write.pemilik.password);
-    fflush(stdin);
-
-    printf("\t\t Email: ");
-    scanf("%20s", write.pemilik.email);
-    // fflush(stdin);
     getchar();
 
     printf("\t\t Nama: ");
@@ -124,23 +118,15 @@ void signUpPemilik()
     fgets(write.pemilik.nama, 30 , stdin);
     write.pemilik.nama[strcspn(write.pemilik.nama, "\n")] = '\0';
 
-    printf("\t\t No Telepon: ");
-    scanf("%20s", write.pemilik.noTelp);
-    fflush(stdin);
-
-    // printf("Nama: %s", write.pemilik.nama);
-
-    strcpy(write.pemilik.jabatan, "Pemilik");
     //Membuka file dataPemilik.txt untuk memasukkan data tadi
     FILE *signUp;
     signUp = fopen("dataPemilik.txt", "w");
 
-    fwrite(&write, sizeof(write), 1, signUp);
-    //fprintf(signUp, "%s\n%s\n%s\n%s\n%s", write.pemilik.username, write.pemilik.password, write.pemilik.email, write.pemilik.nama, write.pemilik.noTelp);
+    fprintf(signUp, "%s\n%s\n%s\n", write.pemilik.nama, write.pemilik.username, write.pemilik.password);
     fclose(signUp);
 
     //Memeriksa apakah fwrite berhasil
-    if(fwrite != 0) {
+    if(fprintf != 0) {
         printf("\n\t\t Sign Up Pemilik Berhasil.\n");
         printf("\t\t Silahkan masuk kembali melalui Sign In.\n");
         systemPause();
@@ -169,14 +155,8 @@ void signInPemilik () {
     signIn = fopen("dataPemilik.txt", "r");
 
     //Memeriksa apakah username dan password yang diberikan benar atau tidak
-    fread(&read.pemilik, sizeof(read.pemilik), 1, signIn);
+    fscanf(signIn, "%[^\n]\n%s\n%s\n", read.pemilik.nama, read.pemilik.username, read.pemilik.password);
         if(strcmp(write.pemilik.username, read.pemilik.username)==0 && strcmp(write.pemilik.password, read.pemilik.password)==0) {
-           /* strcpy(dataPemilik.email, read.pemilik.email);
-            strcpy(dataPemilik.jabatan, read.pemilik.jabatan);
-            strcpy(dataPemilik.nama, read.pemilik.nama);
-            dataPemilik.noTelp = read.pemilik.noTelp;
-            strcpy(dataPemilik.password, read.pemilik.password);
-            strcpy(dataPemilik.username, read.pemilik.username); */
             dataPemilik = read.pemilik;
 
             fclose(signIn);
@@ -202,39 +182,29 @@ void signUpKaryawan()
     printf("\t\t Silahkan lakukan registrasi data karyawan terlebih dahulu.\n");
 
     //Memasukkan data yang diperlukan
+    //fflush(stdin);
+    getchar();
+    printf("\t\t Nama: ");
+    fgets(write.karyawan.nama, 30 , stdin);
+    write.karyawan.nama[strcspn(write.karyawan.nama, "\n")] = '\0';
+
     printf("\t\t Username: ");
     scanf("%10s", write.karyawan.username);
     fflush(stdin);
 
     printf("\t\t Password: ");
     scanf("%20s", write.karyawan.password);
-    fflush(stdin);
-
-    printf("\t\t Email: ");
-    scanf("%20s", write.karyawan.email);
     getchar();
-
-    printf("\t\t Nama: ");
-    fgets(write.karyawan.nama, 30 , stdin);
-    write.karyawan.nama[strcspn(write.karyawan.nama, "\n")] = '\0';
-
-    printf("\t\t No Telepon: ");
-    scanf("%20s", write.karyawan.noTelp);
-    getchar();
-
-    printf("\t\t Jabatan: ");
-    fgets(write.karyawan.jabatan, 30 , stdin);
-    write.karyawan.jabatan[strcspn(write.karyawan.jabatan, "\n")] = '\0';
 
     //Membuka file dataPemilik.txt untuk memasukkan data tadi
     FILE *signUp;
     signUp = fopen("dataKaryawan.txt", "a");
 
-    fwrite(&write, sizeof(write), 1, signUp);
+    fprintf(signUp, "%s\n%s\n%s\n", write.karyawan.nama, write.karyawan.username, write.karyawan.password);
     fclose(signUp);
 
-    //Memeriksa apakah fwrite berhasil
-    if(fwrite != 0) {
+    //Memeriksa apakah fprintf berhasil
+    if(fprintf != 0) {
         printf("\n\t\t Sign Up Karyawan Berhasil.\n");
         systemPause();
         systemCLS();
@@ -244,7 +214,6 @@ void signUpKaryawan()
         exit(1);
     }
 }
-
 
 /*
     Prosedur sign in untuk karyawan
@@ -257,6 +226,9 @@ void signInKaryawan () {
     if(signIn == NULL) {
         printf("\t\t Belum ada karyawan yang terdaftar.\n");
         printf("\t\t Silahkan hubungi pemilik untuk sign up karyawan.\n");
+        systemPause();
+        systemCLS();
+        menuPertama();
     } else {
         printf("\t\t Silahkan lakukan Sign In terlebih dahulu.\n");
         printf("\t\t Username: ");
@@ -268,14 +240,8 @@ void signInKaryawan () {
         fflush(stdin);
 
         //Memeriksa apakah username dan password yang diberikan benar atau tidak
-        fread(&read.karyawan, sizeof(read.karyawan), 1, signIn);
+        fscanf(signIn, "%[^\n]\n%s\n%s\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
         if(strcmp(write.karyawan.username, read.karyawan.username)==0 && strcmp(write.karyawan.password, read.karyawan.password)==0) {
-            /* strcpy(dataKaryawan.email, read.karyawan.email);
-            strcpy(dataKaryawan.jabatan, read.karyawan.jabatan);
-            strcpy(dataKaryawan.nama, read.karyawan.nama);
-            strcpy(dataKaryawan.noTelp, read.karyawan.noTelp);
-            strcpy(dataKaryawan.password, read.karyawan.password);
-            strcpy(dataKaryawan.username, read.karyawan.username); */
             dataKaryawan = read.karyawan;
 
             printf("\n\t\t Sign In telah berhasil.\n");
