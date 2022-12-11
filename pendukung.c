@@ -1,3 +1,11 @@
+/*
+==================================================
+    Source code "pendukung.c" berisi definisi dari
+    fungsi/prosedur untuk mendukung program
+    Contoh: pengganti system(), validasi input
+==================================================
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,11 +14,15 @@
 #include "aksesPemilik.h"
 #include "pendukung.h"
 
+// FUNGSI DAN PROSEDUR VALIDASI
+/*
 
+*/
 
 
 
 // PROSEDUR PENGGANTI FUNGSI SYSTEM()
+
 /*
     Pengganti system("cls"); > untuk membersihkan layar
 */

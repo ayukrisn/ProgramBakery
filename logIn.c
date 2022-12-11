@@ -1,3 +1,13 @@
+/*
+==================================================
+    Source code "pendukung.c" berisi definisi dari
+    fungsi/prosedur untuk menjalankan sign in
+    atau sign up untuk pemilik, karyawan, dan 
+    pembeli (membership)
+==================================================
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
