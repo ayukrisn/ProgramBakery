@@ -6,8 +6,13 @@
 #include "aksesPemilik.h"
 #include "pendukung.h"
 
+
+
+
+
+// PROSEDUR PENGGANTI FUNGSI SYSTEM()
 /*
-    Pengganti system("cls");
+    Pengganti system("cls"); > untuk membersihkan layar
 */
 void systemCLS()
 {
@@ -16,11 +21,12 @@ void systemCLS()
 }
 
 /*
-    Pengganti system("pause");
+    Pengganti system("pause"); > menjeda program hingga user memasukkan
+    key apapun
 */
-void systemPause()
+// void systemPause(char *keterangan)
 {
-    printf("\n\t\t Ketik apapun untuk melanjutkan.\n");
+    printf("\n\t\t Tekan tombol keyboard untuk melanjutkan ke %s.\n", keterangan);
     int c = getchar();
     getchar();
 }
