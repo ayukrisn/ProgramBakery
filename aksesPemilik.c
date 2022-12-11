@@ -67,7 +67,7 @@ void manageKaryawan()
     printf("\t\t [3] Hapus akun karyawan\n");
     printf("\t\t [4] Kembali ke akses pemilik\n");
     printf("\t\t Ketik pilihan dengan angka yang tertera:");
-    scanf("%d", &pilihan);
+    pilihanUser(&pilihan, 1, 4);
     fflush(stdin);
         if (pilihan == 1) {
             systemCLS();
@@ -96,8 +96,7 @@ void listKaryawan()
     printf("\t\t [1] Ya, kembali ke menu manage karyawan\n");
     printf("\t\t [2] Tidak, kembali ke menu awal\n");
     printf("\t\t Ketik pilihan dengan angka yang tertera:");
-    scanf("%d", &pilihan);
-    // printf("Pilihan: %d", pilihan);
+    pilihanUser(&pilihan, 1, 2);
     fflush(stdin);
     if (pilihan == 1){
         systemCLS();
@@ -118,10 +117,11 @@ void showListKaryawan()
 
     //Melihat apakah ada data atau tidak
     if (fileKaryawan == NULL) {
-        printf("\t\t Belum ada data yang tersimpan");
+        printf("\t\t Belum ada data yang tersimpan.\n");
+        printf("\t\t Silahkan tambahkan akun karyawan terlebih dahulu.\n");
         systemPause();
         systemCLS();
-        menuAwalPemilik();
+        manageKaryawan();
     } else {
         // fread(&dataKaryawan, sizeof(dataKaryawan), 1, fileKaryawan);)
         printf("\t\t LIST DAFTAR KARYAWAN\n");
@@ -146,7 +146,7 @@ void hapusKaryawan()
     printf("\t\t HAPUS DATA KARYAWAN\n");
     showListKaryawan();
 
-    int c = getchar();
+    getchar();
     printf("\t\t Ketik username karyawan yang ingin dihapus: ");
     scanf("%[^\n]", write.karyawan.username);
     getchar();
