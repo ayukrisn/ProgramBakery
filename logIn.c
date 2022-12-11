@@ -30,7 +30,7 @@ daftarData dataMembership;
            ke variabel di dalam program
 */
 tipeData write;
-tipeData read; //note: menghapus variabel struct 'data'
+tipeData read;
 
 
 /*
@@ -39,6 +39,7 @@ tipeData read; //note: menghapus variabel struct 'data'
 void menuPertama()
 {
     int pilihan;
+    printf("\t\t PROGRAM MANAJEMEN CAKE ME OUT\n");
     printf("\t\t Silahkan masuk terlebih dahulu.\n");
     printf("\t\t [1] Masuk sebagai Karyawan.\n");
     printf("\t\t [2] Masuk sebagai Pemilik.\n");
@@ -195,6 +196,38 @@ void signUpKaryawan()
     printf("\t\t Password: ");
     scanf("%20s", write.karyawan.password);
     getchar();
+
+    // Pemeriksaan apakah nama, username, dan password sudah terdaftar
+    FILE *fileKaryawan;
+    fileKaryawan = fopen("dataKaryawan.txt", "r");
+     do {
+        fscanf(fileKaryawan, "%29[^\n]\n%9[^\n]\n%19[^\n]\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
+        if(strcmp(read.karyawan.nama, write.karyawan.nama)== 0) {
+            printf("\t\t Nama sudah terdaftar. Mohon masukkan nama yang berbeda.\n");
+            printf("\t\t Ketik apapun untuk melanjutkan");
+            getchar();
+            systemCLS();
+            signUpKaryawan();
+            break;
+        } 
+        else if (strcmp(read.karyawan.username, write.karyawan.username)== 0) {
+            printf("\t\t Username sudah terdaftar. Mohon masukkan username yang berbeda.\n");
+            printf("\t\t Ketik apapun untuk melanjutkan. \n");
+            getchar();
+            systemCLS();
+            signUpKaryawan();
+            break;
+        }
+        else if (strcmp(read.karyawan.password, write.karyawan.password)== 0 ) {
+            printf("\t\t Password sudah terdaftar. Mohon masukkan username yang berbeda.");
+            printf("\t\t Ketik apapun untuk melanjutkan. \n");
+            getchar();
+            systemCLS();
+            signUpKaryawan();
+            break;
+        }
+    } while (!feof(fileKaryawan));
+    fclose(fileKaryawan);
 
     //Membuka file dataPemilik.txt untuk memasukkan data tadi
     FILE *signUp;
