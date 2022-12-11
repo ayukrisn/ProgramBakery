@@ -51,12 +51,16 @@ tipeData read;
 void menuPertama()
 {
     int pilihan;
-    printf("\t\t PROGRAM MANAJEMEN CAKE ME OUT\n");
-    printf("\t\t Silahkan masuk terlebih dahulu.\n");
-    printf("\t\t [1] Masuk sebagai Karyawan.\n");
-    printf("\t\t [2] Masuk sebagai Pemilik.\n");
-    printf("\t\t [3] Keluar dari program.\n");
-    printf("\t\t Ketik pilihan dengan angka yang tertera:");
+    printf("\t\t _______________________________________________________ \n");
+    printf("\t\t| P R O G R A M  M A N A J E M E N  C A K E  M E  O U T |\n");
+    printf("\t\t|-------------------------------------------------------|\n");
+    printf("\t\t| Silahkan masuk terlebih dahulu.                       |\n");
+    printf("\t\t| [1] Masuk sebagai Karyawan.                           |\n");
+    printf("\t\t| [2] Masuk sebagai Pemilik.                            |\n");
+    printf("\t\t| [3] Keluar dari program.                              |\n");
+    printf("\t\t|-------------------------------------------------------|\n");
+    printf("\t\t| Ketik pilihan dengan angka yang tertera (1-3):        |\n");
+    printf("\t\t|_______________________________________________________|\n");
     pilihanUser(&pilihan, 1, 3);
     fflush(stdin);
     if (pilihan == 1) {
@@ -88,12 +92,17 @@ void akunPemilik()
         signUpPemilik();
     } else {
         fclose(periksaData);
-        printf("\t\t Sudah ada akun yang terdaftar. Apakah Anda ingin melakukan Sign In?\n");
-        printf("\t\t [1] Ya, saya ingin melakukan sign in.\n");
-        printf("\t\t [2] Tidak, saya ingin melakukan sign up.\n");
-        printf("\t\t [3] Kembali ke menu awal.\n");
-        printf("\t\t CATATAN: Bila melakukan sign up, maka data yang sebelumnya ada akan terhapus.\n");
-        printf("\t\t Ketik pilihan dengan angka yang tertera:");
+        printf("\t\t _______________________________________________________________________________ \n");
+        printf("\t\t|      Sudah ada akun yang terdaftar. Apakah Anda ingin melakukan Sign In?      |\n");
+        printf("\t\t|-------------------------------------------------------------------------------|\n");
+        printf("\t\t| [1] Ya, saya ingin melakukan sign in.                                         |\n");
+        printf("\t\t| [2] Tidak, saya ingin melakukan sign up.                                      |\n");
+        printf("\t\t| [3] Kembali ke menu awal.                                                     |\n");
+        printf("\t\t|-------------------------------------------------------------------------------|\n");
+        printf("\t\t| CATATAN: Bila melakukan sign up, maka data yang sebelumnya ada akan terhapus. |\n");
+        printf("\t\t|-------------------------------------------------------------------------------|\n");
+        printf("\t\t| Ketik pilihan dengan angka yang tertera (1-3):                                |\n");
+        printf("\t\t|_______________________________________________________________________________|\n");
         pilihanUser(&pilihan, 1, 3);
         if (pilihan == 1) {
             systemCLS();
