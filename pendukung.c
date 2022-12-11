@@ -83,6 +83,7 @@ void pilihanUser(int *varInt, int batasTerkecil, int batasTerbesar)
     Validasi input nama 1
         Memeriksa apakah nama mengandung angka dan/atau
         simbol (*, =, +, dll) atau tidak
+        Dapat digunakan untuk nama pengguna atau daftar menu
 */
 bool validasiNama (char *varNama)
 {
@@ -90,28 +91,29 @@ bool validasiNama (char *varNama)
     int elemenNama;
 
     fflush(stdin);
-    // Menerima input dan memeriksa apakah input NULL atau tidak
     printf("\t\t Nama : ");
-    if(fgets(varNama, sizeof(varNama), stdin) == NULL) return false;
+    // Menerima input dan memeriksa apakah input NULL atau tidak
+    if(fgets(varNama, 30, stdin) == NULL) return false;
     //Mengganti '\n' dengan '\0'
     varNama[strcspn(varNama, "\n")] = '\0';
     // Memeriksa apakah panjang karakter yang diberikan lebih dari
-    // 30 atau tidak
+    // kurang dari 2 atau tidak
     panjangKarakter = strlen(varNama);
-    if (panjangKarakter > 30) return false;
-    printf("panjang karakter = %d\n", panjangKarakter);
+    if (panjangKarakter < 2) {
+        printf("\t\t Nama kurang dari 2 karakter.\n");
+        return false;
+    }
     // Memeriksa tiap elemen dalam string
     for (elemenNama = 0; elemenNama <= panjangKarakter; elemenNama++) {
         // Jika karakter adalah digit, maka nama salah
-        printf("elemen ke %d\n", elemenNama);
         if (isdigit(varNama[elemenNama])) {
-            printf("Ada digit\n");
+            printf("\t\t Nama mengandung digit angka.\n");
             return false;
             break;
         }
         // Jika karakter adalah simbol, maka nama salah
         if (ispunct(varNama[elemenNama])) {
-            printf("Ada simbol\n");
+            printf("\t\t Nama mengandung simbol.\n");
             return false;
             break;
         }
@@ -129,14 +131,142 @@ void inputNama (char *varNama)
         fflush(stdin);
         bool hasilValidasi = validasiNama(varNama);
         if (hasilValidasi) {
-            printf("Input benar.\n");
             break;
         } else {
         printf("\t\t Masukan salah. Mohon masukkan nama sesuai arahan.\n");
-        printf("\t\t Masukkan nama: ");
         }
     }
 }
+
+/*
+    Validasi input username 1
+        Memeriksa apakah username mengandung whitespace 
+        dan/atau simbol (*, =, +, dll) atau tidak
+*/
+bool validasiUsername(char *varUsername)
+{
+    int panjangKarakter;
+    int elemenUsername;
+
+    fflush(stdin);
+    printf("\t\t Username setidaknya terdiri dari 8 karakter.\n");
+    printf("\t\t Username : ");
+    // Menerima input dan memeriksa apakah input NULL atau tidak
+    if(fgets(varUsername, 20, stdin) == NULL) return false;
+    //Mengganti '\n' dengan '\0'
+    varUsername[strcspn(varUsername, "\n")] = '\0';
+    // Memeriksa apakah panjang karakter yang diberikan
+    // kurang dari 8 atau tidak
+    panjangKarakter = strlen(varUsername);
+    if (panjangKarakter < 8) {
+        printf("\t\t Username kurang dari 8 karakter.\n");
+        return false;
+    }
+    // Memeriksa tiap elemen dalam string
+    for (elemenUsername = 0; elemenUsername <= panjangKarakter; elemenUsername++) {
+        // Jika karakter adalah spasi, maka username salah
+        if (isspace(varUsername[elemenUsername])) {
+            printf("\t\t Username mengandung whitespace.\n");
+            return false;
+            break;
+        }
+        // Jika karakter adalah simbol, maka username salah
+        if (ispunct(varUsername[elemenUsername])) {
+            printf("\t\t Username mengandung simbol.\n");
+            return false;
+            break;
+        }
+    }
+}
+
+/*
+    Validasi input username 2
+        Memberikan pesan bila input username salah
+        dan mengulangi input username
+*/
+void inputUsername (char *varUsername)
+{
+    while (1) {
+        fflush(stdin);
+        bool hasilValidasi = validasiUsername(varUsername);
+        if (hasilValidasi) {
+            break;
+        } else {
+        printf("\t\t Masukan salah. Mohon masukkan nama sesuai arahan.\n");
+        }
+    }
+}
+
+
+/*
+    Validasi input password 1
+        Memeriksa apakah password telah
+        mengandung angka dan simbol (*, =, +, dll) atau tidak
+*/
+bool validasiPassword(char *varPassword)
+{
+    int panjangKarakter;
+    int elemenPassword;
+
+    // variabel untuk menentukan apakah password yang diinput
+    // sudah sesuai dengan ketentuan
+    bool simbol = false;
+    bool digit = false;
+
+    fflush(stdin);
+    // Menerima input dan memeriksa apakah input NULL atau tidak
+    printf("\t\t Password setidaknya terdiri dari 8 karakter serta mengandung simbol dan angka.\n");
+    printf("\t\t Password : ");
+    if(fgets(varPassword, 20, stdin) == NULL) return false;
+    //Mengganti '\n' dengan '\0'
+    varPassword[strcspn(varPassword, "\n")] = '\0';
+    // Memeriksa apakah panjang karakter yang diberikan
+    // kurang dari 8 atau tidak
+    panjangKarakter = strlen(varPassword);
+    if (panjangKarakter < 8) {
+        printf("\t\t Password kurang dari 8 karakter.\n");
+        return false;
+    }
+    // Memeriksa tiap elemen dalam string
+    for (elemenPassword = 0; elemenPassword<= panjangKarakter; elemenPassword++) {
+        printf("elemen: %d", elemenPassword);
+        // Memeriksa apakah input password sesuai dengan ketentuan
+        if (isdigit(varPassword[elemenPassword])) {
+            digit = true;
+        }
+        if (ispunct(varPassword[elemenPassword])) {
+            simbol = true;
+        }
+    }
+    if (!digit) {
+        printf("\t\t Password tidak berisi digit.\n");
+        return false;
+    }
+    if (!simbol) {
+        printf("\t\t Password tidak berisi simbol.\n");
+        return false;
+    }
+    return true;
+}
+
+/*
+    Validasi input password 2
+        Memberikan pesan bila input password salah
+        dan mengulangi input password
+*/
+void inputPassword (char *varPassword)
+{
+    while (1) {
+        fflush(stdin);
+        bool hasilValidasi = validasiPassword(varPassword);
+        if (hasilValidasi) {
+            break;
+        } else {
+        printf("\t\t Masukan salah. Mohon masukkan nama sesuai arahan.\n");
+        }
+    }
+}
+
 
 // +======================================================================================================================+
 // PROSEDUR PENGGANTI FUNGSI SYSTEM()
