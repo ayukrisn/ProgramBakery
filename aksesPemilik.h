@@ -15,6 +15,6 @@
 #define AKSES_PEMILIK_H
 
 void menuAwalPemilik(); void manageKaryawan(); void listKaryawan(); void showListKaryawan();
-    // void hapusKaryawan(); 
+    void hapusKaryawan(); 
 
 #endif //AKSES_PEMILIK_H
