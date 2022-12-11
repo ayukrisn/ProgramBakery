@@ -1,6 +1,20 @@
+/*
+==================================================
+    Source code "pendukung.c" berisi definisi dari
+    fungsi/prosedur yang dapat dijalankan
+    oleh pemilik
+    Contoh: membuka program untuk pelanggan, 
+            manage akun karyawan
+            manage daftar menu
+            manage status penjualan
+==================================================
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
+#include <ctype.h>
 #include "logIn.h"
 #include "variabel.h"
 #include "aksesPemilik.h"

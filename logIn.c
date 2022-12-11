@@ -1,6 +1,18 @@
+/*
+==================================================
+    Source code "pendukung.c" berisi definisi dari
+    fungsi/prosedur untuk menjalankan sign in
+    atau sign up untuk pemilik, karyawan, dan 
+    pembeli (membership)
+==================================================
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
+#include <ctype.h>
 #include "logIn.h"
 #include "variabel.h"
 #include "aksesPemilik.h"
@@ -45,7 +57,7 @@ void menuPertama()
     printf("\t\t [2] Masuk sebagai Pemilik.\n");
     printf("\t\t [3] Keluar dari program.\n");
     printf("\t\t Ketik pilihan dengan angka yang tertera:");
-    scanf("%d", &pilihan);
+    pilihanUser(&pilihan, 1, 3);
     fflush(stdin);
     if (pilihan == 1) {
         systemCLS();
@@ -106,7 +118,7 @@ void signUpPemilik()
 
     //Memasukkan data yang diperlukan
     printf("\t\t Username: ");
-    scanf("%10s", write.pemilik.username);
+    scanf("%20s", write.pemilik.username);
     fflush(stdin);
 
     printf("\t\t Password: ");
@@ -145,7 +157,7 @@ void signUpPemilik()
 void signInPemilik () {
     printf("\t\t Silahkan lakukan Sign In terlebih dahulu.\n");
     printf("\t\t Username: ");
-    scanf("%10s", write.pemilik.username);
+    scanf("%20s", write.pemilik.username);
     fflush(stdin);
 
     printf("\t\t Password: ");
@@ -185,23 +197,23 @@ void signUpKaryawan()
     //Memasukkan data yang diperlukan
     //fflush(stdin);
     getchar();
-    printf("\t\t Nama: ");
-    fgets(write.karyawan.nama, 30 , stdin);
-    write.karyawan.nama[strcspn(write.karyawan.nama, "\n")] = '\0';
+    inputNama(write.karyawan.nama);
 
-    printf("\t\t Username: ");
-    scanf("%10s", write.karyawan.username);
-    fflush(stdin);
+    // printf("\t\t Username: ");
+    inputUsername (write.karyawan.username);
+    // scanf("%20s", write.karyawan.username);
+    // fflush(stdin);
 
-    printf("\t\t Password: ");
-    scanf("%20s", write.karyawan.password);
-    getchar();
+    inputPassword (write.karyawan.password);
+    // printf("\t\t Password: ");
+    // scanf("%20s", write.karyawan.password);
+    // getchar();
 
     // Pemeriksaan apakah nama, username, dan password sudah terdaftar
     FILE *fileKaryawan;
     fileKaryawan = fopen("dataKaryawan.txt", "r");
      do {
-        fscanf(fileKaryawan, "%29[^\n]\n%9[^\n]\n%19[^\n]\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
+        fscanf(fileKaryawan, "%29[^\n]\n%19[^\n]\n%19[^\n]\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
         if(strcmp(read.karyawan.nama, write.karyawan.nama)== 0) {
             printf("\t\t Nama sudah terdaftar. Mohon masukkan nama yang berbeda.\n");
             printf("\t\t Ketik apapun untuk melanjutkan");
@@ -265,7 +277,7 @@ void signInKaryawan () {
     } else {
         printf("\t\t Silahkan lakukan Sign In terlebih dahulu.\n");
         printf("\t\t Username: ");
-        scanf("%10s", write.karyawan.username);
+        scanf("%20s", write.karyawan.username);
         fflush(stdin);
 
         printf("\t\t Password: ");

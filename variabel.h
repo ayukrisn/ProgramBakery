@@ -21,7 +21,7 @@
     program dijalankan
 */
 typedef struct {
-    char username[10];
+    char username[20];
     char password[20];
     char nama[30];
 } daftarData;
