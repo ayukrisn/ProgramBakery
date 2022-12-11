@@ -26,14 +26,19 @@
 void menuAwalPemilik()
 {
     int pilihan;
-    printf("\t\t AKSES PEMILIK\n");
-    printf("\t\t Silahkan pilih menu yang diinginkan.\n");
-    printf("\t\t [1] Buka program untuk pelanggan.\n");
-    printf("\t\t [2] Manage akun karyawan\n");
-    printf("\t\t [3] Manage daftar menu\n");
-    printf("\t\t [4] Lihat status penjualan\n");
-    printf("\t\t [5] Sign out dan kembali ke menu awal\n");
-    printf("\t\t Ketik pilihan dengan angka yang tertera:");
+    printf("\t\t _______________________________________________________ \n");
+    printf("\t\t|               A K S E S  P E M I L I K                |\n");
+    printf("\t\t|_______________________________________________________|\n");
+    printf("\t\t| Silahkan pilih menu yang diinginkan.                  |\n");
+    printf("\t\t|-------------------------------------------------------|\n");
+    printf("\t\t| [1] Buka program untuk pelanggan                      |\n");
+    printf("\t\t| [2] Manage akun karyawan                              |\n");
+    printf("\t\t| [3] Manage daftar menu                                |\n");
+    printf("\t\t| [4] Lihat status penjualan                            |\n");
+    printf("\t\t| [5] Sign out dan kembali ke menu awal                 |\n");
+    printf("\t\t|-------------------------------------------------------|\n");
+    printf("\t\t| Ketik pilihan dengan angka yang tertera (1-5) :       |\n");
+    printf("\t\t|_______________________________________________________|\n");
     scanf("%d", &pilihan);
     if (pilihan == 1) {
         systemCLS();
@@ -60,13 +65,18 @@ void menuAwalPemilik()
 void manageKaryawan()
 {
     int pilihan;
-    printf("\t\t Manage Akun Karyawan\n");
-    printf("\t\t Silahkan pilih menu yang diinginkan.\n");
-    printf("\t\t [1] Lihat daftar akun karyawan\n");
-    printf("\t\t [2] Tambah akun karyawan\n");
-    printf("\t\t [3] Hapus akun karyawan\n");
-    printf("\t\t [4] Kembali ke akses pemilik\n");
-    printf("\t\t Ketik pilihan dengan angka yang tertera:");
+    printf("\t\t _______________________________________________________ \n");
+    printf("\t\t|        M A N A G E  A K U N   K A R Y A W A N         |\n");
+    printf("\t\t|_______________________________________________________|\n");
+    printf("\t\t| Silahkan pilih menu yang diinginkan.                  |\n");
+    printf("\t\t|-------------------------------------------------------|\n");
+    printf("\t\t| [1] Lihat daftar akun karyawan                        |\n");
+    printf("\t\t| [2] Tambah akun karyawan                              |\n");
+    printf("\t\t| [3] Hapus akun karyawan                               |\n");
+    printf("\t\t| [4] Kembali ke akses pemilik                          |\n");
+    printf("\t\t|-------------------------------------------------------|\n");
+    printf("\t\t| Ketik pilihan dengan angka yang tertera (1-4) :       |\n");
+    printf("\t\t|_______________________________________________________|\n");
     pilihanUser(&pilihan, 1, 4);
     fflush(stdin);
         if (pilihan == 1) {
@@ -92,10 +102,14 @@ void listKaryawan()
 {
     showListKaryawan();
     int pilihan;
-    printf("\t\t Ingin kembali ke menu sebelumnya?\n");
-    printf("\t\t [1] Ya, kembali ke menu manage karyawan\n");
-    printf("\t\t [2] Tidak, kembali ke menu awal\n");
-    printf("\t\t Ketik pilihan dengan angka yang tertera:");
+    printf("\t\t _______________________________________________________ \n");    
+    printf("\t\t|           Ingin kembali ke menu sebelumnya?           |\n");
+    printf("\t\t|-------------------------------------------------------|\n");
+    printf("\t\t| [1] Ya, kembali ke menu manage karyawan               |\n");
+    printf("\t\t| [2] Tidak, kembali ke menu awal                       |\n");
+    printf("\t\t|-------------------------------------------------------|\n");
+    printf("\t\t| Ketik pilihan dengan angka yang tertera (1/2):        |\n");
+    printf("\t\t|_______________________________________________________|\n");
     pilihanUser(&pilihan, 1, 2);
     fflush(stdin);
     if (pilihan == 1){
