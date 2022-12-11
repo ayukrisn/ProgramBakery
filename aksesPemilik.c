@@ -63,7 +63,7 @@ void manageKaryawan()
             signUpKaryawan();
         } else if (pilihan == 3 ) {
             systemCLS();
-            // hapusKaryawan();
+            hapusKaryawan();
         } else if (pilihan == 4) {
             systemCLS();
             menuAwalPemilik();
@@ -126,49 +126,47 @@ void showListKaryawan()
     fclose(fileKaryawan);
 }
 
-/*
+
 void hapusKaryawan() 
 {
     printf("\t\t HAPUS DATA KARYAWAN\n");
     showListKaryawan();
 
     int c = getchar();
-    printf("\t\t Ketik nama karyawan yang ingin dihapus: ");
-    fgets(write.karyawan.nama, 30 , stdin);
-    write.karyawan.nama[strcspn(write.karyawan.nama, "\n")] = '\0';
+    printf("\t\t Ketik username karyawan yang ingin dihapus: ");
+    scanf("%[^\n]", write.karyawan.username);
     getchar();
 
     FILE *fileKaryawan;
-    fileKaryawan = fopen("dataKaryawan.txt", "a");
+    fileKaryawan = fopen("dataKaryawan.txt", "r");
 
-    rewind(fileKaryawan);
     int cari=0;
-    while (!feof(fileKaryawan)) {
-        fscanf(fileKaryawan, "%[^\n]\n%s\n%s\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
-        printf("Data dari file: %s", read.karyawan.nama);
-        printf("Data dari input: %s", write.karyawan.nama);
-        if(strstr(read.karyawan.nama, write.karyawan.nama)!= 0){
-            printf("Data ditemukan");
+     do {
+        fscanf(fileKaryawan, "%29[^\n]\n%9[^\n]\n%19[^\n]\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
+        // printf("Data dari file: %s\n", read.karyawan.username);
+        // printf("Data dari input: %s\n", write.karyawan.username);
+        if(strcmp(read.karyawan.username, write.karyawan.username)== 0){
+            printf("\t\t Data telah ditemukan. \n");
             cari=1;
             break;
-        } else cari=0;
-    }
+        }
+    } while (!feof(fileKaryawan));
 
     if(cari==0) {
-        printf("\t\t Data tidak ditemukan.");
+        printf("\t\t Data tidak ditemukan.\n");
         systemPause();
         systemCLS();
         manageKaryawan();
     } else {
 
     FILE *tempKaryawan;
-	tempKaryawan=fopen("tempKaryawan.txt","w");
+	tempKaryawan=fopen("tempKaryawan.txt","w+");
 	rewind(fileKaryawan);
     while(!feof(fileKaryawan)) {
         fscanf(fileKaryawan, "%[^\n]\n%s\n%s\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
-        if(strstr(read.karyawan.nama, write.karyawan.nama)== 0){
-           fprintf(tempKaryawan, "%s\n%s\n%s\n", read)
-        }
+        if(strcmp(read.karyawan.username, write.karyawan.username)!= 0){
+           fprintf(tempKaryawan, "%s\n%s\n%s\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
+        } // else continue;
     }
     printf("\t\t Data telah dihapus dari file.\n");
     fclose(fileKaryawan);
@@ -177,4 +175,3 @@ void hapusKaryawan()
     rename("tempKaryawan.txt","dataKaryawan.txt");
     }
 }
-*/
