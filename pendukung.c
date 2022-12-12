@@ -288,6 +288,5 @@ void systemCLS()
 void systemPause()
 {
     printf("\n\t\t Tekan tombol keyboard untuk melanjutkan.\n");
-    int c = getchar();
     getchar();
 }
