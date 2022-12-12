@@ -26,15 +26,20 @@
 void menuAwalPemilik()
 {
     int pilihan;
-    printf("\t\t AKSES PEMILIK\n");
-    printf("\t\t Silahkan pilih menu yang diinginkan.\n");
-    printf("\t\t [1] Buka program untuk pelanggan.\n");
-    printf("\t\t [2] Manage akun karyawan\n");
-    printf("\t\t [3] Manage daftar menu\n");
-    printf("\t\t [4] Lihat status penjualan\n");
-    printf("\t\t [5] Sign out dan kembali ke menu awal\n");
-    printf("\t\t Ketik pilihan dengan angka yang tertera:");
-    pilihanUser(&pilihan, 1, 5);
+    printf("\t\t _______________________________________________________ \n");
+    printf("\t\t|               A K S E S  P E M I L I K                |\n");
+    printf("\t\t|_______________________________________________________|\n");
+    printf("\t\t| Silahkan pilih menu yang diinginkan.                  |\n");
+    printf("\t\t|-------------------------------------------------------|\n");
+    printf("\t\t| [1] Buka program untuk pelanggan                      |\n");
+    printf("\t\t| [2] Manage akun karyawan                              |\n");
+    printf("\t\t| [3] Manage daftar menu                                |\n");
+    printf("\t\t| [4] Lihat status penjualan                            |\n");
+    printf("\t\t| [5] Sign out dan kembali ke menu awal                 |\n");
+    printf("\t\t|-------------------------------------------------------|\n");
+    printf("\t\t| Ketik pilihan dengan angka yang tertera (1-5) :       |\n");
+    printf("\t\t|_______________________________________________________|\n");
+    scanf("%d", &pilihan);
     if (pilihan == 1) {
         systemCLS();
         //menuMasukPelanggan();
@@ -60,14 +65,19 @@ void menuAwalPemilik()
 void manageKaryawan()
 {
     int pilihan;
-    printf("\t\t Manage Akun Karyawan\n");
-    printf("\t\t Silahkan pilih menu yang diinginkan.\n");
-    printf("\t\t [1] Lihat daftar akun karyawan\n");
-    printf("\t\t [2] Tambah akun karyawan\n");
-    printf("\t\t [3] Hapus akun karyawan\n");
-    printf("\t\t [4] Kembali ke akses pemilik\n");
-    printf("\t\t Ketik pilihan dengan angka yang tertera:");
-    scanf("%d", &pilihan);
+    printf("\t\t _______________________________________________________ \n");
+    printf("\t\t|        M A N A G E  A K U N   K A R Y A W A N         |\n");
+    printf("\t\t|_______________________________________________________|\n");
+    printf("\t\t| Silahkan pilih menu yang diinginkan.                  |\n");
+    printf("\t\t|-------------------------------------------------------|\n");
+    printf("\t\t| [1] Lihat daftar akun karyawan                        |\n");
+    printf("\t\t| [2] Tambah akun karyawan                              |\n");
+    printf("\t\t| [3] Hapus akun karyawan                               |\n");
+    printf("\t\t| [4] Kembali ke akses pemilik                          |\n");
+    printf("\t\t|-------------------------------------------------------|\n");
+    printf("\t\t| Ketik pilihan dengan angka yang tertera (1-4) :       |\n");
+    printf("\t\t|_______________________________________________________|\n");
+    pilihanUser(&pilihan, 1, 4);
     fflush(stdin);
         if (pilihan == 1) {
             systemCLS();
@@ -92,12 +102,15 @@ void listKaryawan()
 {
     showListKaryawan();
     int pilihan;
-    printf("\t\t Ingin kembali ke menu sebelumnya?\n");
-    printf("\t\t [1] Ya, kembali ke menu manage karyawan\n");
-    printf("\t\t [2] Tidak, kembali ke menu awal\n");
-    printf("\t\t Ketik pilihan dengan angka yang tertera:");
-    scanf("%d", &pilihan);
-    // printf("Pilihan: %d", pilihan);
+    printf("\t\t _______________________________________________________ \n");    
+    printf("\t\t|           Ingin kembali ke menu sebelumnya?           |\n");
+    printf("\t\t|-------------------------------------------------------|\n");
+    printf("\t\t| [1] Ya, kembali ke menu manage karyawan               |\n");
+    printf("\t\t| [2] Tidak, kembali ke menu awal                       |\n");
+    printf("\t\t|-------------------------------------------------------|\n");
+    printf("\t\t| Ketik pilihan dengan angka yang tertera (1/2):        |\n");
+    printf("\t\t|_______________________________________________________|\n");
+    pilihanUser(&pilihan, 1, 2);
     fflush(stdin);
     if (pilihan == 1){
         systemCLS();
@@ -118,10 +131,11 @@ void showListKaryawan()
 
     //Melihat apakah ada data atau tidak
     if (fileKaryawan == NULL) {
-        printf("\t\t Belum ada data yang tersimpan");
+        printf("\t\t Belum ada data yang tersimpan.\n");
+        printf("\t\t Silahkan tambahkan akun karyawan terlebih dahulu.\n");
         systemPause();
         systemCLS();
-        menuAwalPemilik();
+        manageKaryawan();
     } else {
         // fread(&dataKaryawan, sizeof(dataKaryawan), 1, fileKaryawan);)
         printf("\t\t LIST DAFTAR KARYAWAN\n");
@@ -146,7 +160,7 @@ void hapusKaryawan()
     printf("\t\t HAPUS DATA KARYAWAN\n");
     showListKaryawan();
 
-    int c = getchar();
+    getchar();
     printf("\t\t Ketik username karyawan yang ingin dihapus: ");
     scanf("%[^\n]", write.karyawan.username);
     getchar();

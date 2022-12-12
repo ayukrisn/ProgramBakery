@@ -17,7 +17,7 @@
 /*
     FUNGSI DAN PROSEDUR VALIDASI INPUT
 */
-int validasiInteger (int *varInt); void inputUser(int *varInt);
+int validasiInteger (int *varInt); void inputInteger(int *varInt);
     void pilihanUser(int *varInt, int batasTerkecil, int batasTerbesar);
 
 /*
@@ -28,7 +28,7 @@ bool validasiUsername (char *varUsername); void inputUsername (char *varUsername
 bool validasiPassword (char *varPassword); void inputPassword (char *varPassword);
 
 /*
-    PENGGANTI SYSTEM()
+    PENGGANTI SYSTEM() DAN LAINNYA
 */
 void systemCLS(); void systemPause();
 

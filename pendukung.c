@@ -45,7 +45,7 @@ int validasiInteger (int *varInt)
     Validasi input integer 2
         Memberikan pesan apabila input salah
 */
-void inputUser(int *varInt)
+void inputInteger(int *varInt)
 {
     while (1) { //infinite loop hingga break
         fflush(stdin);
@@ -65,7 +65,7 @@ void inputUser(int *varInt)
 void pilihanUser(int *varInt, int batasTerkecil, int batasTerbesar)
 {
     while(1) {
-        inputUser(varInt);
+        inputInteger(varInt);
         fflush(stdin);
         // Memeriksa apakah input user berada di antara batas yang
         // diberikan. Jika ya, keluar dari loop
@@ -128,6 +128,7 @@ bool validasiNama (char *varNama)
 void inputNama (char *varNama)
 {
     while (1) {
+        
         fflush(stdin);
         bool hasilValidasi = validasiNama(varNama);
         if (hasilValidasi) {
@@ -229,7 +230,6 @@ bool validasiPassword(char *varPassword)
     }
     // Memeriksa tiap elemen dalam string
     for (elemenPassword = 0; elemenPassword<= panjangKarakter; elemenPassword++) {
-        printf("elemen: %d", elemenPassword);
         // Memeriksa apakah input password sesuai dengan ketentuan
         if (isdigit(varPassword[elemenPassword])) {
             digit = true;
@@ -256,9 +256,10 @@ bool validasiPassword(char *varPassword)
 */
 void inputPassword (char *varPassword)
 {
+    bool hasilValidasi;
     while (1) {
         fflush(stdin);
-        bool hasilValidasi = validasiPassword(varPassword);
+        hasilValidasi = validasiPassword(varPassword);
         if (hasilValidasi) {
             break;
         } else {
