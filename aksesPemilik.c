@@ -34,7 +34,7 @@ void menuAwalPemilik()
     printf("\t\t [4] Lihat status penjualan\n");
     printf("\t\t [5] Sign out dan kembali ke menu awal\n");
     printf("\t\t Ketik pilihan dengan angka yang tertera:");
-    scanf("%d", &pilihan);
+    pilihanUser(&pilihan, 1, 5);
     if (pilihan == 1) {
         systemCLS();
         //menuMasukPelanggan();
