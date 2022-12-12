@@ -17,4 +17,5 @@
 void menuAwalPemilik(); void manageKaryawan(); void listKaryawan(); void showListKaryawan();
     void hapusKaryawan(); 
 
+void menuAwalKaryawan();
 #endif //AKSES_PEMILIK_H

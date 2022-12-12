@@ -1,6 +1,6 @@
 /*
 ==================================================
-    Source code "pendukung.c" berisi definisi dari
+    Source code "aksesAdmin.c" berisi definisi dari
     fungsi/prosedur yang dapat dijalankan
     oleh pemilik dan karyawan
     Contoh: membuka program untuk pelanggan, 
@@ -19,6 +19,12 @@
 #include "variabel.h"
 #include "aksesAdmin.h"
 #include "pendukung.h"
+
+/*
+    ===========================================================================
+    B A G I A N  A K S E S  P E M I L I K
+    ===========================================================================
+*/
 
 /*
     Prosedur menu awal setelah melakukan sign in pemilik
@@ -216,4 +222,48 @@ void hapusKaryawan()
     systemCLS();
     manageKaryawan();
     }
+}
+
+/*
+    ===========================================================================
+    B A G I A N  A K S E S  K A R Y A W A N
+    ===========================================================================
+*/
+
+/*
+    Prosedur menu awal untuk karyawan
+*/
+void menuAwalKaryawan()
+{
+    int pilihan;
+    printf("\t\t _______________________________________________________ \n");
+    printf("\t\t|               A K S E S  K A R Y A W A N              |\n");
+    printf("\t\t|_______________________________________________________|\n");
+    printf("\t\t| Silahkan pilih menu yang diinginkan.                  |\n");
+    printf("\t\t|-------------------------------------------------------|\n");
+    printf("\t\t| [1] Buka program untuk pelanggan                      |\n");
+    printf("\t\t| [2] Manage stok dagang                                |\n");
+    printf("\t\t| [3] Lihat daftar menu                                 |\n");
+    printf("\t\t| [4] Lihat status penjualan                            |\n");
+    printf("\t\t| [5] Sign out dan kembali ke menu awal                 |\n");
+    printf("\t\t|_______________________________________________________|\n");
+    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-5) :        \n");
+    pilihanUser(&pilihan, 1, 5);
+    fflush(stdin);
+    if (pilihan == 1) {
+        systemCLS();
+        //menuMasukPelanggan();
+        } else if (pilihan == 2) {
+            systemCLS();
+            //manageStok();
+        } else if (pilihan == 3 ) {
+            systemCLS();
+            //manageDaftarMenu();
+        } else if (pilihan == 4 ) {
+            systemCLS();
+            //manageStatusPenjualan();
+        } else if (pilihan == 5) {
+            systemCLS();
+            menuPertama();
+        }
 }

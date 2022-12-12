@@ -319,7 +319,7 @@ void signInKaryawan () {
             //menuAwalKaryawan();
             systemPause();
             systemCLS();
-            menuPertama();
+            menuAwalKaryawan();
             break;
         } else tidakKetemu = 1;
         } while (!feof(signIn));
