@@ -1,8 +1,8 @@
 /*
 ==================================================
-    Header file "aksesPemilik.h" berisi deklarasi dari 
+    Header file "aksesAdmin.h" berisi deklarasi dari 
     prosedur, fungsi, atau pun variabel yang 
-    didefinisikan di dalam aksesPemilik.c
+    didefinisikan di dalam aksesAdmin.c
 ==================================================
 */
 
@@ -17,4 +17,5 @@
 void menuAwalPemilik(); void manageKaryawan(); void listKaryawan(); void showListKaryawan();
     void hapusKaryawan(); 
 
+void menuAwalKaryawan();
 #endif //AKSES_PEMILIK_H

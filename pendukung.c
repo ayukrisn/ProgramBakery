@@ -13,7 +13,7 @@
 #include <ctype.h>
 #include "logIn.h"
 #include "variabel.h"
-#include "aksesPemilik.h"
+#include "aksesAdmin.h"
 #include "pendukung.h"
 
 // +======================================================================================================================+
@@ -288,6 +288,5 @@ void systemCLS()
 void systemPause()
 {
     printf("\n\t\t Tekan tombol keyboard untuk melanjutkan.\n");
-    int c = getchar();
     getchar();
 }

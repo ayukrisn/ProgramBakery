@@ -13,7 +13,7 @@
 #include <ctype.h>
 #include "logIn.h"
 #include "variabel.h"
-#include "aksesPemilik.h"
+#include "aksesAdmin.h"
 #include "pendukung.h"
 
 int main(void)

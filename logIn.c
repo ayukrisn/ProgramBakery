@@ -15,7 +15,7 @@
 #include <ctype.h>
 #include "logIn.h"
 #include "variabel.h"
-#include "aksesPemilik.h"
+#include "aksesAdmin.h"
 #include "pendukung.h"
 
 
@@ -189,6 +189,7 @@ void signInPemilik () {
             printf("\t\t|                Sign In telah berhasil.               |\n");
             printf("\t\t|______________________________________________________|\n");
             printf("\t\t  Selamat datang, %s.\n", dataPemilik.nama);
+            getchar();
             systemPause();
             systemCLS();
             menuAwalPemilik();
@@ -293,21 +294,22 @@ void signInKaryawan () {
         printf("\t\t  Password : ");
         scanf("%[^\n]", write.karyawan.password);
         getchar();
-        printf("Data input: %s dan %s\n", write.karyawan.username, write.karyawan.password);
-        printf("Hasil strlen input: %d %d\n",strlen(write.karyawan.username), strlen(write.karyawan.password) );
+        // printf("Data input: %s dan %s\n", write.karyawan.username, write.karyawan.password);
+        // printf("Hasil strlen input: %d %d\n",strlen(write.karyawan.username), strlen(write.karyawan.password) );
 
         //Memeriksa apakah username dan password yang diberikan benar atau tidak
         bool tidakKetemu = 0;
         rewind(signIn);
         do {
         fscanf(signIn, "%[^,],%[^,],%[^,],\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
+        /*
         printf("Data file: %s dan %s\n", read.karyawan.username, read.karyawan.password);
         printf("Hasil strlen file: %d %d\n",strlen(read.karyawan.username), strlen(read.karyawan.password) );
         printf("Hasil strcmp: %d %d\n",strcmp(write.karyawan.username, read.karyawan.username), strcmp(write.karyawan.password, read.karyawan.password) );
+        */
         if(strcmp(write.karyawan.username, read.karyawan.username)==0 && strcmp(write.karyawan.password, read.karyawan.password)==0) {
             tidakKetemu = 0;
             dataKaryawan = read.karyawan;
-            printf("test\n");
 
             printf("\t\t _______________________________________________________ \n");
             printf("\t\t|                Sign In telah berhasil.                |\n");
@@ -317,7 +319,7 @@ void signInKaryawan () {
             //menuAwalKaryawan();
             systemPause();
             systemCLS();
-            menuPertama();
+            menuAwalKaryawan();
             break;
         } else tidakKetemu = 1;
         } while (!feof(signIn));
