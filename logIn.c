@@ -163,7 +163,7 @@ void signUpPemilik()
 */
 void signInPemilik () {
     printf("\t\t ______________________________________________________ \n");
-    printf("\t\t|                     SIGN UP PEMILIK                  |\n");
+    printf("\t\t|                     SIGN IN PEMILIK                  |\n");
     printf("\t\t|------------------------------------------------------|\n");
     printf("\t\t|      Silahkan melakukan Sign In terlebih dahulu      |\n");
     printf("\t\t|______________________________________________________|\n");
