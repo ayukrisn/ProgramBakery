@@ -19,6 +19,7 @@
 #include "variabel.h"
 #include "aksesAdmin.h"
 #include "pendukung.h"
+#include "daftarMenuRev.h"
 
 /*
     ===========================================================================
@@ -54,7 +55,7 @@ void menuAwalPemilik()
             manageKaryawan();
         } else if (pilihan == 3 ) {
             systemCLS();
-            //manageDaftarMenu();
+            manageDaftarMenu();
         } else if (pilihan == 4 ) {
             systemCLS();
             //manageStatusPenjualan();
@@ -225,6 +226,46 @@ void hapusKaryawan()
 }
 
 /*
+    Menu Manage Daftar Menu
+    Prosedur dapat dilihat di daftarMenu.c
+*/
+void manageDaftarMenu() 
+{
+    int pilihan;
+	printf("\t\t _______________________________________________________ \n");
+	printf("\t\t|           M A N A G E  D A F T A R  M E N U           |\n");
+	printf("\t\t|-------------------------------------------------------|\n");
+	printf("\t\t| Silahkan pilih opsi dibawah ini                       |\n");
+	printf("\t\t|-------------------------------------------------------|\n");
+	printf("\t\t| [1] Lihat Daftar Menu                                 |\n");
+	printf("\t\t| [2] Tambah Daftar Menu                                |\n");
+	printf("\t\t| [3] Hapus Daftar Menu                                 |\n");
+	printf("\t\t| [4] Edit Daftar Menu                                  |\n");
+	printf("\t\t| [5] Kembali ke akses pemilik                          |\n");
+	printf("\t\t|_______________________________________________________|\n");
+	printf("\t\t  Ketikkan pilihan anda (1-5) :                          \n");
+    pilihanUser(&pilihan, 1, 5);
+    fflush(stdin);
+    if (pilihan == 1) {
+        systemCLS();
+        //lihatDaftarMenu();
+        } else if (pilihan == 2) {
+            systemCLS();
+            //tambahDaftarMenu();
+        } else if (pilihan == 3 ) {
+            systemCLS();
+            //editDaftarMenu();
+        } else if (pilihan == 4 ) {
+            systemCLS();
+            //hapusDaftarMenu();
+        } else if (pilihan == 5) {
+            systemCLS();
+            menuAwalPemilik();
+        }
+}
+
+
+/*
     ===========================================================================
     B A G I A N  A K S E S  K A R Y A W A N
     ===========================================================================
@@ -258,10 +299,10 @@ void menuAwalKaryawan()
             //manageStok();
         } else if (pilihan == 3 ) {
             systemCLS();
-            //manageDaftarMenu();
+            //lihatDaftarMenu();
         } else if (pilihan == 4 ) {
             systemCLS();
-            //manageStatusPenjualan();
+            //lihatStatusPenjualan();
         } else if (pilihan == 5) {
             systemCLS();
             menuPertama();
