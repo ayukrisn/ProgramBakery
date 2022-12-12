@@ -166,7 +166,6 @@ void hapusKaryawan()
     printf("\t\t|_______________________________________________________|\n");
     showListKaryawan();
 
-    getchar();
     printf("\t\t  Ketik username karyawan yang ingin dihapus : ");
     scanf("%[^\n]", write.karyawan.username);
     getchar();
@@ -213,5 +212,7 @@ void hapusKaryawan()
     fclose(tempKaryawan);
     remove("dataKaryawan.txt");
     rename("tempKaryawan.txt","dataKaryawan.txt");
+    systemPause();
+    manageKaryawan();
     }
 }
