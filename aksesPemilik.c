@@ -36,10 +36,10 @@ void menuAwalPemilik()
     printf("\t\t| [3] Manage daftar menu                                |\n");
     printf("\t\t| [4] Lihat status penjualan                            |\n");
     printf("\t\t| [5] Sign out dan kembali ke menu awal                 |\n");
-    printf("\t\t|-------------------------------------------------------|\n");
-    printf("\t\t| Ketik pilihan dengan angka yang tertera (1-5) :       |\n");
     printf("\t\t|_______________________________________________________|\n");
-    scanf("%d", &pilihan);
+    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-5) :        \n");
+    pilihanUser(&pilihan, 1, 5);
+    fflush(stdin);
     if (pilihan == 1) {
         systemCLS();
         //menuMasukPelanggan();
@@ -74,9 +74,8 @@ void manageKaryawan()
     printf("\t\t| [2] Tambah akun karyawan                              |\n");
     printf("\t\t| [3] Hapus akun karyawan                               |\n");
     printf("\t\t| [4] Kembali ke akses pemilik                          |\n");
-    printf("\t\t|-------------------------------------------------------|\n");
-    printf("\t\t| Ketik pilihan dengan angka yang tertera (1-4) :       |\n");
     printf("\t\t|_______________________________________________________|\n");
+    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-4) :        \n");
     pilihanUser(&pilihan, 1, 4);
     fflush(stdin);
         if (pilihan == 1) {
@@ -107,9 +106,8 @@ void listKaryawan()
     printf("\t\t|-------------------------------------------------------|\n");
     printf("\t\t| [1] Ya, kembali ke menu manage karyawan               |\n");
     printf("\t\t| [2] Tidak, kembali ke menu awal                       |\n");
-    printf("\t\t|-------------------------------------------------------|\n");
-    printf("\t\t| Ketik pilihan dengan angka yang tertera (1/2):        |\n");
     printf("\t\t|_______________________________________________________|\n");
+    printf("\t\t  Ketik pilihan dengan angka yang tertera (1/2):         \n");
     pilihanUser(&pilihan, 1, 2);
     fflush(stdin);
     if (pilihan == 1){
@@ -131,23 +129,29 @@ void showListKaryawan()
 
     //Melihat apakah ada data atau tidak
     if (fileKaryawan == NULL) {
-        printf("\t\t Belum ada data yang tersimpan.\n");
-        printf("\t\t Silahkan tambahkan akun karyawan terlebih dahulu.\n");
+        printf("\t\t _______________________________________________________ \n");
+	printf("\t\t|             Belum ada data yang tersimpan.            |\n");
+	printf("\t\t|-------------------------------------------------------|\n");
+    	printf("\t\t|   Silahkan tambahkan akun karyawan terlebih dahulu.   |\n");
+    	printf("\t\t|_______________________________________________________|\n");
         systemPause();
         systemCLS();
         manageKaryawan();
     } else {
         // fread(&dataKaryawan, sizeof(dataKaryawan), 1, fileKaryawan);)
-        printf("\t\t LIST DAFTAR KARYAWAN\n");
+        printf("\t\t _______________________________________________________ \n");
+	printf("\t\t|         L I S T  D A F T A R  K A R Y A W A N         |\n");
+	printf("\t\t|_______________________________________________________|\n");
+
         int print = 1;
         while(!feof(fileKaryawan))
         // while ((fscanf(fileKaryawan, "%s %s %s\n", read.karyawan.username, read.karyawan.password, read.karyawan.nama)!=0))
         {
             fscanf(fileKaryawan, "%[^\n]\n%s\n%s\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
-            printf("\t\t No: %d \n", print);
-            printf("\t\t Nama: %s \n", read.karyawan.nama);
-            printf("\t\t Username: %s \n", read.karyawan.username);
-            printf("\t\t Password: %s \n", read.karyawan.password);
+            printf("\t\t No : %d \n", print);
+            printf("\t\t Nama : %s \n", read.karyawan.nama);
+            printf("\t\t Username : %s \n", read.karyawan.username);
+            printf("\t\t Password : %s \n", read.karyawan.password);
             print++;
         }
     }
@@ -157,11 +161,13 @@ void showListKaryawan()
 
 void hapusKaryawan() 
 {
-    printf("\t\t HAPUS DATA KARYAWAN\n");
+    printf("\t\t _______________________________________________________ \n");
+    printf("\t\t|          H A P U S  D A T A  K A R Y A W A N          |\n");
+    printf("\t\t|_______________________________________________________|\n");
     showListKaryawan();
 
     getchar();
-    printf("\t\t Ketik username karyawan yang ingin dihapus: ");
+    printf("\t\t  Ketik username karyawan yang ingin dihapus : ");
     scanf("%[^\n]", write.karyawan.username);
     getchar();
 
@@ -171,17 +177,21 @@ void hapusKaryawan()
     int cari=0;
      do {
         fscanf(fileKaryawan, "%29[^\n]\n%9[^\n]\n%19[^\n]\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
-        // printf("Data dari file: %s\n", read.karyawan.username);
-        // printf("Data dari input: %s\n", write.karyawan.username);
+        // printf("Data dari file : %s\n", read.karyawan.username);
+        // printf("Data dari input : %s\n", write.karyawan.username);
         if(strcmp(read.karyawan.username, write.karyawan.username)== 0){
-            printf("\t\t Data telah ditemukan. \n");
+            printf("\t\t _______________________________________________________ \n");
+	    printf("\t\t|                 Data telah ditemukan.                 |\n");
+	    printf("\t\t|_______________________________________________________|\n");
             cari=1;
             break;
         }
     } while (!feof(fileKaryawan));
 
     if(cari==0) {
-        printf("\t\t Data tidak ditemukan.\n");
+        printf("\t\t _______________________________________________________ \n");
+	printf("\t\t|                 Data tidak ditemukan.                 |\n");
+	printf("\t\t|_______________________________________________________|\n");
         systemPause();
         systemCLS();
         manageKaryawan();
@@ -196,7 +206,9 @@ void hapusKaryawan()
            fprintf(tempKaryawan, "%s\n%s\n%s\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
         } // else continue;
     }
-    printf("\t\t Data telah dihapus dari file.\n");
+    printf("\t\t _______________________________________________________ \n");
+    printf("\t\t|             Data telah dihapus dari file.             |\n");
+    printf("\t\t|_______________________________________________________|\n");
     fclose(fileKaryawan);
     fclose(tempKaryawan);
     remove("dataKaryawan.txt");
