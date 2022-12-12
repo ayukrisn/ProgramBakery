@@ -59,7 +59,7 @@ void menuPertama()
     printf("\t\t| [2] Masuk sebagai Pemilik.                            |\n");
     printf("\t\t| [3] Keluar dari program.                              |\n");
     printf("\t\t|_______________________________________________________|\n");
-    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-3) :        \n");
+    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-3) : ");
     pilihanUser(&pilihan, 1, 3);
     fflush(stdin);
     if (pilihan == 1) {
@@ -102,7 +102,7 @@ void akunPemilik()
         printf("\t\t|-------------------------------------------------------------------------------|\n");
         printf("\t\t| CATATAN: Bila melakukan sign up, maka data yang sebelumnya ada akan terhapus. |\n");
         printf("\t\t|_______________________________________________________________________________|\n");
-        printf("\t\t  Ketik pilihan dengan angka yang tertera (1-3) :                                \n");
+        printf("\t\t  Ketik pilihan dengan angka yang tertera (1-3) : ");
         pilihanUser(&pilihan, 1, 3);
         if (pilihan == 1) {
             systemCLS();
@@ -122,9 +122,11 @@ void akunPemilik()
 */
 void signUpPemilik()
 {
-    printf("\t\t ____________________________________________________________________ \n");
-    printf("\t\t|            Silahkan lakukan registrasi terlebih dahulu.            |\n");
-    printf("\t\t|____________________________________________________________________|\n");
+    printf("\t\t ______________________________________________________ \n");
+    printf("\t\t|                    SIGN UP PEMILIK                   |\n");
+    printf("\t\t|------------------------------------------------------|\n");
+    printf("\t\t|      Silahkan melakukan sign up terlebih dahulu      |\n");
+    printf("\t\t|______________________________________________________|\n");
 
     //Memasukkan data yang diperlukan
     inputNama(write.pemilik.nama);
@@ -141,7 +143,7 @@ void signUpPemilik()
     //Memeriksa apakah fprint berhasil
     if(fprintf != 0) {
         printf("\t\t ______________________________________________________ \n");
-        printf("\t\t|              Sign Up Pemilik Berhasil.               |\n");
+        printf("\t\t|                Sign Up Pemilik Berhasil.             |\n");
         printf("\t\t|------------------------------------------------------|\n");
         printf("\t\t|        Silahkan masuk kembali melalui Sign In.       |\n");
         printf("\t\t|______________________________________________________|\n");
@@ -161,7 +163,9 @@ void signUpPemilik()
 */
 void signInPemilik () {
     printf("\t\t ______________________________________________________ \n");
-    printf("\t\t|      Silahkan lakukan Sign In terlebih dahulu.       |\n");
+    printf("\t\t|                     SIGN UP PEMILIK                  |\n");
+    printf("\t\t|------------------------------------------------------|\n");
+    printf("\t\t|      Silahkan melakukan Sign In terlebih dahulu      |\n");
     printf("\t\t|______________________________________________________|\n");
     printf("\t\t  Username : ");
     scanf("%20s", write.pemilik.username);
@@ -208,8 +212,6 @@ void signUpKaryawan()
     printf("\t\t|     Silahkan lakukan registrasi data karyawan terlebih dahulu.      |\n");
     printf("\t\t|_____________________________________________________________________|\n");
 
-
-    getchar();
     inputNama(write.karyawan.nama);
     inputUsername (write.karyawan.username);
     inputPassword (write.karyawan.password);
