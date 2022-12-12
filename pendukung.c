@@ -211,14 +211,14 @@ bool validasiPassword(char *varPassword)
 
     // variabel untuk menentukan apakah password yang diinput
     // sudah sesuai dengan ketentuan
-    bool simbol = false;
-    bool digit = false;
+    int simbol = 0;
+    int digit = 0;
 
     fflush(stdin);
     // Menerima input dan memeriksa apakah input NULL atau tidak
     printf("\t\t Password setidaknya terdiri dari 8 karakter serta mengandung simbol dan angka.\n");
     printf("\t\t Password : ");
-    if(fgets(varPassword, 20, stdin) == NULL) return false;
+    if(fgets(varPassword, 20, stdin) == NULL) return 0;
     //Mengganti '\n' dengan '\0'
     varPassword[strcspn(varPassword, "\n")] = '\0';
     // Memeriksa apakah panjang karakter yang diberikan
@@ -226,27 +226,27 @@ bool validasiPassword(char *varPassword)
     panjangKarakter = strlen(varPassword);
     if (panjangKarakter < 8) {
         printf("\t\t Password kurang dari 8 karakter.\n");
-        return false;
+        return 0;
     }
     // Memeriksa tiap elemen dalam string
     for (elemenPassword = 0; elemenPassword<= panjangKarakter; elemenPassword++) {
         // Memeriksa apakah input password sesuai dengan ketentuan
         if (isdigit(varPassword[elemenPassword])) {
-            digit = true;
+            digit = 1;
         }
         if (ispunct(varPassword[elemenPassword])) {
-            simbol = true;
+            simbol = 1;
         }
     }
     if (!digit) {
         printf("\t\t Password tidak berisi digit.\n");
-        return false;
+        return 0;
     }
     if (!simbol) {
         printf("\t\t Password tidak berisi simbol.\n");
-        return false;
+        return 0;
     }
-    return true;
+    return 1;
 }
 
 /*
