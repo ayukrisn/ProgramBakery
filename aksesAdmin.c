@@ -2,7 +2,7 @@
 ==================================================
     Source code "pendukung.c" berisi definisi dari
     fungsi/prosedur yang dapat dijalankan
-    oleh pemilik
+    oleh pemilik dan karyawan
     Contoh: membuka program untuk pelanggan, 
             manage akun karyawan
             manage daftar menu
@@ -17,7 +17,7 @@
 #include <ctype.h>
 #include "logIn.h"
 #include "variabel.h"
-#include "aksesPemilik.h"
+#include "aksesAdmin.h"
 #include "pendukung.h"
 
 /*
