@@ -198,19 +198,19 @@ void lihatMenu()
 	printf("\t\t _________________________________________________________ \n");
 	printf("\t\t|            Ingin kembali ke menu sebelumnya?            |\n");
 	printf("\t\t|---------------------------------------------------------|\n");
-  printf("\t\t| [1] Ya, kembali ke menu manage daftar menu              |\n");
-  printf("\t\t| [2] Tidak, kembali ke menu akses pemilik                |\n");
+  	printf("\t\t| [1] Ya, kembali ke menu manage daftar menu              |\n");
+  	printf("\t\t| [2] Tidak, kembali ke menu akses pemilik                |\n");
 	printf("\t\t|_________________________________________________________|\n");
-  printf("\t\t  Ketik pilihan dengan angka yang tertera (1/2) :          \n");
-  pilihanUser(&pilihan, 1, 2);
-  fflush(stdin);
-  if (pilih == 1){
+  	printf("\t\t  Ketik pilihan dengan angka yang tertera (1/2) :          \n");
+  	pilihanUser(&pilihan, 1, 2);
+  	fflush(stdin);
+  	if (pilih == 1){
       systemCLS();
-      manageDaftarMenu(); //kebagian manage daftar menu
-  } else if (pilih ==2){
+      manageDaftarMenu(); //ke bagian manage daftar menu
+  	} else if (pilih ==2){
       systemCLS();
-      menuAwalPemilik(); //kebagian akses pemilik
-  }
+      menuAwalPemilik(); //ke bagian akses pemilik
+  	}
 }
 
 
@@ -223,8 +223,8 @@ void cekDaftarMenu()
 	//mengecek apakah datanya tersedia atau tidak
 	if(menuDaftar == NULL){
 		printf("\t\t|_______________________________________________________ \n");
-    printf("\t\t|              DAFTAR MENU TIDAK TERSEDIA!              |\n");
-    printf("\t\t|_______________________________________________________|\n");
+    	printf("\t\t|              DAFTAR MENU TIDAK TERSEDIA!              |\n");
+    	printf("\t\t|_______________________________________________________|\n");
 		systemPause():
 		systemCLS();
 		menuAwalPemilik(); //balik ke bagian pemilik
@@ -241,23 +241,23 @@ void cekDaftarMenu()
 void editDaftarMenu()
 {
 	perbaikiDaftarMenu();
-  int pilihan;
+  	int pilihan;
 	printf("\t\t _________________________________________________________ \n");
 	printf("\t\t|            Ingin kembali ke menu sebelumnya?            |\n");
 	printf("\t\t|---------------------------------------------------------|\n");
-  printf("\t\t| [1] Ya, kembali ke menu manage daftar menu              |\n");
-  printf("\t\t| [2] Tidak, kembali ke menu akses pemilik                |\n");
+ 	printf("\t\t| [1] Ya, kembali ke menu manage daftar menu              |\n");
+  	printf("\t\t| [2] Tidak, kembali ke menu akses pemilik                |\n");
 	printf("\t\t|_________________________________________________________|\n");
-  printf("\t\t  Ketik pilihan dengan angka yang tertera (1/2) :          \n");
-  pilihanUser(&pilihan, 1, 2);
-  fflush(stdin);
-  if (pilihan == 1){
+ 	printf("\t\t  Ketik pilihan dengan angka yang tertera (1/2) :          \n");
+  	pilihanUser(&pilihan, 1, 2);
+  	fflush(stdin);
+  	if (pilihan == 1){
       systemCLS();
       manageDaftarMenu(); //kebagian manage daftar menu
-  } else if (pilihan ==2){
+  	} else if (pilihan ==2){
       systemCLS();
       menuAwalPemilik(); //kebagian akses pemilik
-  }
+  	}
 }
 
 void perbaikiDaftarMenu()
