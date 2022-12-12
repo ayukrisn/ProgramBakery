@@ -147,7 +147,7 @@ void showListKaryawan()
         while(!feof(fileKaryawan))
         // while ((fscanf(fileKaryawan, "%s %s %s\n", read.karyawan.username, read.karyawan.password, read.karyawan.nama)!=0))
         {
-            fscanf(fileKaryawan, "%[^,],%[^,],%[^\n]\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
+            fscanf(fileKaryawan, "%[^,],%[^,],%[^,],\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
             printf("\t\t No : %d \n", print);
             printf("\t\t Nama : %s \n", read.karyawan.nama);
             printf("\t\t Username : %s \n", read.karyawan.username);
@@ -175,7 +175,7 @@ void hapusKaryawan()
 
     int cari=0;
      do {
-        fscanf(fileKaryawan, "%[^,],%[^,],%[^\n]\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
+        fscanf(fileKaryawan, "%[^,],%[^,],%[^,],\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
         // printf("Data dari file : %s\n", read.karyawan.username);
         // printf("Data dari input : %s\n", write.karyawan.username);
         if(strcmp(read.karyawan.username, write.karyawan.username)== 0){
@@ -200,9 +200,9 @@ void hapusKaryawan()
 	tempKaryawan=fopen("tempKaryawan.txt","w+");
 	rewind(fileKaryawan);
     while(!feof(fileKaryawan)) {
-        fscanf(fileKaryawan, "%[^,],%[^,],%[^\n]\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
+        fscanf(fileKaryawan, "%[^,],%[^,],%[^,],\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
         if(strcmp(read.karyawan.username, write.karyawan.username)!= 0){
-           fprintf(tempKaryawan, "%s,%s,%s\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
+           fprintf(tempKaryawan, "%s,%s,%s,\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
         } // else continue;
     }
     printf("\t\t _______________________________________________________ \n");
@@ -213,6 +213,7 @@ void hapusKaryawan()
     remove("dataKaryawan.txt");
     rename("tempKaryawan.txt","dataKaryawan.txt");
     systemPause();
+    systemCLS();
     manageKaryawan();
     }
 }
