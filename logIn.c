@@ -37,13 +37,13 @@ daftarData dataMembership;
 
 /*
     Union yang akan digunakan saat berurusan dengan file
-    write: data dari input pengguna, yang nanti akan digunakan
+    writeUserUser: data dari input pengguna, yang nanti akan digunakan
            untuk dimasukkan ke file/variabel program
-    read:  data yang dibaca dari file, yang nanti dimasukkan
+    readUser:  data yang dibaca dari file, yang nanti dimasukkan
            ke variabel di dalam program
 */
-tipeData write;
-tipeData read;
+tipeData writeUser;
+tipeData readUser;
 
 
 /*
@@ -130,15 +130,15 @@ void signUpPemilik()
     printf("\t\t|______________________________________________________|\n");
 
     //Memasukkan data yang diperlukan
-    inputNama(write.pemilik.nama);
-    inputUsername(write.pemilik.username);
-    inputPassword(write.pemilik.password);
+    inputNama(writeUser.pemilik.nama);
+    inputUsername(writeUser.pemilik.username);
+    inputPassword(writeUser.pemilik.password);
 
     //Membuka file dataPemilik.txt untuk memasukkan data tadi
     FILE *signUp;
     signUp = fopen("dataPemilik.txt", "w");
 
-    fprintf(signUp, "%s,%s,%s\n", write.pemilik.nama, write.pemilik.username, write.pemilik.password);
+    fprintf(signUp, "%s,%s,%s\n", writeUser.pemilik.nama, writeUser.pemilik.username, writeUser.pemilik.password);
     fclose(signUp);
 
     //Memeriksa apakah fprint berhasil
@@ -169,21 +169,21 @@ void signInPemilik () {
     printf("\t\t|      Silahkan melakukan Sign In terlebih dahulu      |\n");
     printf("\t\t|______________________________________________________|\n");
     printf("\t\t  Username : ");
-    scanf("%20s", write.pemilik.username);
+    scanf("%20s", writeUser.pemilik.username);
     fflush(stdin);
 
     printf("\t\t  Password : ");
-    scanf("%20s", write.pemilik.password);
+    scanf("%20s", writeUser.pemilik.password);
     fflush(stdin);
 
     FILE *signIn;
     signIn = fopen("dataPemilik.txt", "r");
 
     //Memeriksa apakah username dan password yang diberikan benar atau tidak
-    fscanf(signIn, "%[^,],%[^,],%[^\n]\n", read.pemilik.nama, read.pemilik.username, read.pemilik.password);
+    fscanf(signIn, "%[^,],%[^,],%[^\n]\n", readUser.pemilik.nama, readUser.pemilik.username, readUser.pemilik.password);
     
-        if(strcmp(write.pemilik.username, read.pemilik.username)==0 && strcmp(write.pemilik.password, read.pemilik.password)==0) {
-            dataPemilik = read.pemilik;
+        if(strcmp(writeUser.pemilik.username, readUser.pemilik.username)==0 && strcmp(writeUser.pemilik.password, readUser.pemilik.password)==0) {
+            dataPemilik = readUser.pemilik;
 
             fclose(signIn);
             printf("\t\t ______________________________________________________ \n");
@@ -214,16 +214,16 @@ void signUpKaryawan()
     printf("\t\t|     Silahkan lakukan registrasi data karyawan terlebih dahulu.      |\n");
     printf("\t\t|_____________________________________________________________________|\n");
 
-    inputNama(write.karyawan.nama);
-    inputUsername (write.karyawan.username);
-    inputPassword (write.karyawan.password);
+    inputNama(writeUser.karyawan.nama);
+    inputUsername (writeUser.karyawan.username);
+    inputPassword (writeUser.karyawan.password);
 
     // Pemeriksaan apakah nama dan username sudah terdaftar
     FILE *fileKaryawan;
     fileKaryawan = fopen("dataKaryawan.txt", "r");
      do {
-        fscanf(fileKaryawan, "%[^,],%[^,],%[^,],\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
-        if(strcmp(read.karyawan.nama, write.karyawan.nama)== 0) {
+        fscanf(fileKaryawan, "%[^,],%[^,],%[^,],\n", readUser.karyawan.nama, readUser.karyawan.username, readUser.karyawan.password);
+        if(strcmp(readUser.karyawan.nama, writeUser.karyawan.nama)== 0) {
             printf("\t\t _____________________________________________________________________ \n");
             printf("\t\t|       Nama sudah terdaftar. Mohon masukkan nama yang berbeda.       |\n");
             printf("\t\t|_____________________________________________________________________|\n");
@@ -232,7 +232,7 @@ void signUpKaryawan()
             signUpKaryawan();
             break;
         } 
-        else if (strcmp(read.karyawan.username, write.karyawan.username)== 0) {
+        else if (strcmp(readUser.karyawan.username, writeUser.karyawan.username)== 0) {
             printf("\t\t _____________________________________________________________________ \n");
             printf("\t\t|   Username sudah terdaftar. Mohon masukkan username yang berbeda.   |\n");
             printf("\t\t|_____________________________________________________________________|\n");
@@ -244,11 +244,11 @@ void signUpKaryawan()
     } while (!feof(fileKaryawan));
     fclose(fileKaryawan);
 
-    //Membuka file dataPemilik.txt untuk memasukkan data tadi
+    //Membuka file dataKaryawan.txt untuk memasukkan data tadi
     FILE *signUp;
     signUp = fopen("dataKaryawan.txt", "a");
 
-    fprintf(signUp, "%s,%s,%s,\n", write.karyawan.nama, write.karyawan.username, write.karyawan.password);
+    fprintf(signUp, "%s,%s,%s,\n", writeUser.karyawan.nama, writeUser.karyawan.username, writeUser.karyawan.password);
     fclose(signUp);
 
     //Memeriksa apakah fprintf berhasil
@@ -289,28 +289,28 @@ void signInKaryawan () {
         printf("\t\t|       Silahkan lakukan Sign In terlebih dahulu.       |\n");
         printf("\t\t|_______________________________________________________|\n");
         printf("\t\t  Username : ");
-        scanf("%[^\n]", write.karyawan.username);
+        scanf("%[^\n]", writeUser.karyawan.username);
         getchar();
 
         printf("\t\t  Password : ");
-        scanf("%[^\n]", write.karyawan.password);
+        scanf("%[^\n]", writeUser.karyawan.password);
         getchar();
-        // printf("Data input: %s dan %s\n", write.karyawan.username, write.karyawan.password);
-        // printf("Hasil strlen input: %d %d\n",strlen(write.karyawan.username), strlen(write.karyawan.password) );
+        // printf("Data input: %s dan %s\n", writeUser.karyawan.username, writeUser.karyawan.password);
+        // printf("Hasil strlen input: %d %d\n",strlen(writeUser.karyawan.username), strlen(writeUser.karyawan.password) );
 
         //Memeriksa apakah username dan password yang diberikan benar atau tidak
         bool tidakKetemu = 0;
         rewind(signIn);
         do {
-        fscanf(signIn, "%[^,],%[^,],%[^,],\n", read.karyawan.nama, read.karyawan.username, read.karyawan.password);
+        fscanf(signIn, "%[^,],%[^,],%[^,],\n", readUser.karyawan.nama, readUser.karyawan.username, readUser.karyawan.password);
         /*
-        printf("Data file: %s dan %s\n", read.karyawan.username, read.karyawan.password);
-        printf("Hasil strlen file: %d %d\n",strlen(read.karyawan.username), strlen(read.karyawan.password) );
-        printf("Hasil strcmp: %d %d\n",strcmp(write.karyawan.username, read.karyawan.username), strcmp(write.karyawan.password, read.karyawan.password) );
+        printf("Data file: %s dan %s\n", readUser.karyawan.username, readUser.karyawan.password);
+        printf("Hasil strlen file: %d %d\n",strlen(readUser.karyawan.username), strlen(readUser.karyawan.password) );
+        printf("Hasil strcmp: %d %d\n",strcmp(writeUser.karyawan.username, readUser.karyawan.username), strcmp(writeUser.karyawan.password, readUser.karyawan.password) );
         */
-        if(strcmp(write.karyawan.username, read.karyawan.username)==0 && strcmp(write.karyawan.password, read.karyawan.password)==0) {
+        if(strcmp(writeUser.karyawan.username, readUser.karyawan.username)==0 && strcmp(writeUser.karyawan.password, readUser.karyawan.password)==0) {
             tidakKetemu = 0;
-            dataKaryawan = read.karyawan;
+            dataKaryawan = readUser.karyawan;
 
             printf("\t\t _______________________________________________________ \n");
             printf("\t\t|                Sign In telah berhasil.                |\n");

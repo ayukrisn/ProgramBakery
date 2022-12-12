@@ -41,8 +41,8 @@ typedef union {
     daftarData karyawan;
     daftarData pemilik;
 } tipeData;
-extern tipeData write;
-extern tipeData read; //note: menghapus variabel struct 'data'
+extern tipeData writeUser;
+extern tipeData readUser; //note: menghapus variabel struct 'data'
 
 /*
     Union yang digunakan untuk menyimpan
@@ -56,21 +56,21 @@ typedef union {
 /*
     Struct yang digunakan untuk menyimpan
     data menu dan sat berurusan dengan file
-    write: data dari input pengguna, yang nanti akan digunakan
+    writeMenu: data dari input pengguna, yang nanti akan digunakan
            untuk dimasukkan ke file/variabel program
-    read:  data yang dibaca dari file, yang nanti dimasukkan
+    readMenu:  data yang dibaca dari file, yang nanti dimasukkan
            ke variabel di dalam program
-    data:  variabel yang digunakan untuk menyimpan data
+    dataMenu:  variabel yang digunakan untuk menyimpan data
            selama program dijalankan
 */
 
 typedef struct
 {
-    char namaMakanan[10];
+    char namaMakanan[20];
     char deskripsiMakanan[100];
     float hargaMakanan;
 } dataMenu;
-extern dataMenu data;
-extern dataMenu write;
-extern dataMenu read;
+extern dataMenu simpanMenu;
+extern dataMenu writeMenu;
+extern dataMenu readMenu;
 #endif // VARIABEL_H
