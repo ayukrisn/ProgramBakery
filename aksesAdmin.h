@@ -11,11 +11,11 @@
     Header guard yang digunakan untuk mencegah
     double inclusion saat menangani include directive
 */
-#ifndef AKSES_PEMILIK_H
-#define AKSES_PEMILIK_H
+#ifndef AKSES_ADMIN_H
+#define AKSES_ADMIN_H
 
 void menuAwalPemilik(); void manageKaryawan(); void listKaryawan(); void showListKaryawan();
-    void hapusKaryawan(); 
+    void hapusKaryawan(); void manageDaftarMenu();
 
 void menuAwalKaryawan();
-#endif //AKSES_PEMILIK_H
+#endif //AKSES_ADMIN_H
