@@ -14,7 +14,8 @@
 #ifndef DAFTAR_MENU_H
 #define DAFTAR_MENU_H
 
-void tambahDaftarMenu(); void showDaftarMenu(); void lihatDaftarMenu(); void lihatDaftarMenuP();
+void tambahDaftarMenu(); void showDaftarMenuAll(); void showDaftarMenuJenis();
+    void lihatDaftarMenu(); void lihatDaftarMenuK(); void lihatDaftarMenuP();
 
 
 #endif //DAFTAR_MENU_H
