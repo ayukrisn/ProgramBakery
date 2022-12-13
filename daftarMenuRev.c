@@ -31,6 +31,12 @@ dataMenu simpanMenu; dataMenu writeMenu; dataMenu readMenu;
 
 
 /*
+=================================================================
+ M E L I H A T  D A F T A R  M E N U
+=================================================================
+*/
+
+/*
     Lihat daftar menu untuk pemilik
 */ 
 void lihatDaftarMenuP()
@@ -204,7 +210,9 @@ void showDaftarMenuAll()
     
 
 /*
-    Menambah daftar menu
+=================================================================
+ M E N A M B A H  D A F T A R  M E N U
+=================================================================
 */
 void tambahDaftarMenu()
 {
@@ -237,6 +245,7 @@ void tambahDaftarMenu()
 	printf("\t\t|_________________________________________________________|\n");
 
     //Menambahkan kode makanan (perlu validasi)
+    printf("\t\t Format kode makanan: 4 huruf (2 huruf mewakili jenis, 2 huruf mewakili nama)");
     printf("\t\t Kode makanan: ");
     scanf("%[^\n]", writeMenu.kodeMakanan);
     getchar();
