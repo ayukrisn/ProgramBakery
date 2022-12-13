@@ -239,11 +239,10 @@ void manageDaftarMenu()
 	printf("\t\t| [1] Lihat Daftar Menu                                 |\n");
 	printf("\t\t| [2] Tambah Daftar Menu                                |\n");
 	printf("\t\t| [3] Hapus Daftar Menu                                 |\n");
-	printf("\t\t| [4] Edit Daftar Menu                                  |\n");
-	printf("\t\t| [5] Kembali ke akses pemilik                          |\n");
+	printf("\t\t| [4] Kembali ke akses pemilik                          |\n");
 	printf("\t\t|_______________________________________________________|\n");
 	printf("\t\t  Ketikkan pilihan anda (1-5) :                          \n");
-    pilihanUser(&pilihan, 1, 5);
+    pilihanUser(&pilihan, 1, 4);
     fflush(stdin);
     if (pilihan == 1) {
         systemCLS();
@@ -254,10 +253,7 @@ void manageDaftarMenu()
         } else if (pilihan == 3 ) {
             systemCLS();
             hapusDaftarMenu();
-        } else if (pilihan == 4 ) {
-            systemCLS();
-            //editDaftarMenu();
-        } else if (pilihan == 5) {
+        } else if (pilihan == 4) {
             systemCLS();
             menuAwalPemilik();
         }
