@@ -45,16 +45,6 @@ extern tipeData writeUser;
 extern tipeData readUser; //note: menghapus variabel struct 'data'
 
 /*
-    Union yang digunakan untuk menyimpan
-    data pembeli (membership/tidak)
-*/
-typedef union {
-    daftarData dataMembership;
-    char guest[20];
-} tipePembeli;
-
-
-/*
     Struct yang digunakan untuk menyimpan
     data menu makanan dan saat berurusan dengan file
     writeMenu: data dari input pengguna, yang nanti akan digunakan

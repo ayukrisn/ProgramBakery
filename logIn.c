@@ -21,12 +21,6 @@
 
 
 /*
-    Union yang digunakan untuk menyimpan
-    data pembeli (membership/tidak)
-*/
-tipePembeli;
-
-/*
     Struct untuk data pekerja
     yang akan disimpan selama
     program dijalankan
