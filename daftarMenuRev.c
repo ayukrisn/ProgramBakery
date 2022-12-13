@@ -322,6 +322,22 @@ void hapusDaftarMenu()
     printf("\t\t _______________________________________________________ \n");
     printf("\t\t|              H A P U S  D A F T A R  M E N U          |\n");
     printf("\t\t|_______________________________________________________|\n");
+
+    FILE *cekFileDaftarMenu;
+    cekFileDaftarMenu = fopen("dataDaftarMenu.txt", "r");
+        if (cekFileDaftarMenu == NULL) {
+        printf("\t\t _______________________________________________________ \n");
+	    printf("\t\t|             Belum ada data yang tersimpan.            |\n");
+	    printf("\t\t|-------------------------------------------------------|\n");
+    	printf("\t\t|         Silahkan tambahkan menu terlebih dahulu.      |\n");
+    	printf("\t\t|_______________________________________________________|\n");
+        fclose(cekFileDaftarMenu);
+        systemPause();
+        systemCLS();
+        manageDaftarMenu();
+     }
+    fclose(cekFileDaftarMenu);
+    
     showDaftarMenuAll();
 
     printf("\t\t  Ketik kode makanan yang ingin dihapus : ");
