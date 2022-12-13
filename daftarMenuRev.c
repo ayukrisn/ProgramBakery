@@ -310,3 +310,68 @@ void tambahDaftarMenu()
         exit(1);
     }
 }
+
+
+/*
+=================================================================
+ M E N G H A P U S  D A F T A R  M E N U
+=================================================================
+*/
+void hapusDaftarMenu()
+{
+    printf("\t\t _______________________________________________________ \n");
+    printf("\t\t|              H A P U S  D A F T A R  M E N U          |\n");
+    printf("\t\t|_______________________________________________________|\n");
+    showDaftarMenuAll();
+
+    printf("\t\t  Ketik kode makanan yang ingin dihapus : ");
+    scanf("%[^\n]", writeMenu.kodeMakanan);
+    getchar();
+
+    FILE *fileDaftarMenu;
+    fileDaftarMenu = fopen("dataDaftarMenu.txt", "r");
+
+    int cari=0;
+     do {
+        fscanf(fileDaftarMenu, "%[^;];%[^;];%[^;];%[^;];%f;\n", readMenu.jenisMakanan, readMenu.kodeMakanan, readMenu.namaMakanan, readMenu.deskripsiMakanan, &readMenu.hargaMakanan);
+        // printf("Data dari file : %s\n", readMenu.kodeMakanan);
+        // printf("Data dari input : %s\n", writeMenu.kodeMakanan);
+        if(strcmp(readMenu.kodeMakanan, writeMenu.kodeMakanan)== 0){
+            printf("\t\t _______________________________________________________ \n");
+	        printf("\t\t|                 Data telah ditemukan.                 |\n");
+	        printf("\t\t|_______________________________________________________|\n");
+            cari=1;
+            break;
+        }
+    } while (!feof(fileDaftarMenu));
+
+    if(cari==0) {
+        printf("\t\t _______________________________________________________ \n");
+	    printf("\t\t|                 Data tidak ditemukan.                 |\n");
+	    printf("\t\t|_______________________________________________________|\n");
+        systemPause();
+        systemCLS();
+        manageDaftarMenu();
+    } else {
+
+    FILE *tempDaftarMenu;
+	tempDaftarMenu=fopen("tempDaftarMenu.txt","w+");
+	rewind(fileDaftarMenu);
+    while(!feof(fileDaftarMenu)) {
+        fscanf(fileDaftarMenu, "%[^;];%[^;];%[^;];%[^;];%f;\n", readMenu.jenisMakanan, readMenu.kodeMakanan, readMenu.namaMakanan, readMenu.deskripsiMakanan, &readMenu.hargaMakanan);
+        if(strcmp(readMenu.kodeMakanan, writeMenu.kodeMakanan)!= 0){
+           fprintf(tempDaftarMenu, "%s;%s;%s;%s;%.2f;\n", readMenu.jenisMakanan, readMenu.kodeMakanan, readMenu.namaMakanan, readMenu.deskripsiMakanan, readMenu.hargaMakanan);
+        }
+    }
+    printf("\t\t _______________________________________________________ \n");
+    printf("\t\t|             Data telah dihapus dari file.             |\n");
+    printf("\t\t|_______________________________________________________|\n");
+    fclose(fileDaftarMenu);
+    fclose(tempDaftarMenu);
+    remove("dataDaftarMenu.txt");
+    rename("tempDaftarMenu.txt","dataDaftarMenu.txt");
+    systemPause();
+    systemCLS();
+    manageDaftarMenu();
+    }
+}
