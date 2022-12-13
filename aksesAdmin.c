@@ -247,7 +247,7 @@ void manageDaftarMenu()
     fflush(stdin);
     if (pilihan == 1) {
         systemCLS();
-        lihatDaftarMenu();
+        lihatDaftarMenuP();
         } else if (pilihan == 2) {
             systemCLS();
             tambahDaftarMenu();
@@ -298,7 +298,7 @@ void menuAwalKaryawan()
             //manageStok();
         } else if (pilihan == 3 ) {
             systemCLS();
-            lihatDaftarMenuP();
+            lihatDaftarMenuK();
         } else if (pilihan == 4 ) {
             systemCLS();
             //lihatStatusPenjualan();
