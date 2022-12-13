@@ -159,7 +159,7 @@ void showDaftarMenuJenis()
 	printf("\t\t __________________________________________________________________________________________________\n");
 	printf("\t\t|                                    D A F T A R  M E N U                                          |\n");
     printf("\t\t|                                     CAKE ME OUT BAKERY                                           |\n");
-    printf("\t\t|                                  Jenis Makanan: %-10s                                         |\n", writeMenu.jenisMakanan);
+    printf("\t\t|                                  Jenis Makanan: %-10s                                        |\n", writeMenu.jenisMakanan);
     printf("\t\t| _________________________________________________________________________________________________|\n");
     printf("\t\t| NO | KODE |  NAMA MAKANAN   |                         DESKRIPSI                        |  HARGA  |\n");
     printf("\t\t| ------------------------------------------------------------------------------------------------ |\n");
@@ -245,7 +245,7 @@ void tambahDaftarMenu()
 	printf("\t\t|_________________________________________________________|\n");
 
     //Menambahkan kode makanan (perlu validasi)
-    printf("\t\t Format kode makanan: 4 huruf (2 huruf mewakili jenis, 2 huruf mewakili nama)");
+    printf("\t\t Format kode makanan: 4 huruf (2 huruf mewakili jenis, 2 huruf mewakili nama)\n");
     printf("\t\t Kode makanan: ");
     scanf("%[^\n]", writeMenu.kodeMakanan);
     getchar();
