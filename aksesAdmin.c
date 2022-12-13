@@ -153,7 +153,7 @@ void showListKaryawan()
         while(!feof(fileKaryawan))
         // while ((fscanf(fileKaryawan, "%s %s %s\n", readUser.karyawan.username, readUser.karyawan.password, readUser.karyawan.nama)!=0))
         {
-            fscanf(fileKaryawan, "%[^,],%[^,],%[^,],\n", readUser.karyawan.nama, readUser.karyawan.username, readUser.karyawan.password);
+            fscanf(fileKaryawan, "%[^;];%[^;];%[^;];\n", readUser.karyawan.nama, readUser.karyawan.username, readUser.karyawan.password);
             printf("\t\t No : %d \n", print);
             printf("\t\t Nama : %s \n", readUser.karyawan.nama);
             printf("\t\t Username : %s \n", readUser.karyawan.username);
@@ -181,7 +181,7 @@ void hapusKaryawan()
 
     int cari=0;
      do {
-        fscanf(fileKaryawan, "%[^,],%[^,],%[^,],\n", readUser.karyawan.nama, readUser.karyawan.username, readUser.karyawan.password);
+        fscanf(fileKaryawan, "%[^;];%[^;];%[^;];\n", readUser.karyawan.nama, readUser.karyawan.username, readUser.karyawan.password);
         // printf("Data dari file : %s\n", readUser.karyawan.username);
         // printf("Data dari input : %s\n", writeUser.karyawan.username);
         if(strcmp(readUser.karyawan.username, writeUser.karyawan.username)== 0){
@@ -206,10 +206,10 @@ void hapusKaryawan()
 	tempKaryawan=fopen("tempKaryawan.txt","w+");
 	rewind(fileKaryawan);
     while(!feof(fileKaryawan)) {
-        fscanf(fileKaryawan, "%[^,],%[^,],%[^,],\n", readUser.karyawan.nama, readUser.karyawan.username, readUser.karyawan.password);
+        fscanf(fileKaryawan, "%[^;];%[^;];%[^;];\n", readUser.karyawan.nama, readUser.karyawan.username, readUser.karyawan.password);
         if(strcmp(readUser.karyawan.username, writeUser.karyawan.username)!= 0){
-           fprintf(tempKaryawan, "%s,%s,%s,\n", readUser.karyawan.nama, readUser.karyawan.username, readUser.karyawan.password);
-        } // else continue;
+           fprintf(tempKaryawan, "%s;%s;%s;\n", readUser.karyawan.nama, readUser.karyawan.username, readUser.karyawan.password);
+        } 
     }
     printf("\t\t _______________________________________________________ \n");
     printf("\t\t|             Data telah dihapus dari file.             |\n");
@@ -253,10 +253,10 @@ void manageDaftarMenu()
             tambahDaftarMenu();
         } else if (pilihan == 3 ) {
             systemCLS();
-            //editDaftarMenu();
+            hapusDaftarMenu();
         } else if (pilihan == 4 ) {
             systemCLS();
-            //hapusDaftarMenu();
+            //editDaftarMenu();
         } else if (pilihan == 5) {
             systemCLS();
             menuAwalPemilik();

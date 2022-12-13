@@ -222,7 +222,7 @@ void signUpKaryawan()
     FILE *fileKaryawan;
     fileKaryawan = fopen("dataKaryawan.txt", "r");
      do {
-        fscanf(fileKaryawan, "%[^,],%[^,],%[^,],\n", readUser.karyawan.nama, readUser.karyawan.username, readUser.karyawan.password);
+        fscanf(fileKaryawan, "%[^;];%[^;];%[^;];\n", readUser.karyawan.nama, readUser.karyawan.username, readUser.karyawan.password);
         if(strcmp(readUser.karyawan.nama, writeUser.karyawan.nama)== 0) {
             printf("\t\t _____________________________________________________________________ \n");
             printf("\t\t|       Nama sudah terdaftar. Mohon masukkan nama yang berbeda.       |\n");
@@ -248,7 +248,7 @@ void signUpKaryawan()
     FILE *signUp;
     signUp = fopen("dataKaryawan.txt", "a");
 
-    fprintf(signUp, "%s,%s,%s,\n", writeUser.karyawan.nama, writeUser.karyawan.username, writeUser.karyawan.password);
+    fprintf(signUp, "%s;%s;%s;\n", writeUser.karyawan.nama, writeUser.karyawan.username, writeUser.karyawan.password);
     fclose(signUp);
 
     //Memeriksa apakah fprintf berhasil
@@ -302,7 +302,7 @@ void signInKaryawan () {
         bool tidakKetemu = 0;
         rewind(signIn);
         do {
-        fscanf(signIn, "%[^,],%[^,],%[^,],\n", readUser.karyawan.nama, readUser.karyawan.username, readUser.karyawan.password);
+        fscanf(signIn, "%[^;];%[^;];%[^;];\n", readUser.karyawan.nama, readUser.karyawan.username, readUser.karyawan.password);
         /*
         printf("Data file: %s dan %s\n", readUser.karyawan.username, readUser.karyawan.password);
         printf("Hasil strlen file: %d %d\n",strlen(readUser.karyawan.username), strlen(readUser.karyawan.password) );

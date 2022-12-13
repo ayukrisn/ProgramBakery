@@ -16,6 +16,7 @@
 
 void tambahDaftarMenu(); void showDaftarMenuAll(); void showDaftarMenuJenis();
     void lihatDaftarMenu(); void lihatDaftarMenuK(); void lihatDaftarMenuP();
+    void hapusDaftarMenu();
 
 
 #endif //DAFTAR_MENU_H
