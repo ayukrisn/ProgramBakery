@@ -186,8 +186,8 @@ void hapusKaryawan()
         // printf("Data dari input : %s\n", writeUser.karyawan.username);
         if(strcmp(readUser.karyawan.username, writeUser.karyawan.username)== 0){
             printf("\t\t _______________________________________________________ \n");
-	    printf("\t\t|                 Data telah ditemukan.                 |\n");
-	    printf("\t\t|_______________________________________________________|\n");
+	        printf("\t\t|                 Data telah ditemukan.                 |\n");
+	        printf("\t\t|_______________________________________________________|\n");
             cari=1;
             break;
         }
@@ -195,8 +195,8 @@ void hapusKaryawan()
 
     if(cari==0) {
         printf("\t\t _______________________________________________________ \n");
-	printf("\t\t|                 Data tidak ditemukan.                 |\n");
-	printf("\t\t|_______________________________________________________|\n");
+	    printf("\t\t|                 Data tidak ditemukan.                 |\n");
+	    printf("\t\t|_______________________________________________________|\n");
         systemPause();
         systemCLS();
         manageKaryawan();
