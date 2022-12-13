@@ -53,9 +53,10 @@ typedef union {
     char guest[20];
 } tipePembeli;
 
+
 /*
     Struct yang digunakan untuk menyimpan
-    data menu dan sat berurusan dengan file
+    data menu makanan dan saat berurusan dengan file
     writeMenu: data dari input pengguna, yang nanti akan digunakan
            untuk dimasukkan ke file/variabel program
     readMenu:  data yang dibaca dari file, yang nanti dimasukkan
@@ -63,9 +64,10 @@ typedef union {
     dataMenu:  variabel yang digunakan untuk menyimpan data
            selama program dijalankan
 */
-
 typedef struct
 {
+    char jenisMakanan[10];
+    char kodeMakanan[5];
     char namaMakanan[20];
     char deskripsiMakanan[100];
     float hargaMakanan;
