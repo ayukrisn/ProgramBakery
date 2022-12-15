@@ -28,20 +28,24 @@
 #include <string.h>
 #include <stdbool.h>
 #include <ctype.h>
+#include <time.h>
 #include "logIn.h"
 #include "variabel.h"
 #include "aksesAdmin.h"
 #include "pendukung.h"
 #include "daftarMenuRev.h"
+#include "restock.h"
+#include "restock.h"
 
 int main(void)
 {
+    setJamRestock();
     systemCLS();
     menuPertama();
     return 0;
 }
 
 /*
-    Catatan: nambah stok
+    Catatan: nambah stock
              file txt untuk harga, atau intinya semua informasi tentang barang dagangan
 */
