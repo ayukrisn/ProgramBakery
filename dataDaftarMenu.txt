@@ -1,4 +1,4 @@
-Bread;BRHD;Hokkaido Dome;Sweet bread with cookies topping;8500.00;
-Bread;BRHT;Hamtaro;Hazelnut chocolate bread with vanilla cream;12000.00;
-Cake;CKBF;Blackforest Slice;A chocolate cake with toppings;20000.00;
-Toast;TOEQ;Eq Cheese;Toast with melted cheese on top;27500.00;
+Bread;BRHD;Hokkaido Dome;Sweet bread with cookies topping;8500.00;94;
+Bread;BRHT;Hamtaro;Hazelnut chocolate bread with vanilla cream;12000.00;98;
+Cake;CKBF;Blackforest Slice;A chocolate cake with toppings;20000.00;102;
+Toast;TOEQ;Eq Cheese;Toast with melted cheese on top;27500.00;106;
