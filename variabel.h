@@ -54,15 +54,68 @@ extern tipeData readUser; //note: menghapus variabel struct 'data'
     dataMenu:  variabel yang digunakan untuk menyimpan data
            selama program dijalankan
 */
-typedef struct
-{
+typedef struct {
     char jenisMakanan[10];
     char kodeMakanan[5];
     char namaMakanan[20];
     char deskripsiMakanan[100];
     float hargaMakanan;
+    int jamJadwalStockPagi;
+    int jamJadwalStockSiang;
+    int jamJadwalStockSore;
+    int stock;
 } dataMenu;
-extern dataMenu simpanMenu;
+extern dataMenu simpanMenu[50];
 extern dataMenu writeMenu;
 extern dataMenu readMenu;
+
+typedef struct {
+    int pagi;
+    int siang;
+    int sore;
+} restock;
+extern restock jamRestock;
+
+/*
+    Struct yang digunakan pada saat
+    berurusan dengan stock makanan
+*/
+typedef struct {
+    char waktuRestock[30]; //nanti pake asctime
+    char namaKaryawan[20]; //nanti strcpy("dataKaryawan.nama", "logRestock.namaKaryawan")
+    int stockLama; //stock sebelum restock
+    int jumlahRestock; //banyaknya restock
+    int stockSkrg; //stock setelah restock
+} logRestock;
+extern logRestock writeStock;
+extern logRestock readStock;
+
+typedef struct {
+    char namaMakanan;
+    char kodeMakanan;
+    float hargaSatuan;
+    int banyakPembelian;
+    float hargaTotal;
+} detailTransaksi;
+extern detailTransaksi DTransaksi[12];
+
+typedef struct {
+    char kodeTransaksi;
+    char usernameM[20]; //strcpy dari dataMembership.username, klo pelanggan biasa strcpy "GuestCostumer"
+    char namaPelanggan[30]; //nama mungkin bisa dari dataMembership.nama atau variabel char nama buat pelanggan biasa
+    char namaKaryawan[30];
+    char usernameK[20];
+    char waktuTransaksi[30];
+    int totalPembelian;
+    float hargaTotal;
+} dataTransaksi;
+extern dataTransaksi Transaksi;
+
+/*
+    Bool untuk memastikan apakah restock sudah
+    dilakukan atau belum
+*/
+extern bool updateStockPagi;
+extern bool updateStockSiang;
+extern bool updateStockSore;
 #endif // VARIABEL_H
