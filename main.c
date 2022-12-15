@@ -35,7 +35,6 @@
 #include "pendukung.h"
 #include "daftarMenuRev.h"
 #include "restock.h"
-#include "restock.h"
 
 int main(void)
 {
