@@ -114,6 +114,32 @@ void lihatDaftarMenuK()
 }
 
 /*
+    Lihat daftar menu untuk pelanggan
+*/ 
+void lihatDaftarMenuM()
+{
+    if (!cekFileDaftarMenu()) {
+        systemPause();
+        systemCLS();
+        menuMasukPelanggan();
+     }
+
+    lihatDaftarMenu();
+        int pilihan;
+        printf("\t\t _________________________________________________________________ \n");    
+        printf("\t\t|                        Lanjutkan ke pemesanan?                  |\n");
+	    printf("\t\t|-----------------------------------------------------------------|\n");
+        printf("\t\t|                        [1] Ya        [2] Tidak                  |\n");
+        printf("\t\t|-----------------------------------------------------------------|\n");
+        printf("\t\t|               [3] Sign out dan kembali ke menu masuk            |\n");
+	    printf("\t\t|_________________________________________________________________|\n");
+        printf("\t\t  Ketik pilihan dengan angka yang tertera (1-3) : ");
+    systemPause();
+    systemCLS();
+    menuAwalKaryawan();
+}
+
+/*
     Memilih daftar menu yang diinginkan
 */
 void lihatDaftarMenu()

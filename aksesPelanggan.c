@@ -11,6 +11,9 @@
 #include "daftarMenuRev.h"
 #include "aksesPelanggan.h"
 
+bool isMember = false;
+char namaGuest[20];
+
 /*
     ===========================================================================
                      B A G I A N  A K S E S  P E L A N G G A N                 
@@ -31,10 +34,10 @@ void menuMasukPelanggan()
     printf("\t\t|-------------------------------------------------------|\n");
     printf("\t\t|           [1] Ya, sudah           [2] Belum           |\n");
     printf("\t\t|                                                       |\n");
-    printf("\t\t|             [3] Kembali ke menu sebelumnya            |\n");
+    printf("\t\t|     [3] Keluar dari program pelanggan [Perlu akses]   |\n");
     printf("\t\t|_______________________________________________________|\n");
     printf("\t\t  Ketik pilihan dengan angka yang tertera (1/2/3) : ");
-    pilihanUser(&pilihan, 1, 2);
+    pilihanUser(&pilihan, 1, 3);
     fflush(stdin);
     if (pilihan == 1) {
         systemCLS();
@@ -44,7 +47,7 @@ void menuMasukPelanggan()
         tanyaAkun();
     } else if (pilihan == 3){
         systemCLS();
-        menuAwalKaryawan();
+        konfirmasiTutup();
     }
 }
 
@@ -70,6 +73,8 @@ void tanyaAkun()
         printf("\t\t _______________________________________________________ \n");
         printf("\t\t|      Anda akan diarahkan langsung ke daftar menu      |\n");
         printf("\t\t|_______________________________________________________|\n");
+        printf("\t\t Mohon masukkan nama Anda terlebih dahulu.\n");
+        inputNama(namaGuest);
         systemPause();
         systemCLS();
         lihatDaftarMenu();
@@ -83,7 +88,7 @@ void tanyaAkun()
 void signUpAccount()
 {
     printf("\t\t _____________________________________________________________________ \n");
-    printf("\t\t|      Silahkan lakukan sign up data pelanggan terlebih dahulu.       |\n");
+    printf("\t\t|         Silahkan lakukan sign up data member terlebih dahulu.       |\n");
     printf("\t\t|_____________________________________________________________________|\n");
 
     inputNama(writeUser.membership.nama);
@@ -126,7 +131,7 @@ void signUpAccount()
     //Memeriksa apakah fprintf berhasil
     if(fprintf != 0) {
         printf("\t\t _____________________________________________________________________ \n");
-        printf("\t\t|                     Sign up pelanggan berhasil.                     |\n");
+        printf("\t\t|                   Sign up member account berhasil.                  |\n");
         printf("\t\t|---------------------------------------------------------------------|\n");
         printf("\t\t|               Silahkan masuk kembali melalui Sign In.               |\n");
         printf("\t\t|_____________________________________________________________________|\n");
@@ -182,13 +187,14 @@ void signInAccount()
             dataMembership = readUser.membership;
 
             printf("\t\t _____________________________________________________________________ \n");
-            printf("\t\t|                Sign in account member telah berhasil.               |\n");
+            printf("\t\t|                Sign in member account telah berhasil.               |\n");
             printf("\t\t|_____________________________________________________________________|\n");
             printf("\t\t  Selamat datang, %s\n", dataMembership.nama);
             fclose(signInMember);
+            isMember = true;
             systemPause();
             systemCLS();
-            //masuk milih menu pesanan, ini mau dipisah atau gabung ma fungsi ini lihatDaftarMenu();?
+            // menuAwalPelanggan();
             break;
         } else tidakKetemu = 1;
         } while (!feof(signInMember));
@@ -203,3 +209,12 @@ void signInAccount()
         }
     }
 }
+
+/*
+void menuAwalPelanggan() {
+    if (isMember) {
+
+    }
+}
+*/
+

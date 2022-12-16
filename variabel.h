@@ -28,6 +28,7 @@ typedef struct {
 extern daftarData dataKaryawan;
 extern daftarData dataPemilik;
 extern daftarData dataMembership;
+extern char namaGuest[20]; //bila pengguna bukan member
 
 /*
     Union yang akan digunakan saat berurusan dengan file
@@ -82,7 +83,7 @@ extern restock jamRestock;
 */
 typedef struct {
     char waktuRestock[30]; //nanti pake asctime
-    char namaKaryawan[20]; //nanti strcpy("dataKaryawan.nama", "logRestock.namaKaryawan")
+    char namaYgRestock[20]; //nanti strcpy("dataKaryawan.nama", "logRestock.namaKaryawan") dsb
     int stockLama; //stock sebelum restock
     int jumlahRestock; //banyaknya restock
     int stockSkrg; //stock setelah restock
@@ -118,4 +119,18 @@ extern dataTransaksi Transaksi;
 extern bool updateStockPagi;
 extern bool updateStockSiang;
 extern bool updateStockSore;
+
+/*
+    Bool untuk memastikan apakah pelanggan yang masuk merupakan 
+    pelanggan dengan membership atau tidak
+*/
+extern bool isMember;
+
+/*
+    Bool untuk memastikan apakah yang masuk merupakan
+    karyawan atau pemilik
+*/
+extern bool isKaryawan;
+extern bool isPemilik;
+
 #endif // VARIABEL_H
