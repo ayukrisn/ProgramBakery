@@ -74,23 +74,13 @@ void lihatStock()
     }
     printf("\t\t|_________________________________________________________|\n");
     fclose(fileDaftarMenu);
-}
 
-void lihatStockP()
-{
-    lihatStock();
     systemPause();
     systemCLS();
-    manageStockP();
+    if (isPemilik) manageStockP();
+    if (isKaryawan) manageStockK();
 }
 
-void lihatStockK()
-{
-    lihatStock();
-    systemPause();
-    systemCLS();
-    manageStockK();
-}
 
 void riwayatRestock()
 {
@@ -208,7 +198,8 @@ void restockJadwalPagi()
 
     systemPause();
     systemCLS();
-    manageStockK();
+    if (isPemilik) manageStockP();
+    if (isKaryawan) manageStockK();
 }
 
 void restockJadwalSiang()
@@ -228,7 +219,8 @@ void restockJadwalSiang()
 
     systemPause();
     systemCLS();
-    manageStockK();
+    if (isPemilik) manageStockP();
+    if (isKaryawan) manageStockK();
 }
 
 void restockJadwalSore()
@@ -248,7 +240,8 @@ void restockJadwalSore()
 
     systemPause();
     systemCLS();
-    manageStockK();
+    if (isPemilik) manageStockP();
+    if (isKaryawan) manageStockK();
 }
 
 void waktuRestock (FILE *pfileLog)
@@ -272,7 +265,10 @@ void prosesRestock (int *restock)
     tempDaftarMenu = fopen("tempDaftarMenu.txt", "w");
 
     waktuRestock(logRestock);
-    strcpy(writeStock.namaKaryawan, dataKaryawan.nama);
+    if (isPemilik)
+    strcpy(writeStock.namaYgRestock, dataPemilik.nama);
+    if (isKaryawan)
+    strcpy(writeStock.namaYgRestock, dataKaryawan.nama);
 
     fprintf(logRestock, "\t\t   _______________________________________________________\n");
     fprintf(logRestock, "\t\t ||                                                       ||\n");
@@ -280,7 +276,10 @@ void prosesRestock (int *restock)
     fprintf(logRestock, "\t\t ||                                                       ||\n");
     fprintf(logRestock, "\t\t ||=======================================================||\n");
     fprintf(logRestock, "\t\t    > Waktu Restock: %-37s\n", writeStock.waktuRestock);
-    fprintf(logRestock, "\t\t || > Nama Karyawan: %-37s||\n", writeStock.namaKaryawan);
+    if (isPemilik)
+    fprintf(logRestock, "\t\t || > Nama Pemilik : %-37s||\n", writeStock.namaYgRestock);
+    if (isKaryawan)
+    fprintf(logRestock, "\t\t || > Nama Karyawan: %-37s||\n", writeStock.namaYgRestock);
     fprintf(logRestock, "\t\t ||=======================================================||\n");
     
     int elemenDaftarMenu = 0;

@@ -18,6 +18,6 @@
 void waktuRestock (FILE *pfileLog); void prosesRestock (int *restock);
     void aturJadwalRestock(); void setJamRestock(); 
     void restockJadwalPagi(); void restockJadwalSiang(); void restockJadwalSore();
-    void lihatStockK(); void lihatStockP(); void statusRestock(); void riwayatRestock();
+    void statusRestock(); void riwayatRestock(); void lihatStock();
     void resetStock();
 #endif //RESTOCK_H

@@ -24,6 +24,7 @@
 #include "restock.h"
 #include "aksesPelanggan.h"
 
+bool isPemilik = false; bool isKaryawan = false;
 /*
     ===========================================================================
     B A G I A N  A K S E S  P E M I L I K
@@ -41,32 +42,36 @@ void menuAwalPemilik()
     printf("\t\t|_______________________________________________________|\n");
     printf("\t\t| Silahkan pilih menu yang diinginkan.                  |\n");
     printf("\t\t|-------------------------------------------------------|\n");
-    printf("\t\t| [1] Manage akun karyawan                              |\n");
-    printf("\t\t| [2] Manage akun membership                            |\n");
-    printf("\t\t| [3] Manage daftar menu                                |\n");
-    printf("\t\t| [4] Manage sistem stock                               |\n");
-    printf("\t\t| [5] Manage riwayat transaksi                          |\n");
-    printf("\t\t| [6] Sign out dan kembali ke menu awal                 |\n");
+    printf("\t\t| [1] Buka program untuk pelanggan                      |\n");
+    printf("\t\t| [2] Manage akun karyawan                              |\n");
+    printf("\t\t| [3] Manage akun membership                            |\n");
+    printf("\t\t| [4] Manage daftar menu                                |\n");
+    printf("\t\t| [5] Manage sistem stock                               |\n");
+    printf("\t\t| [6] Manage riwayat transaksi                          |\n");
+    printf("\t\t| [7] Sign out dan kembali ke menu awal                 |\n");
     printf("\t\t|_______________________________________________________|\n");
-    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-6) : ");
-    pilihanUser(&pilihan, 1, 6);
+    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-7) : ");
+    pilihanUser(&pilihan, 1, 7);
     fflush(stdin);
     if (pilihan == 1) {
-        systemCLS();
-        manageKaryawan();
+        konfirmasiBuka();
     } else if (pilihan == 2) {
         systemCLS();
-        manageAkunMembership();
-    } else if (pilihan == 3 ) {
+        manageKaryawan();
+    } else if (pilihan == 3) {
         systemCLS();
-        manageDaftarMenu();
+        manageAkunMembership();
     } else if (pilihan == 4 ) {
         systemCLS();
-        //manageStockP();
+        manageDaftarMenu();
     } else if (pilihan == 5 ) {
         systemCLS();
-        //manageRiwayatTransaksi();
+        manageStockP();
     } else if (pilihan == 6 ) {
+        systemCLS();
+        //manageRiwayatTransaksi();
+    } else if (pilihan == 7 ) {
+        isPemilik = false;
         systemCLS();
         menuPertama();
     }
@@ -439,29 +444,41 @@ void manageStockP() {
     printf("\t\t|-------------------------------------------------------|\n");
     printf("\t\t| [1] Lihat stock saat ini                              |\n");
     printf("\t\t| [2] Atur jadwal restock                               |\n");
-    printf("\t\t| [3] Lihat riwayat stock                               |\n");
-    printf("\t\t| [4] Lihat status stock                                |\n");
-    printf("\t\t| [5] Kembali ke menu pemilik                           |\n");
+    printf("\t\t| [3] Tambahkan stock jadwal pagi                       |\n");
+    printf("\t\t| [4] Tambahkan stock jadwal siang                      |\n");
+    printf("\t\t| [5] Tambahkan stock jadwal sore                       |\n");
+    printf("\t\t| [6] Lihat riwayat stock                               |\n");
+    printf("\t\t| [7] Lihat status stock                                |\n");
+    printf("\t\t| [8] Kembali ke menu pemilik                           |\n");
     printf("\t\t|_______________________________________________________|\n");
-    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-5) :        \n");
-    pilihanUser(&pilihan, 1, 5);
+    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-8) :        \n");
+    pilihanUser(&pilihan, 1, 8);
     fflush(stdin);
     if (pilihan == 1) {
         systemCLS();
-        lihatStockP();
-        } else if (pilihan == 2) {
-            systemCLS();
-            aturJadwalRestock();
-        } else if (pilihan == 3 ) {
-            systemCLS();
-            riwayatRestock();
-        } else if (pilihan == 4 ) {
-            systemCLS();
-            statusRestock();
-        } else if (pilihan == 5) {
-            systemCLS();
-            menuAwalPemilik();
-        }
+        lihatStock();
+    } else if (pilihan == 2) {
+        systemCLS();
+        aturJadwalRestock();
+    } else if (pilihan == 3) {
+        systemCLS();
+        restockJadwalPagi();
+    } else if (pilihan == 4) {
+        systemCLS();
+        restockJadwalSiang();
+    } else if (pilihan == 5 ) {
+        systemCLS();
+        restockJadwalSore();
+    } else if (pilihan == 6 ) {
+        systemCLS();
+        riwayatRestock();
+    } else if (pilihan == 7 ) {
+        systemCLS();
+        statusRestock();
+    } else if (pilihan == 8) {
+        systemCLS();
+        menuAwalPemilik();
+    }
 }
 
 /*
@@ -492,7 +509,7 @@ void menuAwalKaryawan()
     fflush(stdin);
     if (pilihan == 1) {
         systemCLS();
-        menuMasukPelanggan();
+        konfirmasiBuka();
         } else if (pilihan == 2) {
             systemCLS();
             manageStockK();
@@ -503,6 +520,7 @@ void menuAwalKaryawan()
             systemCLS();
             //lihatRiwayatTransaksi();
         } else if (pilihan == 5) {
+            isKaryawan = false;
             systemCLS();
             menuPertama();
         }
@@ -510,6 +528,7 @@ void menuAwalKaryawan()
 
 /*
     Prosedur menu manage stock
+    Definisi prosedur dapat dilihat pada restock.c
 */
 void manageStockK()
 {
@@ -539,9 +558,103 @@ void manageStockK()
             restockJadwalSore();
         } else if (pilihan == 4 ) {
             systemCLS();
-            lihatStockK();
+            lihatStock();
         } else if (pilihan == 5) {
             systemCLS();
             menuAwalKaryawan();
         }
+}
+
+/*
+    ========================================================
+    A K S E S  B E R S A M A
+    ========================================================
+*/
+
+/*
+    Prosedur menu konfirmasi pembukaan program untuk pelanggan
+    bila update stock pagi belum dilaksanakan
+*/
+void konfirmasiBuka()
+{
+    int pilihan;
+    if(!updateStockPagi) {
+        printf("\t\t _______________________________________________________ \n");
+        printf("\t\t|                [!] P E R I N G A T A N                |\n");
+        printf("\t\t|                                                       |\n");
+        printf("\t\t|            Anda belum melakukan restock pagi.         |\n");
+        printf("\t\t|       Lanjutkan membuka program untuk pelanggan?      |\n");
+        printf("\t\t|_______________________________________________________|\n");
+        printf("\t\t| [1] Ya, lanjutkan                                     |\n");
+        printf("\t\t| [2] Tidak, lanjutkan ke restock pagi                  |\n");
+        printf("\t\t| [3] Tidak, kembali ke menu karyawan                   |\n");
+        printf("\t\t|_______________________________________________________|\n");
+        printf("\t\t  Ketik pilihan dengan angka yang tertera (1-3) : ");
+        pilihanUser(&pilihan, 1, 5);
+        fflush(stdin);
+        if (pilihan == 1) {
+        systemCLS();
+        menuMasukPelanggan();
+        } else if (pilihan == 2) {
+            systemCLS();
+            restockJadwalPagi();
+        } else if (pilihan == 3 ) {
+            systemCLS();
+            menuAwalKaryawan();
+        }
+    }
+}
+
+/*
+    Konfirmasi untuk menutup menu pelanggan
+*/
+void konfirmasiTutup() 
+{
+    bool konfirmasiBenar = false;
+    printf("\t\t _______________________________________________________ \n");
+    printf("\t\t|              [!] TUTUP PROGRAM PELANGGAN              |\n");
+    printf("\t\t|                                                       |\n");
+    printf("\t\t|      Silahkan masukkan username dan password Admin    |\n");
+    printf("\t\t|_______________________________________________________|\n");
+    
+    if(isPemilik) {
+        printf("\t\t  Username : ");
+        scanf("%[^\n]", writeUser.pemilik.username);
+        getchar();
+
+        printf("\t\t  Password : ");
+        scanf("%[^\n]", writeUser.pemilik.password);
+        getchar();
+
+        //Memeriksa apakah username dan password yang diberikan benar atau tidak
+        if(strcmp(writeUser.pemilik.username, dataPemilik.username)==0 && strcmp(writeUser.pemilik.password, dataPemilik.password)==0) {
+            konfirmasiBenar = true;
+            systemPause();
+            systemCLS();
+            menuAwalPemilik();
+        } 
+    } 
+    if(isKaryawan) {
+        printf("\t\t  Username : ");
+        scanf("%[^\n]", writeUser.karyawan.username);
+        getchar();
+
+        printf("\t\t  Password : ");
+        scanf("%[^\n]", writeUser.karyawan.password);
+        getchar();
+
+        //Memeriksa apakah username dan password yang diberikan benar atau tidak
+        if(strcmp(writeUser.karyawan.username, dataKaryawan.username)==0 && strcmp(writeUser.pemilik.password, dataKaryawan.password)==0) {
+            systemPause();
+            systemCLS();
+            menuAwalKaryawan();
+        }
+    }
+    printf("\t\t _______________________________________________________ \n");
+    printf("\t\t|              Username atau Password Salah             |\n");
+    printf("\t\t|_______________________________________________________|\n");
+
+    systemPause();
+    systemCLS();
+    menuMasukPelanggan();
 }

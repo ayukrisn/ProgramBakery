@@ -187,6 +187,7 @@ void signInPemilik () {
             printf("\t\t|                Sign In telah berhasil.               |\n");
             printf("\t\t|______________________________________________________|\n");
             printf("\t\t  Selamat datang, %s.\n", dataPemilik.nama);
+            isPemilik = true;
             getchar();
             systemPause();
             systemCLS();
@@ -292,19 +293,13 @@ void signInKaryawan () {
         printf("\t\t  Password : ");
         scanf("%[^\n]", writeUser.karyawan.password);
         getchar();
-        // printf("Data input: %s dan %s\n", writeUser.karyawan.username, writeUser.karyawan.password);
-        // printf("Hasil strlen input: %d %d\n",strlen(writeUser.karyawan.username), strlen(writeUser.karyawan.password) );
 
         //Memeriksa apakah username dan password yang diberikan benar atau tidak
         bool tidakKetemu = 0;
         rewind(signIn);
         do {
         fscanf(signIn, "%[^;];%[^;];%[^;];\n", readUser.karyawan.nama, readUser.karyawan.username, readUser.karyawan.password);
-        /*
-        printf("Data file: %s dan %s\n", readUser.karyawan.username, readUser.karyawan.password);
-        printf("Hasil strlen file: %d %d\n",strlen(readUser.karyawan.username), strlen(readUser.karyawan.password) );
-        printf("Hasil strcmp: %d %d\n",strcmp(writeUser.karyawan.username, readUser.karyawan.username), strcmp(writeUser.karyawan.password, readUser.karyawan.password) );
-        */
+
         if(strcmp(writeUser.karyawan.username, readUser.karyawan.username)==0 && strcmp(writeUser.karyawan.password, readUser.karyawan.password)==0) {
             tidakKetemu = 0;
             dataKaryawan = readUser.karyawan;
@@ -314,6 +309,7 @@ void signInKaryawan () {
             printf("\t\t|_______________________________________________________|\n");
             printf("\t\t  Selamat datang, %s.\n", dataKaryawan.nama);
             fclose(signIn);
+            isKaryawan = true;
             //menuAwalKaryawan();
             systemPause();
             systemCLS();
