@@ -17,8 +17,9 @@
 #include "aksesAdmin.h"
 #include "pendukung.h"
 #include "daftarMenuRev.h"
-#include "restock.h"
 
+#include "restock.h"
+#include "aksesPelanggan.h"
 
 // +======================================================================================================================+
 // FUNGSI DAN PROSEDUR VALIDASI INPUT
@@ -224,18 +225,19 @@ bool validasiPassword(char *varPassword)
 
     // variabel untuk menentukan apakah password yang diinput
     // sudah sesuai dengan ketentuan
-    bool simbol = 0;
-    bool digit = 0;
-    bool semicolon = 0;
+    bool simbol = false;
+    bool digit = false;
+    bool semicolon = false;
 
-    bool statusValidasiPassword=0;
+    bool statusValidasiPassword=false;
+
 
     fflush(stdin);
     // Menerima input dan memeriksa apakah input NULL atau tidak
     printf("\t\t Password setidaknya terdiri dari 8 karakter serta mengandung simbol dan angka.\n");
     printf("\t\t Password tidak boleh mengandung simbol semicolon ';'.\n");
     printf("\t\t Password : ");
-    if(fgets(varPassword, 20, stdin) == NULL) return 0;
+    if(fgets(varPassword, 20, stdin) == NULL) statusValidasiPassword=false;
     //Mengganti '\n' dengan '\0'
     varPassword[strcspn(varPassword, "\n")] = '\0';
     // Memeriksa apakah panjang karakter yang diberikan
@@ -243,20 +245,21 @@ bool validasiPassword(char *varPassword)
     panjangKarakter = strlen(varPassword);
     if (panjangKarakter < 8) {
         printf("\t\t Password kurang dari 8 karakter.\n");
-        return 0;
+        statusValidasiPassword=false;
     }
     // Memeriksa tiap elemen dalam string
     for (elemenPassword = 0; elemenPassword<= panjangKarakter; elemenPassword++) {
         // Memeriksa apakah input password sesuai dengan ketentuan
         if (isdigit(varPassword[elemenPassword])) {
-            digit = 1;
+            digit = true;
         }
         
         if (ispunct(varPassword[elemenPassword])) {
-            simbol = 1;
+            simbol = true;
         }
         if ((varPassword[elemenPassword]) == ';') {
-            semicolon = 1;
+            semicolon = true;
+
         }
     } if (!digit) {
         printf("\t\t Password tidak berisi digit.\n");
@@ -268,9 +271,9 @@ bool validasiPassword(char *varPassword)
     
 
     if(digit && simbol && !semicolon){
-        statusValidasiPassword = 1;
+        statusValidasiPassword = true;
     }else{
-        statusValidasiPassword=0;
+        statusValidasiPassword=false;
     }
     return statusValidasiPassword;
 }
@@ -313,6 +316,6 @@ void systemCLS()
 */
 void systemPause()
 {
-    printf("\n\t\t Tekan tombol keyboard untuk melanjutkan.\n");
+    printf("\n\t\t Tekan tombol keyboard untuk melanjutkan.");
     getchar();
 }
