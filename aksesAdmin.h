@@ -14,7 +14,8 @@
 #ifndef AKSES_ADMIN_H
 #define AKSES_ADMIN_H
 
-void menuAwalPemilik(); void manageKaryawan(); void listKaryawan(); void showListKaryawan();
+void menuAwalPemilik(); void manageAkunMembership(); void listMembership(); void showListMembership(); void hapusMembership(); 
+    void manageKaryawan(); void listKaryawan(); void showListKaryawan();
     void hapusKaryawan(); void manageDaftarMenu();
 
 void menuAwalKaryawan();

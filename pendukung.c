@@ -11,11 +11,14 @@
 #include <string.h>
 #include <stdbool.h>
 #include <ctype.h>
+#include <time.h>
+#include <time.h>
 #include "logIn.h"
 #include "variabel.h"
 #include "aksesAdmin.h"
 #include "pendukung.h"
 #include "daftarMenuRev.h"
+#include "aksesPelanggan.h"
 
 // +======================================================================================================================+
 // FUNGSI DAN PROSEDUR VALIDASI INPUT
@@ -91,10 +94,12 @@ bool validasiNama (char *varNama)
     int panjangKarakter;
     int elemenNama;
 
+    bool statusValidasiNama = true;
+
     fflush(stdin);
     printf("\t\t Nama : ");
     // Menerima input dan memeriksa apakah input NULL atau tidak
-    if(fgets(varNama, 30, stdin) == NULL) return false;
+    if(fgets(varNama, 30, stdin) == NULL) statusValidasiNama = false;
     //Mengganti '\n' dengan '\0'
     varNama[strcspn(varNama, "\n")] = '\0';
     // Memeriksa apakah panjang karakter yang diberikan lebih dari
@@ -102,23 +107,24 @@ bool validasiNama (char *varNama)
     panjangKarakter = strlen(varNama);
     if (panjangKarakter < 2) {
         printf("\t\t Nama kurang dari 2 karakter.\n");
-        return false;
+        statusValidasiNama = false;
     }
     // Memeriksa tiap elemen dalam string
     for (elemenNama = 0; elemenNama <= panjangKarakter; elemenNama++) {
         // Jika karakter adalah digit, maka nama salah
         if (isdigit(varNama[elemenNama])) {
             printf("\t\t Nama mengandung digit angka.\n");
-            return false;
+            statusValidasiNama = false;
             break;
         }
         // Jika karakter adalah simbol, maka nama salah
         if (ispunct(varNama[elemenNama])) {
             printf("\t\t Nama mengandung simbol.\n");
-            return false;
+            statusValidasiNama = false;
             break;
         }
     }
+    return statusValidasiNama;
 }
 
 /*
@@ -150,6 +156,8 @@ bool validasiUsername(char *varUsername)
     int panjangKarakter;
     int elemenUsername;
 
+    bool statusValidasiUsername = true;
+
     fflush(stdin);
     printf("\t\t Username setidaknya terdiri dari 8 karakter.\n");
     printf("\t\t Username : ");
@@ -162,23 +170,27 @@ bool validasiUsername(char *varUsername)
     panjangKarakter = strlen(varUsername);
     if (panjangKarakter < 8) {
         printf("\t\t Username kurang dari 8 karakter.\n");
-        return false;
+        //return false;
+        statusValidasiUsername = false;
     }
     // Memeriksa tiap elemen dalam string
     for (elemenUsername = 0; elemenUsername <= panjangKarakter; elemenUsername++) {
         // Jika karakter adalah spasi, maka username salah
         if (isspace(varUsername[elemenUsername])) {
             printf("\t\t Username mengandung whitespace.\n");
-            return false;
+            //return false;
+            statusValidasiUsername= false;
             break;
         }
         // Jika karakter adalah simbol, maka username salah
         if (ispunct(varUsername[elemenUsername])) {
             printf("\t\t Username mengandung simbol.\n");
-            return false;
+            //return false;
+            statusValidasiUsername = false;
             break;
         }
     }
+    return(statusValidasiUsername);
 }
 
 /*
@@ -212,14 +224,18 @@ bool validasiPassword(char *varPassword)
 
     // variabel untuk menentukan apakah password yang diinput
     // sudah sesuai dengan ketentuan
-    int simbol = 0;
-    int digit = 0;
+    bool simbol = false;
+    bool digit = false;
+    bool semicolon = false;
+
+    bool statusValidasiPassword=false;
 
     fflush(stdin);
     // Menerima input dan memeriksa apakah input NULL atau tidak
     printf("\t\t Password setidaknya terdiri dari 8 karakter serta mengandung simbol dan angka.\n");
+    printf("\t\t Password tidak boleh mengandung simbol semicolon ';'.\n");
     printf("\t\t Password : ");
-    if(fgets(varPassword, 20, stdin) == NULL) return 0;
+    if(fgets(varPassword, 20, stdin) == NULL) statusValidasiPassword=false;
     //Mengganti '\n' dengan '\0'
     varPassword[strcspn(varPassword, "\n")] = '\0';
     // Memeriksa apakah panjang karakter yang diberikan
@@ -227,27 +243,36 @@ bool validasiPassword(char *varPassword)
     panjangKarakter = strlen(varPassword);
     if (panjangKarakter < 8) {
         printf("\t\t Password kurang dari 8 karakter.\n");
-        return 0;
+        statusValidasiPassword=false;
     }
     // Memeriksa tiap elemen dalam string
     for (elemenPassword = 0; elemenPassword<= panjangKarakter; elemenPassword++) {
         // Memeriksa apakah input password sesuai dengan ketentuan
         if (isdigit(varPassword[elemenPassword])) {
-            digit = 1;
+            digit = true;
         }
+        
         if (ispunct(varPassword[elemenPassword])) {
-            simbol = 1;
+            simbol = true;
         }
-    }
-    if (!digit) {
+        if ((varPassword[elemenPassword]) == ';') {
+            semicolon = true;
+        }
+    } if (!digit) {
         printf("\t\t Password tidak berisi digit.\n");
-        return 0;
-    }
-    if (!simbol) {
+    } if (!simbol) {
         printf("\t\t Password tidak berisi simbol.\n");
-        return 0;
+    } if (semicolon) {
+        printf("\t\t Password tidak boleh berisi simbol semicolon ';'\n");
     }
-    return 1;
+    
+
+    if(digit && simbol && !semicolon){
+        statusValidasiPassword = true;
+    }else{
+        statusValidasiPassword=false;
+    }
+    return statusValidasiPassword;
 }
 
 /*
@@ -288,6 +313,6 @@ void systemCLS()
 */
 void systemPause()
 {
-    printf("\n\t\t Tekan tombol keyboard untuk melanjutkan.\n");
+    printf("\n\t\t Tekan tombol keyboard untuk melanjutkan.");
     getchar();
 }
