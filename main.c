@@ -34,16 +34,18 @@
 #include "aksesAdmin.h"
 #include "pendukung.h"
 #include "daftarMenuRev.h"
+#include "restock.h"
 #include "aksesPelanggan.h"
 
 int main(void)
 {
+    setJamRestock();
     systemCLS();
     menuPertama();
     return 0;
 }
 
 /*
-    Catatan: nambah stok
+    Catatan: nambah stock
              file txt untuk harga, atau intinya semua informasi tentang barang dagangan
 */

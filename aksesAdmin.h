@@ -18,5 +18,5 @@ void menuAwalPemilik(); void manageAkunMembership(); void listMembership(); void
     void manageKaryawan(); void listKaryawan(); void showListKaryawan();
     void hapusKaryawan(); void manageDaftarMenu();
 
-void menuAwalKaryawan();
+void menuAwalKaryawan(); void manageStockK(); void manageStockP();
 #endif //AKSES_ADMIN_H

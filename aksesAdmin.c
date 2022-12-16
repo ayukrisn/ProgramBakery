@@ -21,6 +21,7 @@
 #include "aksesAdmin.h"
 #include "pendukung.h"
 #include "daftarMenuRev.h"
+#include "restock.h"
 #include "aksesPelanggan.h"
 
 /*
@@ -61,7 +62,7 @@ void menuAwalPemilik()
         manageDaftarMenu();
     } else if (pilihan == 4 ) {
         systemCLS();
-        //manageSistemStock();
+        //manageStockP();
     } else if (pilihan == 5 ) {
         systemCLS();
         //manageRiwayatTransaksi();
@@ -407,7 +408,7 @@ void manageDaftarMenu()
 	printf("\t\t| [3] Hapus Daftar Menu                                 |\n");
 	printf("\t\t| [4] Kembali ke akses pemilik                          |\n");
 	printf("\t\t|_______________________________________________________|\n");
-	printf("\t\t  Ketikkan pilihan anda (1-5) : ");
+	printf("\t\t  Ketikkan pilihan anda (1-4) : ");
     pilihanUser(&pilihan, 1, 4);
     fflush(stdin);
     if (pilihan == 1) {
@@ -425,6 +426,43 @@ void manageDaftarMenu()
         }
 }
 
+/*
+    Menu Manage Stock
+    Prosedur dapat dilihat di restock.c
+*/
+void manageStockP() {
+    int pilihan;
+    printf("\t\t _______________________________________________________ \n");
+    printf("\t\t|                 M A N A G E  S T O C K                |\n");
+    printf("\t\t|_______________________________________________________|\n");
+    printf("\t\t| Silahkan pilih menu yang diinginkan.                  |\n");
+    printf("\t\t|-------------------------------------------------------|\n");
+    printf("\t\t| [1] Lihat stock saat ini                              |\n");
+    printf("\t\t| [2] Atur jadwal restock                               |\n");
+    printf("\t\t| [3] Lihat riwayat stock                               |\n");
+    printf("\t\t| [4] Lihat status stock                                |\n");
+    printf("\t\t| [5] Kembali ke menu pemilik                           |\n");
+    printf("\t\t|_______________________________________________________|\n");
+    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-5) :        \n");
+    pilihanUser(&pilihan, 1, 5);
+    fflush(stdin);
+    if (pilihan == 1) {
+        systemCLS();
+        lihatStockP();
+        } else if (pilihan == 2) {
+            systemCLS();
+            aturJadwalRestock();
+        } else if (pilihan == 3 ) {
+            systemCLS();
+            riwayatRestock();
+        } else if (pilihan == 4 ) {
+            systemCLS();
+            statusRestock();
+        } else if (pilihan == 5) {
+            systemCLS();
+            menuAwalPemilik();
+        }
+}
 
 /*
     ===========================================================================
@@ -444,9 +482,9 @@ void menuAwalKaryawan()
     printf("\t\t| Silahkan pilih menu yang diinginkan.                  |\n");
     printf("\t\t|-------------------------------------------------------|\n");
     printf("\t\t| [1] Buka program untuk pelanggan                      |\n");
-    printf("\t\t| [2] Manage stok dagang                                |\n");
+    printf("\t\t| [2] Manage stock makanan                              |\n");
     printf("\t\t| [3] Lihat daftar menu                                 |\n");
-    printf("\t\t| [4] Lihat status penjualan                            |\n");
+    printf("\t\t| [4] Lihat riwayat transaksi                           |\n");
     printf("\t\t| [5] Sign out dan kembali ke menu awal                 |\n");
     printf("\t\t|_______________________________________________________|\n");
     printf("\t\t  Ketik pilihan dengan angka yang tertera (1-5) : ");
@@ -455,17 +493,55 @@ void menuAwalKaryawan()
     if (pilihan == 1) {
         systemCLS();
         menuMasukPelanggan();
-    } else if (pilihan == 2) {
+        } else if (pilihan == 2) {
+            systemCLS();
+            manageStockK();
+        } else if (pilihan == 3 ) {
+            systemCLS();
+            lihatDaftarMenuK();
+        } else if (pilihan == 4 ) {
+            systemCLS();
+            //lihatRiwayatTransaksi();
+        } else if (pilihan == 5) {
+            systemCLS();
+            menuPertama();
+        }
+}
+
+/*
+    Prosedur menu manage stock
+*/
+void manageStockK()
+{
+    int pilihan;
+    printf("\t\t _______________________________________________________ \n");
+    printf("\t\t|                  M A N A G E  S T O C K               |\n");
+    printf("\t\t|_______________________________________________________|\n");
+    printf("\t\t|           Silahkan pilih menu yang diinginkan.        |\n");
+    printf("\t\t|-------------------------------------------------------|\n");
+    printf("\t\t| [1] Tambahkan stock jadwal pagi                       |\n");
+    printf("\t\t| [2] Tambahkan stock jadwal siang                      |\n");
+    printf("\t\t| [3] Tambahkan stock jadwal sore                       |\n");
+    printf("\t\t| [4] Lihat jumlah stock                                |\n");
+    printf("\t\t| [5] Kembali ke menu karyawan                          |\n");
+    printf("\t\t|_______________________________________________________|\n");
+    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-5) :        \n");
+    pilihanUser(&pilihan, 1, 5);
+    fflush(stdin);
+    if (pilihan == 1) {
         systemCLS();
-        //manageStok();
-    } else if (pilihan == 3 ) {
-        systemCLS();
-        lihatDaftarMenuK();
-    } else if (pilihan == 4 ) {
-        systemCLS();
-        //lihatStatusPenjualan();
-    } else if (pilihan == 5) {
-        systemCLS();
-        menuPertama();
-    }
+        restockJadwalPagi();
+        } else if (pilihan == 2) {
+            systemCLS();
+            restockJadwalSiang();
+        } else if (pilihan == 3 ) {
+            systemCLS();
+            restockJadwalSore();
+        } else if (pilihan == 4 ) {
+            systemCLS();
+            lihatStockK();
+        } else if (pilihan == 5) {
+            systemCLS();
+            menuAwalKaryawan();
+        }
 }

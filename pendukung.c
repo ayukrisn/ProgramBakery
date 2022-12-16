@@ -12,12 +12,13 @@
 #include <stdbool.h>
 #include <ctype.h>
 #include <time.h>
-#include <time.h>
 #include "logIn.h"
 #include "variabel.h"
 #include "aksesAdmin.h"
 #include "pendukung.h"
 #include "daftarMenuRev.h"
+
+#include "restock.h"
 #include "aksesPelanggan.h"
 
 // +======================================================================================================================+
@@ -230,6 +231,7 @@ bool validasiPassword(char *varPassword)
 
     bool statusValidasiPassword=false;
 
+
     fflush(stdin);
     // Menerima input dan memeriksa apakah input NULL atau tidak
     printf("\t\t Password setidaknya terdiri dari 8 karakter serta mengandung simbol dan angka.\n");
@@ -257,6 +259,7 @@ bool validasiPassword(char *varPassword)
         }
         if ((varPassword[elemenPassword]) == ';') {
             semicolon = true;
+
         }
     } if (!digit) {
         printf("\t\t Password tidak berisi digit.\n");
