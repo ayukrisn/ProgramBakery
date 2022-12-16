@@ -323,7 +323,7 @@ void menuAwalKaryawan()
     printf("\t\t| [1] Buka program untuk pelanggan                      |\n");
     printf("\t\t| [2] Manage stock makanan                              |\n");
     printf("\t\t| [3] Lihat daftar menu                                 |\n");
-    printf("\t\t| [4] Lihat status penjualan                            |\n");
+    printf("\t\t| [4] Lihat riwayat transaksi                           |\n");
     printf("\t\t| [5] Sign out dan kembali ke menu awal                 |\n");
     printf("\t\t|_______________________________________________________|\n");
     printf("\t\t  Ketik pilihan dengan angka yang tertera (1-5) :        \n");
@@ -340,7 +340,7 @@ void menuAwalKaryawan()
             lihatDaftarMenuK();
         } else if (pilihan == 4 ) {
             systemCLS();
-            //lihatStatusPenjualan();
+            //lihatRiwayatTransaksi();
         } else if (pilihan == 5) {
             systemCLS();
             menuPertama();
