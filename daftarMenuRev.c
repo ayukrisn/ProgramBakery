@@ -181,6 +181,7 @@ void showDaftarMenuJenis()
     printf("\t\t|__________________________________________________________________________________________________|\n");
     fclose(fileDaftarMenu);
 }
+}
 
 /*
     Melihat seluruh daftar menu
