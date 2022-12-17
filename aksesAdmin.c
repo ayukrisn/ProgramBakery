@@ -22,6 +22,7 @@
 #include "pendukung.h"
 #include "daftarMenuRev.h"
 #include "restock.h"
+#include "transaksi.h"
 #include "aksesPelanggan.h"
 
 bool isPemilik = false; bool isKaryawan = false;
@@ -451,7 +452,7 @@ void manageStockP() {
     printf("\t\t| [7] Lihat status stock                                |\n");
     printf("\t\t| [8] Kembali ke menu pemilik                           |\n");
     printf("\t\t|_______________________________________________________|\n");
-    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-8) :        \n");
+    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-8) : ");
     pilihanUser(&pilihan, 1, 8);
     fflush(stdin);
     if (pilihan == 1) {
@@ -587,7 +588,7 @@ void konfirmasiBuka()
         printf("\t\t|_______________________________________________________|\n");
         printf("\t\t| [1] Ya, lanjutkan                                     |\n");
         printf("\t\t| [2] Tidak, lanjutkan ke restock pagi                  |\n");
-        printf("\t\t| [3] Tidak, kembali ke menu karyawan                   |\n");
+        printf("\t\t| [3] Tidak, kembali ke menu awal                       |\n");
         printf("\t\t|_______________________________________________________|\n");
         printf("\t\t  Ketik pilihan dengan angka yang tertera (1-3) : ");
         pilihanUser(&pilihan, 1, 5);
@@ -600,8 +601,12 @@ void konfirmasiBuka()
             restockJadwalPagi();
         } else if (pilihan == 3 ) {
             systemCLS();
-            menuAwalKaryawan();
+            if (isKaryawan) menuAwalKaryawan();
+            if (isPemilik) menuAwalPemilik();
         }
+    } else {
+        systemCLS();
+        menuMasukPelanggan();
     }
 }
 

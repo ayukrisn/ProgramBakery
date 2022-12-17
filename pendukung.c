@@ -57,7 +57,7 @@ void inputInteger(int *varInt)
         //Jika validasi integer benar, keluar dari loop
         if (validasiInteger(varInt)) break;
         //Jika tidak, berikan pesan dan ulang loop
-        printf("\t\t Masukan salah. Mohon masukkan input sesuai arahan.\n");
+        printf("\n\t\t Masukan salah. Mohon masukkan input sesuai arahan.\n");
         printf("\t\t Masukkan input: ");
     }
 }
@@ -76,7 +76,7 @@ void pilihanUser(int *varInt, int batasTerkecil, int batasTerbesar)
         // diberikan. Jika ya, keluar dari loop
         if (batasTerkecil <= *varInt && *varInt <= batasTerbesar) break;
         //Jika tidak, berikan pesan dan ulang loop
-        printf("\t\t Masukan salah. Mohon masukkan input sesuai arahan.\n");
+        printf("\n\t\t Masukan salah. Mohon masukkan input sesuai arahan.\n");
         printf("\t\t Masukkan input: ");
     }
 }
@@ -142,7 +142,7 @@ void inputNama (char *varNama)
         if (hasilValidasi) {
             break;
         } else {
-        printf("\t\t Masukan salah. Mohon masukkan nama sesuai arahan.\n");
+        printf("\n\t\t Masukan salah. Mohon masukkan nama sesuai arahan.\n");
         }
     }
 }
@@ -160,7 +160,7 @@ bool validasiUsername(char *varUsername)
     bool statusValidasiUsername = true;
 
     fflush(stdin);
-    printf("\t\t Username setidaknya terdiri dari 8 karakter.\n");
+    printf("\n\t\t Username setidaknya terdiri dari 8 karakter.\n");
     printf("\t\t Username : ");
     // Menerima input dan memeriksa apakah input NULL atau tidak
     if(fgets(varUsername, 20, stdin) == NULL) return false;
@@ -207,7 +207,7 @@ void inputUsername (char *varUsername)
         if (hasilValidasi) {
             break;
         } else {
-        printf("\t\t Masukan salah. Mohon masukkan nama sesuai arahan.\n");
+        printf("\n\t\t Masukan salah. Mohon masukkan nama sesuai arahan.\n");
         }
     }
 }
@@ -234,7 +234,7 @@ bool validasiPassword(char *varPassword)
 
     fflush(stdin);
     // Menerima input dan memeriksa apakah input NULL atau tidak
-    printf("\t\t Password setidaknya terdiri dari 8 karakter serta mengandung simbol dan angka.\n");
+    printf("\n\t\t Password setidaknya terdiri dari 8 karakter serta mengandung simbol dan angka.\n");
     printf("\t\t Password tidak boleh mengandung simbol semicolon ';'.\n");
     printf("\t\t Password : ");
     if(fgets(varPassword, 20, stdin) == NULL) statusValidasiPassword=false;
@@ -292,7 +292,7 @@ void inputPassword (char *varPassword)
         if (hasilValidasi) {
             break;
         } else {
-        printf("\t\t Masukan salah. Mohon masukkan nama sesuai arahan.\n");
+        printf("\n\t\t Masukan salah. Mohon masukkan nama sesuai arahan.\n");
         }
     }
 }

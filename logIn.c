@@ -20,6 +20,7 @@
 #include "pendukung.h"
 #include "daftarMenuRev.h"
 #include "restock.h"
+#include "transaksi.h"
 #include "aksesPelanggan.h"
 
 
@@ -187,8 +188,8 @@ void signInPemilik () {
             printf("\t\t|                Sign In telah berhasil.               |\n");
             printf("\t\t|______________________________________________________|\n");
             printf("\t\t  Selamat datang, %s.\n", dataPemilik.nama);
-            isPemilik = true;
             getchar();
+            isPemilik = true;
             systemPause();
             systemCLS();
             menuAwalPemilik();
@@ -196,6 +197,7 @@ void signInPemilik () {
             printf("\t\t _____________________________________________________________________ \n");
             printf("\t\t| Username atau password yang dimasukkan salah. Mohon ulangi kembali. |\n");
             printf("\t\t|_____________________________________________________________________|\n");
+            getchar();
             systemPause();
             systemCLS();
             akunPemilik();
@@ -310,7 +312,6 @@ void signInKaryawan () {
             printf("\t\t  Selamat datang, %s.\n", dataKaryawan.nama);
             fclose(signIn);
             isKaryawan = true;
-            //menuAwalKaryawan();
             systemPause();
             systemCLS();
             menuAwalKaryawan();

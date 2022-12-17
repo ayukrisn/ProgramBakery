@@ -92,8 +92,8 @@ extern logRestock writeStock;
 extern logRestock readStock;
 
 typedef struct {
-    char namaMakanan;
-    char kodeMakanan;
+    char namaMakanan[20];
+    char kodeMakanan[5];
     float hargaSatuan;
     int banyakPembelian;
     float hargaTotal;
@@ -108,10 +108,14 @@ typedef struct {
     char usernameK[20];
     char waktuTransaksi[30];
     int totalPembelian;
+    float hargaSblmDiskon;
+    float totalDiskon;
     float hargaTotal;
+    float jumlahPembayaran;
+    float jumlahKembalian;
 } dataTransaksi;
 extern dataTransaksi Transaksi;
-
+extern float diskon[2];
 /*
     Bool untuk memastikan apakah restock sudah
     dilakukan atau belum
@@ -124,6 +128,7 @@ extern bool updateStockSore;
     Bool untuk memastikan apakah pelanggan yang masuk merupakan 
     pelanggan dengan membership atau tidak
 */
+extern bool isPelanggan;
 extern bool isMember;
 
 /*
