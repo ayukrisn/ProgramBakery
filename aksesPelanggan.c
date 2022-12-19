@@ -15,6 +15,9 @@ bool isPelanggan = false;
 bool isMember = false;
 char namaGuest[20];
 detailTransaksi DTransaksi[12];
+dataTransaksi transaksi;
+int urutan = 0;
+tipeDiskon nominalDiskon;
 
 /*
     ===========================================================================
@@ -290,7 +293,6 @@ void lihatDaftarMenuM()
 
 void pemesanan() {
     showDaftarMenuAll();
-    int urutan = 0;
     int pilihan = 0;
     bool kodeKetemu = false;
     bool stokCukup = false;
@@ -329,15 +331,16 @@ void pemesanan() {
                 if(readMenu.stock >= DTransaksi[urutan].banyakPembelian) {
                     stokCukup = true;
                     readMenu.stock -= DTransaksi[urutan].banyakPembelian;
+                    strcpy(DTransaksi[urutan].namaMakanan, readMenu.namaMakanan);
                     DTransaksi[urutan].hargaSatuan = readMenu.hargaMakanan;
                     DTransaksi[urutan].hargaTotal = DTransaksi[urutan].hargaSatuan*DTransaksi[urutan].banyakPembelian;
                     pemesananDone = true; //Artinya dia sudah melakukan pemesanan
                     printf("\t\t _________________________________________________________________\n");
                     printf("\t\t| Pesanan ke-%-2d                                                   |\n", urutan+1);
-                    printf("\t\t| > Nama Pesanan  : %-45s |\n", readMenu.namaMakanan);
-                    printf("\t\t| > Harga Satuan  : %-45.2f |\n", readMenu.hargaMakanan);
+                    printf("\t\t| > Nama Pesanan  : %-45s |\n", DTransaksi[urutan].namaMakanan);
+                    printf("\t\t| > Harga Satuan  : Rp%-43.2f |\n", DTransaksi[urutan].hargaSatuan);
                     printf("\t\t| > Pembelian     : %-2d                                            |\n", DTransaksi[urutan].banyakPembelian);
-	                printf("\t\t| > Harga Total   : %-45.2f |\n", DTransaksi[urutan].hargaTotal);
+	                printf("\t\t| > Harga Total   : Rp%-43.2f |\n", DTransaksi[urutan].hargaTotal);
                 } else {
                     strcpy(namaYgStokHabis, readMenu.namaMakanan);
                     sisaStok = readMenu.stock;
@@ -386,7 +389,6 @@ void pemesanan() {
 	        printf("\t\t|-----------------------------------------------------------------|\n");
 
         }
-
             printf("\t\t|                   [1] Ya              [2] Tidak                 |\n");
 	        printf("\t\t|_________________________________________________________________|\n");
             printf("\t\t  Ketik pilihan dengan angka yang tertera (1-2) : ");
@@ -397,7 +399,7 @@ void pemesanan() {
                 printf("\t\t Anda akan diarahkan ke pembayaran.\n");
                 systemPause();
                 systemCLS();
-                transaksiPelanggan(); 
+                pembayaran(); 
                 break;
                 } else {
                 systemPause();
@@ -409,6 +411,120 @@ void pemesanan() {
     }
 }
 
-void transaksiPelanggan() {
-    printf("Ini transaksi pelanggan.");
+void hitungTotalBiaya() {
+    int dT = 0; // Elemen array detail transaksi untuk loop
+
+    //Mendapatkan nama karyawan/pemilik
+    if (isKaryawan) {
+        strcpy(transaksi.namaKaryawan, dataKaryawan.nama);
+    } else if (isPemilik) {
+        strcpy(transaksi.namaKaryawan, dataPemilik.nama);
+    }
+
+    //Mendapatkan nama member/pelanggan biasa
+    if (isMember) {
+        strcpy(transaksi.namaPelanggan, dataMembership.nama);
+    } else {
+        strcpy (transaksi.namaPelanggan, namaGuest);
+    }
+    
+    //Mendapatkan waktu transaksi
+    time_t waktuL;
+    time_t waktu = time(NULL);
+    struct tm *waktuLokal = localtime(&waktu);
+    strcpy(transaksi.waktuTransaksi, asctime(waktuLokal));
+
+    //Mendapatkan total pembelian dan total harga sebelum diskon
+    while (dT < urutan) {
+        transaksi.totalPembelian += DTransaksi[dT].banyakPembelian;
+        transaksi.hargaSblmDiskon += DTransaksi[dT].hargaTotal;
+        dT++;
+    }
+
+    //Jika pelanggan adalah member, maka mendapatkan diskon
+    if (isMember) {
+        nominalDiskon.d50k = 0.01; nominalDiskon.d100k = 0.3; nominalDiskon.d200k = 0.5;
+        if (transaksi.hargaSblmDiskon >= 50000) transaksi.totalDiskon = transaksi.hargaSblmDiskon * nominalDiskon.d50k;
+        if (transaksi.hargaSblmDiskon >= 100000) transaksi.totalDiskon = transaksi.hargaSblmDiskon * nominalDiskon.d100k;
+        if (transaksi.hargaSblmDiskon >= 200000) transaksi.totalDiskon = transaksi.hargaSblmDiskon * nominalDiskon.d200k;
+        transaksi.hargaTotal = transaksi.hargaSblmDiskon - transaksi.totalDiskon;
+    } else {
+        transaksi.hargaTotal = transaksi.hargaSblmDiskon;
+        transaksi.totalDiskon = 0;
+    }
 }
+
+/*
+    Melakukan perhitungan pembayaran
+    setelah pelanggan membayar
+*/
+void hitungPembayaran()
+{
+    float uangKurang = 0;
+    while (1) {
+        printf("\t\t| > Masukkan nominal pembayaran Anda     : ");
+        scanf("%f", &transaksi.jumlahPembayaran);
+        if (transaksi.jumlahPembayaran >= transaksi.hargaTotal )
+        {
+            transaksi.jumlahKembalian = transaksi.jumlahPembayaran - transaksi.hargaTotal;
+            break;
+        } else if (transaksi.jumlahPembayaran < transaksi.hargaTotal)
+        {
+            uangKurang = transaksi.hargaTotal - transaksi.jumlahPembayaran;
+            printf("\t\t| Maaf, nominal pembayaran Anda kurang Rp%24.2f|\n", uangKurang);
+            printf("\t\t| Silahkan masukkan nominal yang sesuai.                          |\n");
+        }
+    }
+}
+
+void pembayaran()
+{
+    int dt = 0;
+    hitungTotalBiaya();
+        printf("\t\t _________________________________________________________________ \n"); 
+        printf("\t\t|                  C A K E  M E  O U T  B A K E R Y               | \n");   
+        printf("\t\t|                        P E M B A Y A R A N                      |\n");
+	    printf("\t\t|=================================================================|\n");
+        printf("\t\t  Waktu Pembayaran: %s", transaksi.waktuTransaksi);
+        printf("\t\t| > Nama Pegawai     : %-43s|\n", transaksi.namaKaryawan);
+        printf("\t\t| > Nama Pelanggan   : %-43s|\n", transaksi.namaPelanggan);
+        printf("\t\t|_________________________________________________________________|\n");
+    while (dt < urutan) {
+        printf("\t\t| Pesanan ke-%-2d                                                   |\n", dt+1);
+        printf("\t\t| > Nama Pesanan     : %-43s|\n", DTransaksi[dt].namaMakanan);
+        printf("\t\t| > Harga Satuan     : Rp%-41.2f|\n", DTransaksi[dt].hargaSatuan);
+        printf("\t\t| > Pembelian        : %-43d|\n", DTransaksi[dt].banyakPembelian);
+	    printf("\t\t| > Harga Total      : Rp%-41.2f|\n", DTransaksi[dt].hargaTotal);
+        printf("\t\t|_________________________________________________________________|\n");
+        dt++;
+    }   
+        printf("\t\t| > Total Pembelian  : %-43d|\n", transaksi.totalPembelian);
+        printf("\t\t| > Sub Total        : Rp%-41.2f|\n", transaksi.hargaSblmDiskon);
+        printf("\t\t| > Total Diskon     : Rp%-41.2f|\n", transaksi.totalDiskon);
+	    printf("\t\t| > Harga Total      : Rp%-41.2f|\n", transaksi.hargaTotal);
+        printf("\t\t|_________________________________________________________________|\n");
+        hitungPembayaran();
+        printf("\t\t| > Total Pembayaran : Rp%-41.2f|\n", transaksi.jumlahPembayaran);
+	    printf("\t\t| > Kembalian        : Rp%-41.2f|\n", transaksi.jumlahKembalian);
+        printf("\t\t|=================================================================|\n");
+        printf("\t\t|               P E M B A Y A R A N  S E L E S A I                |\n");
+        printf("\t\t|          Anda dapat menunjukkan struk pembayaran pada           |\n");
+        printf("\t\t|            karyawan yang bertugas. Selamat Menikmati!           |\n");
+	    printf("\t\t ================================================================= \n");
+}
+
+/*
+typedef struct {
+    char namaPelanggan[30]; //nama mungkin bisa dari dataMembership.nama atau variabel char nama buat pelanggan biasa
+    char namaKaryawan[30];
+    char waktuTransaksi[30];
+    int totalPembelian;
+    float hargaSblmDiskon;
+    float totalDiskon;
+    float hargaTotal;
+    float jumlahPembayaran; 
+    float jumlahKembalian;
+} dataTransaksi;
+extern dataTransaksi transaksi;
+extern float diskon[2];
+*/

@@ -101,11 +101,8 @@ typedef struct {
 extern detailTransaksi DTransaksi[12];
 
 typedef struct {
-    char kodeTransaksi;
-    char usernameM[20]; //strcpy dari dataMembership.username, klo pelanggan biasa strcpy "GuestCostumer"
     char namaPelanggan[30]; //nama mungkin bisa dari dataMembership.nama atau variabel char nama buat pelanggan biasa
     char namaKaryawan[30];
-    char usernameK[20];
     char waktuTransaksi[30];
     int totalPembelian;
     float hargaSblmDiskon;
@@ -114,8 +111,18 @@ typedef struct {
     float jumlahPembayaran;
     float jumlahKembalian;
 } dataTransaksi;
-extern dataTransaksi Transaksi;
-extern float diskon[2];
+extern dataTransaksi transaksi;
+
+/*
+    Struct untuk menyimpan tipe diskon
+    untuk membership
+*/
+typedef struct {
+    float d50k;
+    float d100k;
+    float d200k;
+} tipeDiskon;
+extern tipeDiskon nominalDiskon;
 /*
     Bool untuk memastikan apakah restock sudah
     dilakukan atau belum
