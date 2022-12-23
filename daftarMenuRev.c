@@ -38,6 +38,11 @@ dataMenu writeMenu; dataMenu readMenu;
  P E R I K S A  D A F T A R  M E N U
 =================================================================
 */
+
+/*
+    Prosedur yang digunakan untuk memeriksa
+    apakah file daftar menu ada atau tidak
+*/
 bool cekFileDaftarMenu()
 {
     bool statusFile = true;
@@ -68,14 +73,17 @@ bool cekFileDaftarMenu()
 */ 
 void lihatDaftarMenuP()
 {
+    // Melalukan pengecekan file daftar menu
      if (!cekFileDaftarMenu()) {
         systemPause();
         systemCLS();
         manageDaftarMenu();
      }
     
+    // Memanggil prosedur untuk melihat daftar menu
     lihatDaftarMenu();
 
+    // Menanyakan ingin kembali ke menu yg mana
     int pilihan;
     printf("\t\t _______________________________________________________ \n");    
     printf("\t\t|           Ingin kembali ke menu sebelumnya?           |\n");
@@ -102,13 +110,17 @@ void lihatDaftarMenuP()
 void lihatDaftarMenuK()
 {
 
+    // Melalukan pengecekan file daftar menu
     if (!cekFileDaftarMenu()) {
         systemPause();
         systemCLS();
         menuAwalKaryawan();
      }
 
+    // Memanggil prosedur untuk melihat daftar menu
     lihatDaftarMenu();
+
+    // Kembali ke menu awal
     systemPause();
     systemCLS();
     menuAwalKaryawan();
@@ -263,7 +275,7 @@ void tambahDaftarMenu()
     
     //Menambahkan deskripsi makanan
     printf("\t\t Deskripsi makanan : ");
-    scanf("%[^\n]", writeMenu.deskripsiMakanan);
+    scanf("%99[^\n]", writeMenu.deskripsiMakanan);
     getchar();
 
     //Menambahkan harga makanan
@@ -343,15 +355,18 @@ void hapusDaftarMenu()
         manageDaftarMenu();
     }
     
+    // Menunjukkan seluruh daftar menu terlebih dahulu
     showDaftarMenuAll();
 
+    // Input kode makanan yang ingin dihapus
     printf("\t\t  Ketik kode makanan yang ingin dihapus : ");
-    scanf("%[^\n]", writeMenu.kodeMakanan);
-    getchar();
+    inputKode(writeMenu.kodeMakanan);
 
+    // Membuka file daftar menu untuk dibaca
     FILE *fileDaftarMenu;
     fileDaftarMenu = fopen("dataDaftarMenu.txt", "r");
 
+    // Mencari kode makanan yang cocok dengan data yg ada
     int cari=0;
      do {
         fscanf(fileDaftarMenu, "%[^;];%[^;];%[^;];%[^;];%f;%d;\n", readMenu.jenisMakanan, readMenu.kodeMakanan, readMenu.namaMakanan, 
@@ -367,6 +382,7 @@ void hapusDaftarMenu()
         }
     } while (!feof(fileDaftarMenu));
 
+    // Bila tidak ditemukan, berikan instruksi dan kembali ke menu sebelumnya
     if(cari==0) {
         printf("\t\t _______________________________________________________ \n");
 	    printf("\t\t|                 Data tidak ditemukan.                 |\n");
@@ -375,7 +391,8 @@ void hapusDaftarMenu()
         systemCLS();
         manageDaftarMenu();
     } else {
-
+    
+    // Bila ditemukan, lakukan rewrite ke file baru
     FILE *tempDaftarMenu;
 	tempDaftarMenu=fopen("tempDaftarMenu.txt","w+");
 	rewind(fileDaftarMenu);
@@ -392,6 +409,8 @@ void hapusDaftarMenu()
     printf("\t\t|_______________________________________________________|\n");
     fclose(fileDaftarMenu);
     fclose(tempDaftarMenu);
+
+    // Ganti file baru dengan file lama
     remove("dataDaftarMenu.txt");
     rename("tempDaftarMenu.txt","dataDaftarMenu.txt");
     systemPause();

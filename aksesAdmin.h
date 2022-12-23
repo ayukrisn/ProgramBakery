@@ -14,11 +14,17 @@
 #ifndef AKSES_ADMIN_H
 #define AKSES_ADMIN_H
 
-void menuAwalPemilik(); void manageAkunMembership(); void listMembership(); void showListMembership(); void hapusMembership(); 
-    void manageKaryawan(); void listKaryawan(); void showListKaryawan();
-    void hapusKaryawan(); void manageDaftarMenu(); void manageStockP();
+
+void menuAwalPemilik(); 
+
+void manageAkunMembership(); void listMembership(); void showListMembership(); void hapusMembership(); 
+
+void manageKaryawan(); void listKaryawan(); void showListKaryawan(); void hapusKaryawan(); 
+
+void manageDaftarMenu(); void manageStockP();
 
 void menuAwalKaryawan(); void manageStockK();
 
 void konfirmasiBuka(); void konfirmasiTutup();
+
 #endif //AKSES_ADMIN_H

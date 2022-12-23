@@ -115,7 +115,7 @@ void inputHarga(float *varFloat)
 {
     while (1) { //infinite loop hingga break
         fflush(stdin);
-        //Jika validasi integer benar, keluar dari loop
+        //Jika validasi float benar, keluar dari loop
         if (validasiFloat(varFloat)) break;
         //Jika tidak, berikan pesan dan ulang loop
         printf("\n\t\t Masukan salah. Mohon masukkan input sesuai arahan.\n");

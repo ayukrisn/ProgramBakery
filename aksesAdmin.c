@@ -4,7 +4,7 @@
     fungsi/prosedur yang dapat dijalankan
     oleh pemilik dan karyawan
     Contoh: membuka program untuk pelanggan, 
-            manage akun karyawan
+            manage akun karyawan dan membership
             manage daftar menu
             manage status penjualan
 ==================================================
@@ -25,6 +25,10 @@
 #include "transaksi.h"
 #include "aksesPelanggan.h"
 
+/*
+    Bool untuk menandakan apakah yang melakukan log in
+    merupakan pemilik atau karyawan
+*/
 bool isPemilik = false; bool isKaryawan = false;
 /*
     ===========================================================================
@@ -33,7 +37,7 @@ bool isPemilik = false; bool isKaryawan = false;
 */
 
 /*
-    Prosedur menu awal setelah melakukan sign in pemilik
+    Menu awal setelah melakukan sign in pemilik
 */
 void menuAwalPemilik()
 {
@@ -116,7 +120,6 @@ void manageAkunMembership()
 /*
     Melihat daftar akun membership
 */
-
 void listMembership()
 {
     showListMembership();
@@ -177,10 +180,10 @@ void showListMembership()
     fclose(fileMember);
 }
 
+
 /*
     Menghapus daftar akun membership
 */
-
 void hapusMembership()
 {
     printf("\t\t _______________________________________________________ \n");
@@ -189,7 +192,7 @@ void hapusMembership()
     showListMembership();
 
     printf("\t\t  Ketik username membership yang ingin dihapus : ");
-    scanf("%[^\n]", writeUser.membership.username);
+    scanf("%19[^\n]", writeUser.membership.username);
     getchar();
 
     FILE *fileMember;
@@ -239,10 +242,10 @@ void hapusMembership()
     }
 }
 
+
 /*
     Menunjukkan menu untuk memanage akun karyawan
 */
-
 void manageKaryawan()
 {
     int pilihan;
@@ -274,10 +277,10 @@ void manageKaryawan()
         }
 }
 
+
 /*
     Melihat daftar karyawan
 */
-
 void listKaryawan()
 {
     showListKaryawan();
@@ -339,6 +342,9 @@ void showListKaryawan()
 }
 
 
+/*
+    Menghapus akun karyawan
+*/
 void hapusKaryawan() 
 {
     printf("\t\t _______________________________________________________ \n");
@@ -347,7 +353,7 @@ void hapusKaryawan()
     showListKaryawan();
 
     printf("\t\t  Ketik username karyawan yang ingin dihapus : ");
-    scanf("%[^\n]", writeUser.karyawan.username);
+    scanf("%19[^\n]", writeUser.karyawan.username);
     getchar();
 
     FILE *fileKaryawan;
@@ -574,7 +580,9 @@ void manageStockK()
 
 /*
     Prosedur menu konfirmasi pembukaan program untuk pelanggan
-    bila update stock pagi belum dilaksanakan
+    bila update stock belum dilaksanakan
+    Bila terkonfirmasi, melanjutkan ke menu masuk pelanggan
+    pada aksesPelanggan.c
 */
 void konfirmasiBuka()
 {
@@ -613,8 +621,10 @@ void konfirmasiBuka()
     }
 }
 
+
 /*
     Konfirmasi untuk menutup menu pelanggan
+    Menu pelanggan hanya dapat ditutup oleh pemilik
 */
 void konfirmasiTutup() 
 {
@@ -627,11 +637,11 @@ void konfirmasiTutup()
     
     if(isPemilik) {
         printf("\t\t  Username : ");
-        scanf("%[^\n]", writeUser.pemilik.username);
+        scanf("%19[^\n]", writeUser.pemilik.username);
         getchar();
 
         printf("\t\t  Password : ");
-        scanf("%[^\n]", writeUser.pemilik.password);
+        scanf("%19[^\n]", writeUser.pemilik.password);
         getchar();
 
         //Memeriksa apakah username dan password yang diberikan benar atau tidak
@@ -644,11 +654,11 @@ void konfirmasiTutup()
     } 
     if(isKaryawan) {
         printf("\t\t  Username : ");
-        scanf("%[^\n]", writeUser.karyawan.username);
+        scanf("%19[^\n]", writeUser.karyawan.username);
         getchar();
 
         printf("\t\t  Password : ");
-        scanf("%[^\n]", writeUser.karyawan.password);
+        scanf("%19[^\n]", writeUser.karyawan.password);
         getchar();
 
         //Memeriksa apakah username dan password yang diberikan benar atau tidak

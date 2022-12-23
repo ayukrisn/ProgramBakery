@@ -40,13 +40,11 @@
 
 int main(void)
 {
+    // Melakukan set jam restock terlebih dahulu
     setJamRestock();
+    // Membersihkan layar terlebih dahulu
     systemCLS();
+    // Jalankan dari menu pertama
     menuPertama();
     return 0;
 }
-
-/*
-    Catatan: nambah stock
-             file txt untuk harga, atau intinya semua informasi tentang barang dagangan
-*/

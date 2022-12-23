@@ -53,6 +53,10 @@ logRestock writeStock; logRestock readStock;
 =================================================================
 */
 
+/*
+    Mengatur jadwal restock berdasarkan
+    jadwal yang sudah diset pemilik sebelumnya
+*/
 void setJamRestock()
 {
     FILE *jadwalRestock;
@@ -61,6 +65,9 @@ void setJamRestock()
     fclose(jadwalRestock);
 }
 
+/*
+    Melihat stock yang ada pada saat ini
+*/
 void lihatStock()
 {
     FILE *fileDaftarMenu;
@@ -89,7 +96,9 @@ void lihatStock()
     if (isKaryawan) manageStockK();
 }
 
-
+/*
+    Melihat riwayat penambahan stock
+*/
 void riwayatRestock()
 {
     char text[200];
@@ -117,6 +126,9 @@ void riwayatRestock()
     manageStockP();
 }
 
+/*
+    Prosedur di mana pemilik dapat mengatur jadwal restock
+*/
 void aturJadwalRestock() 
 {
     printf("\t\t _______________________________________________________ \n");
@@ -139,6 +151,8 @@ void aturJadwalRestock()
     pilihanUser(&jamRestock.sore, 17, 19);
     printf("\t\t _____________________________________________________________________________\n");
 
+    // Memasukkan jadwal yang sudah diatur ke dalam file sehingga dapat digunakan
+    // pada saat aplikasi dibuka kembali
     FILE *jadwalRestock;
     jadwalRestock = fopen("jadwalRestock.txt", "w");
     fprintf(jadwalRestock, "%d;%d;%d;\n", jamRestock.pagi, jamRestock.siang, jamRestock.sore);
@@ -152,6 +166,9 @@ void aturJadwalRestock()
     manageStockP();
 }
 
+/*
+    Melihat status restock saat ini
+*/
 void statusRestock()
 {
     printf("\t\t _______________________________________________________ \n");
@@ -187,7 +204,9 @@ void statusRestock()
     manageStockP();
 }
 
-
+/*
+    PROSEDUR UNTUK MELAKUKAN RESTOCK
+*/
 void restockJadwalPagi()
 {
     printf("\t\t _______________________________________________________ \n");
@@ -254,6 +273,9 @@ void restockJadwalSore()
     if (isKaryawan) manageStockK();
 }
 
+/*
+    Mendapatkan catatan waktu dilaksanakan restock
+*/
 void waktuRestock (FILE *pfileLog)
 {
     time_t waktu = time(NULL);
@@ -262,9 +284,17 @@ void waktuRestock (FILE *pfileLog)
     printf("\t\t Waktu Restock: %s", writeStock.waktuRestock);
 }
 
-
+/*
+    Proses melakukan restock
+*/
 void prosesRestock (int *restock)
 {
+    /*
+        Buka tiga file
+        > dataDaftarMenu.txt dan tempDaftarMenu.txt untuk mengubah
+          data menu agar sesuai dengan restock
+        > logRestock.txt untuk menambahkan riwayat restock baru
+    */
     FILE *fileDaftarMenu;
     fileDaftarMenu = fopen("dataDaftarMenu.txt", "r");
 
@@ -274,7 +304,9 @@ void prosesRestock (int *restock)
     FILE *tempDaftarMenu;
     tempDaftarMenu = fopen("tempDaftarMenu.txt", "w");
 
+    // Mendapatkan waktu restock
     waktuRestock(logRestock);
+    // Menentukan siapa yang melakukan restock
     if (isPemilik)
     strcpy(writeStock.namaYgRestock, dataPemilik.nama);
     if (isKaryawan)
@@ -292,6 +324,7 @@ void prosesRestock (int *restock)
     fprintf(logRestock, "\t\t || > Nama Karyawan: %-56s||\n", writeStock.namaYgRestock);
     fprintf(logRestock, "\t\t ||==========================================================================||\n");
     
+    // Loop untuk melakukan restock makanan
     int elemenDaftarMenu = 0;
     do {
         fscanf(fileDaftarMenu, "%[^;];%[^;];%[^;];%[^;];%f;%d;\n", readMenu.jenisMakanan, readMenu.kodeMakanan, readMenu.namaMakanan, 
@@ -321,6 +354,7 @@ void prosesRestock (int *restock)
     fclose(logRestock);
     fclose(fileDaftarMenu);
     fclose(tempDaftarMenu);
+    // tempDaftarMenu.txt menggantikan dataDaftarMenu.txt
     remove("dataDaftarMenu.txt");
     rename("tempDaftarMenu.txt","dataDaftarMenu.txt");
 
@@ -329,8 +363,15 @@ void prosesRestock (int *restock)
     printf("\t\t|_______________________________________________________|\n");
 }
 
+/*
+    Mereset stock menjadi 0
+*/
 void resetStock()
 {
+    /*
+        > dataDaftarMenu.txt dan tempDaftarMenu.txt untuk mengubah
+          data menu agar sesuai dengan restock
+    */
     FILE *fileDaftarMenu;
     fileDaftarMenu = fopen("dataDaftarMenu.txt", "r");
 
@@ -348,6 +389,7 @@ void resetStock()
 
     fclose(fileDaftarMenu);
     fclose(tempDaftarMenu);
+    // tempDaftarMenu.txt menggantikan dataDaftarMenu.txt
     remove("dataDaftarMenu.txt");
     rename("tempDaftarMenu.txt","dataDaftarMenu.txt");
 }

@@ -77,7 +77,7 @@ void menuPertama()
 
 
 /*
-    Output yang menanyakan apakah pemilik memiliki akun atau tidak
+    Menanyakan apakah pemilik memiliki akun atau tidak
 */
 void akunPemilik()
 {
@@ -213,10 +213,13 @@ void signInPemilik () {
 */
 void signUpKaryawan()
 {
-    printf("\t\t _____________________________________________________________________ \n");
+    printf("\t\t ____________________________________________________________________ \n");
+    printf("\t\t|                     S I G N  U P  K A R Y A W A N                   |\n");
+    printf("\t\t|---------------------------------------------------------------------|\n");
     printf("\t\t|     Silahkan lakukan registrasi data karyawan terlebih dahulu.      |\n");
     printf("\t\t|_____________________________________________________________________|\n");
 
+    // User memasukkan data yang diperlukan
     inputNama(writeUser.karyawan.nama);
     inputUsername (writeUser.karyawan.username);
     inputPassword (writeUser.karyawan.password);
@@ -278,6 +281,7 @@ void signInKaryawan () {
     FILE *signIn;
     signIn = fopen("dataKaryawan.txt", "r");
 
+    // Memeriksa apakah file dataKaryawan ada atau tidak
     if(signIn == NULL) {
         printf("\t\t _______________________________________________________ \n");
         printf("\t\t|           Belum ada karyawan yang terdaftar.          |\n");
@@ -292,11 +296,11 @@ void signInKaryawan () {
         printf("\t\t|       Silahkan lakukan Sign In terlebih dahulu.       |\n");
         printf("\t\t|_______________________________________________________|\n");
         printf("\t\t  Username : ");
-        scanf("%[^\n]", writeUser.karyawan.username);
+        scanf("%19[^\n]", writeUser.karyawan.username);
         getchar();
 
         printf("\t\t  Password : ");
-        scanf("%[^\n]", writeUser.karyawan.password);
+        scanf("%19[^\n]", writeUser.karyawan.password);
         getchar();
 
         //Memeriksa apakah username dan password yang diberikan benar atau tidak
@@ -305,6 +309,7 @@ void signInKaryawan () {
         do {
         fscanf(signIn, "%[^;];%[^;];%[^;];\n", readUser.karyawan.nama, readUser.karyawan.username, readUser.karyawan.password);
 
+        // Memeriksa apakah username dan password benar
         if(strcmp(writeUser.karyawan.username, readUser.karyawan.username)==0 && strcmp(writeUser.karyawan.password, readUser.karyawan.password)==0) {
             tidakKetemu = 0;
             dataKaryawan = readUser.karyawan;
@@ -314,6 +319,7 @@ void signInKaryawan () {
             printf("\t\t|_______________________________________________________|\n");
             printf("\t\t  Selamat datang, %s.\n", dataKaryawan.nama);
             fclose(signIn);
+            // Memberikan tanda bahwa yang melakukan log in adalah karyawan
             isKaryawan = true;
             systemPause();
             systemCLS();

@@ -26,6 +26,10 @@
     FUNGSI UNTUK MENCETAK STRUK
     =============================
 */
+
+/*
+    Melakukan cetak struk
+*/
 void cetakStruk(FILE *pfileStruk, int urutan) 
 {
     int dt = 0;
