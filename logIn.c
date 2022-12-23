@@ -68,6 +68,9 @@ void menuPertama()
         systemCLS();
         akunPemilik();
     } else if (pilihan == 3) {
+    printf("\t\t _______________________________________________________ \n");
+    printf("\t\t|                  S A M P A I  J U M P A !             |\n");
+    printf("\t\t|_______________________________________________________|\n");
         exit(0);
     }
 }

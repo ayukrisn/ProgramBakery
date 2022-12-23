@@ -21,11 +21,17 @@ int validasiInteger (int *varInt); void inputInteger(int *varInt);
     void pilihanUser(int *varInt, int batasTerkecil, int batasTerbesar);
 
 /*
+    FUNGSI DAN PROSEDUR VALIDASI HARGA
+*/
+float validasiFloat (float *varFloat); void inputHarga(float *varFloat);
+
+/*
     FUNGSI DAN PROSEDUR VALIDASI NAMA, USERNAME, DAN PASSWORD
 */
 bool validasiNama (char *varNama); void inputNama (char *varNama);
 bool validasiUsername (char *varUsername); void inputUsername (char *varUsername);
 bool validasiPassword (char *varPassword); void inputPassword (char *varPassword);
+bool validasiKode (char *varKode); void inputKode (char *varKode);
 
 /*
     PENGGANTI SYSTEM() DAN LAINNYA

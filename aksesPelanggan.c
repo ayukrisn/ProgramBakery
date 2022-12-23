@@ -10,6 +10,7 @@
 #include "pendukung.h"
 #include "daftarMenuRev.h"
 #include "aksesPelanggan.h"
+#include "transaksi.h"
 
 bool isPelanggan = false;
 bool isMember = false;
@@ -229,9 +230,33 @@ void menuAwalPelanggan()
     printf("\t\t|_____________________________________________________________________| \n");
     if (isMember) {
     printf("\t\t|                     Selamat datang, %-30s  |\n", dataMembership.nama);
+    printf("\t\t|_____________________________________________________________________|\n");
+    printf("\t\t|                   Silahkan pilih menu di bawah ini                  |\n");
+    printf("\t\t|---------------------------------------------------------------------|\n");
+    printf("\t\t|   [1] Lihat daftar menu                                             |\n");
+    printf("\t\t|   [2] Lakukan pemesanan                                             |\n");
+    printf("\t\t|   [3] Lihat riwayat transaksi                                       |\n");
+    printf("\t\t|   [4] Sign out dan kembali ke menu awal                             |\n");
+    printf("\t\t|_____________________________________________________________________|\n");
+    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-4) : ");
+    pilihanUser(&pilihan, 1, 4);
+    fflush(stdin);
+    if (pilihan == 1) {
+        systemCLS();
+        lihatDaftarMenuM();
+    } else if (pilihan == 2) {
+        systemCLS();
+        pemesanan();
+    } else if (pilihan == 3){
+        systemCLS();
+        riwayatTransaksiMember();
+    } else if (pilihan == 4){
+        systemCLS();
+        isMember = false;
+        menuMasukPelanggan();
+    }
     } else {
     printf("\t\t|                     Selamat datang, %-30s  |\n", namaGuest);
-    }
     printf("\t\t|_____________________________________________________________________|\n");
     printf("\t\t|                   Silahkan pilih menu di bawah ini                  |\n");
     printf("\t\t|---------------------------------------------------------------------|\n");
@@ -253,6 +278,8 @@ void menuAwalPelanggan()
         isMember = false;
         menuMasukPelanggan();
     }
+    }
+
 }
 
 /*
@@ -463,7 +490,7 @@ void hitungPembayaran()
     float uangKurang = 0;
     while (1) {
         printf("\t\t| > Masukkan nominal pembayaran Anda     : ");
-        scanf("%f", &transaksi.jumlahPembayaran);
+        inputHarga( &transaksi.jumlahPembayaran);
         if (transaksi.jumlahPembayaran >= transaksi.hargaTotal )
         {
             transaksi.jumlahKembalian = transaksi.jumlahPembayaran - transaksi.hargaTotal;
@@ -471,7 +498,7 @@ void hitungPembayaran()
         } else if (transaksi.jumlahPembayaran < transaksi.hargaTotal)
         {
             uangKurang = transaksi.hargaTotal - transaksi.jumlahPembayaran;
-            printf("\t\t| Maaf, nominal pembayaran Anda kurang Rp%24.2f|\n", uangKurang);
+            printf("\t\t| Maaf, nominal pembayaran Anda kurang Rp%-25.2f|\n", uangKurang);
             printf("\t\t| Silahkan masukkan nominal yang sesuai.                          |\n");
         }
     }
@@ -511,20 +538,9 @@ void pembayaran()
         printf("\t\t|          Anda dapat menunjukkan struk pembayaran pada           |\n");
         printf("\t\t|            karyawan yang bertugas. Selamat Menikmati!           |\n");
 	    printf("\t\t ================================================================= \n");
+        urutan = 0;
+        getchar();
+        systemPause();
+        systemCLS();
+        menuAwalPelanggan();
 }
-
-/*
-typedef struct {
-    char namaPelanggan[30]; //nama mungkin bisa dari dataMembership.nama atau variabel char nama buat pelanggan biasa
-    char namaKaryawan[30];
-    char waktuTransaksi[30];
-    int totalPembelian;
-    float hargaSblmDiskon;
-    float totalDiskon;
-    float hargaTotal;
-    float jumlahPembayaran; 
-    float jumlahKembalian;
-} dataTransaksi;
-extern dataTransaksi transaksi;
-extern float diskon[2];
-*/

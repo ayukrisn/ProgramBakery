@@ -149,11 +149,11 @@ void lihatDaftarMenu()
     } else if (pilihan == 6) {
         systemCLS();
         if (isPelanggan) {
-            lihatDaftarMenuM();
+            menuAwalPelanggan();
         } else if (isKaryawan) {
-            lihatDaftarMenuK();
+            manageDaftarMenu();
         } else if (isPemilik) {
-            lihatDaftarMenuP();
+            menuAwalKaryawan();
         }
     }
 }
@@ -256,23 +256,20 @@ void tambahDaftarMenu()
 
     //Menambahkan kode makanan (perlu validasi)
     printf("\t\t Format kode makanan: 4 huruf (2 huruf mewakili jenis, 2 huruf mewakili nama)\n");
-    printf("\t\t Kode makanan : ");
-    scanf("%[^\n]", writeMenu.kodeMakanan);
-    getchar();
-    printf("\t\t _____________________________________________________________________________\n");
+    inputKode(writeMenu.kodeMakanan);
+    
     //Menambahkan nama makanan
     inputNama(writeMenu.namaMakanan);
-    printf("\t\t _____________________________________________________________________________\n");
+    
     //Menambahkan deskripsi makanan
     printf("\t\t Deskripsi makanan : ");
     scanf("%[^\n]", writeMenu.deskripsiMakanan);
     getchar();
-    printf("\t\t _____________________________________________________________________________\n");
+
     //Menambahkan harga makanan
     printf("\t\t Harga makanan : ");
-    scanf("%f", &writeMenu.hargaMakanan);
-    getchar();
-    printf("\t\t _____________________________________________________________________________\n");
+    inputHarga(&writeMenu.hargaMakanan);
+    
     writeMenu.stock = 0;
 
     // printf("Data dari user: %s\n%s\n%.2f\n", writeMenu.namaMakanan, writeMenu.deskripsiMakanan, writeMenu.hargaMakanan);

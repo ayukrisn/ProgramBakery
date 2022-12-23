@@ -15,5 +15,8 @@
 #ifndef TRANSAKSI_H
 #define TRANSAKSI_H
 
+void cetakStruk(FILE *pfileStruk, int urutan); void simpanStrukPelanggan(int urutan); void simpanRiwayatTransaksi(int urutan);
+
+void riwayatTransaksiMember(); void lihatRiwayatTransaksi(); void readFileStruk(FILE *pfileStruk);
 
 #endif //TRANSAKSI_H

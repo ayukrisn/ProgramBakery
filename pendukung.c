@@ -82,7 +82,50 @@ void pilihanUser(int *varInt, int batasTerkecil, int batasTerbesar)
 }
 
 // +======================================================================================================================+
-// FUNGSI DAN PROSEDUR VALIDASI NAMA, USERNAME, DAN PASSWORD
+// FUNGSI DAN PROSEDUR VALIDASI HARGA
+
+/*
+    Validasi input harga 1
+        Memeriksa apakah user memasukkan:
+        - Enter saja
+        - Karakter selain float
+*/
+float validasiFloat (float *varFloat)
+{
+    fflush(stdin);
+    /*
+        Variabel untuk menyimpan input pengguna (buffer)
+        dan karakter (character) bila ada
+    */
+    char buffer[2000];
+    char character;
+    // Menerima input dan memeriksa apakah input NULL atau tidak
+    if(fgets(buffer, sizeof(buffer), stdin) != NULL){
+        //Memeriksa apakah ada float/karakter atau tidak
+        //Kalau hanya float, maka ==1. Kalau ada yang lain, !=1
+        if(sscanf(buffer, "%f %c", varFloat, &character) == 1) return *varFloat;
+    }
+    return 0;
+}
+/*
+    Validasi input harga 2
+        Memberikan pesan apabila input salah
+*/
+void inputHarga(float *varFloat)
+{
+    while (1) { //infinite loop hingga break
+        fflush(stdin);
+        //Jika validasi integer benar, keluar dari loop
+        if (validasiFloat(varFloat)) break;
+        //Jika tidak, berikan pesan dan ulang loop
+        printf("\n\t\t Masukan salah. Mohon masukkan input sesuai arahan.\n");
+        printf("\t\t Masukkan input: ");
+    }
+}
+
+
+// +======================================================================================================================+
+// FUNGSI DAN PROSEDUR VALIDASI NAMA, USERNAME, PASSWORD, DAN KODE MAKANAN
 
 /*
     Validasi input nama 1
@@ -296,6 +339,88 @@ void inputPassword (char *varPassword)
         }
     }
 }
+
+/*
+    Validasi input kode makanan 1
+        Memeriksa apakah kode makanan mengandung angka dan/atau
+        simbol (*, =, +, dll) atau tidak
+        Memeriksa apakah kode makanan memiliki 4 karakter atau tidak
+        atau tidak
+*/
+bool validasiKode (char *varKode)
+{
+    int panjangKarakter;
+    int elemenKode;
+
+    char buffer[20];
+    bool statusValidasiKode = true;
+
+    fflush(stdin);
+    printf("\t\t Kode Makanan : ");
+    // Menerima input dan memeriksa apakah input NULL atau tidak
+    if(fgets(buffer, 20, stdin) == NULL) statusValidasiKode = false;
+    //Mengganti '\n' dengan '\0'
+    buffer[strcspn(buffer, "\n")] = '\0';
+    // Memeriksa apakah panjang karakter yang diberikan lebih dari
+    // kurang dari 2 atau tidak
+    panjangKarakter = strlen(buffer);
+    if (panjangKarakter != 4) {
+        printf("\t\t Kode makanan harus terdiri dari 4 huruf.\n");
+        statusValidasiKode = false;
+    }
+    // Memeriksa tiap elemen dalam string
+    for (elemenKode = 0; elemenKode <= panjangKarakter; elemenKode++) {
+        // Jika karakter adalah digit, maka nama salah
+        if (isdigit(buffer[elemenKode])) {
+            printf("\t\t Kode makanan mengandung digit angka.\n");
+            statusValidasiKode = false;
+            break;
+        }
+        // Jika karakter adalah simbol, maka nama salah
+        if (ispunct(buffer[elemenKode])) {
+            printf("\t\t Kode makanan mengandung simbol.\n");
+            statusValidasiKode = false;
+            break;
+        }
+        if (isspace(buffer[elemenKode])) {
+            printf("\t\t Kode makanan mengandung whitespace.\n");
+            //return false;
+            statusValidasiKode= false;
+            break;
+        }
+    }
+    if (statusValidasiKode){
+        int i;
+        for(i=0; i < (strlen(buffer)); i++) {
+
+        if(buffer[i]>='a' && buffer[i]<='z') {
+            buffer[i] = buffer[i] - 32;
+        }
+        strcpy(varKode, buffer);
+    }
+    }
+    return statusValidasiKode;
+}
+
+/*
+    Validasi input nama 2
+        Memberikan pesan bila input nama salah
+        dan mengulangi input nama
+*/
+void inputKode (char *varKode)
+{
+    while (1) {
+        
+        fflush(stdin);
+        if (validasiKode(varKode)) {
+            break;
+        } else {
+            printf("\n\t\t Masukan salah. Mohon masukkan kode makanan sesuai arahan.\n");
+        }
+    }
+}
+
+
 
 
 // +======================================================================================================================+

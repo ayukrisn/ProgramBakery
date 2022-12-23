@@ -48,7 +48,7 @@ void menuAwalPemilik()
     printf("\t\t| [3] Manage akun membership                            |\n");
     printf("\t\t| [4] Manage daftar menu                                |\n");
     printf("\t\t| [5] Manage sistem stock                               |\n");
-    printf("\t\t| [6] Manage riwayat transaksi                          |\n");
+    printf("\t\t| [6] Lihat riwayat transaksi                           |\n");
     printf("\t\t| [7] Sign out dan kembali ke menu awal                 |\n");
     printf("\t\t|_______________________________________________________|\n");
     printf("\t\t  Ketik pilihan dengan angka yang tertera (1-7) : ");
@@ -70,7 +70,7 @@ void menuAwalPemilik()
         manageStockP();
     } else if (pilihan == 6 ) {
         systemCLS();
-        //manageRiwayatTransaksi();
+        lihatRiwayatTransaksi();
     } else if (pilihan == 7 ) {
         isPemilik = false;
         systemCLS();
@@ -579,15 +579,15 @@ void manageStockK()
 void konfirmasiBuka()
 {
     int pilihan;
-    if(!updateStockPagi) {
+    if(!updateStockPagi && !updateStockSiang && !updateStockSore) {
         printf("\t\t _______________________________________________________ \n");
         printf("\t\t|                [!] P E R I N G A T A N                |\n");
         printf("\t\t|                                                       |\n");
-        printf("\t\t|            Anda belum melakukan restock pagi.         |\n");
+        printf("\t\t|              Anda belum melakukan restock.            |\n");
         printf("\t\t|       Lanjutkan membuka program untuk pelanggan?      |\n");
         printf("\t\t|_______________________________________________________|\n");
         printf("\t\t| [1] Ya, lanjutkan                                     |\n");
-        printf("\t\t| [2] Tidak, lanjutkan ke restock pagi                  |\n");
+        printf("\t\t| [2] Tidak, lanjutkan ke bagian restock                |\n");
         printf("\t\t| [3] Tidak, kembali ke menu awal                       |\n");
         printf("\t\t|_______________________________________________________|\n");
         printf("\t\t  Ketik pilihan dengan angka yang tertera (1-3) : ");
@@ -598,7 +598,10 @@ void konfirmasiBuka()
         menuMasukPelanggan();
         } else if (pilihan == 2) {
             systemCLS();
-            restockJadwalPagi();
+            if (isPemilik)
+            manageStockP();
+            else if (isKaryawan)
+            manageStockK();
         } else if (pilihan == 3 ) {
             systemCLS();
             if (isKaryawan) menuAwalKaryawan();

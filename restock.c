@@ -166,7 +166,7 @@ void statusRestock()
         printf("\t\t| > BELUM DIUPDATE                                      |\n");
     if(updateStockPagi)
         printf("\t\t| > SUDAH DIUPDATE                                      |\n");
-    printf("\t\t| > Status restock siang:                                |\n");
+    printf("\t\t| > Status restock siang:                               |\n");
     if((!updateStockSiang) && (waktuLokal->tm_hour > jamRestock.siang)) 
         printf("\t\t| > BELUM DIUPDATE - MELEWATI JADWAL                    |\n");
     if((!updateStockSiang) && (waktuLokal->tm_hour < jamRestock.siang)) 
@@ -221,6 +221,7 @@ void restockJadwalSiang()
         systemCLS();
         manageStockK();
     }
+    if (!updateStockPagi) resetStock();
     int restockSiang;
     prosesRestock(&restockSiang);
     updateStockSiang = true;
@@ -242,6 +243,7 @@ void restockJadwalSore()
         systemCLS();
         manageStockK();
     }
+    if (!updateStockPagi && !updateStockSiang) resetStock();
     int restockSore;
     prosesRestock(&restockSore);
     updateStockSore = true;
@@ -278,17 +280,17 @@ void prosesRestock (int *restock)
     if (isKaryawan)
     strcpy(writeStock.namaYgRestock, dataKaryawan.nama);
 
-    fprintf(logRestock, "\t\t   _______________________________________________________\n");
-    fprintf(logRestock, "\t\t ||                                                       ||\n");
-    fprintf(logRestock, "\t\t ||                  L O G  R E S T O C K                 ||\n");
-    fprintf(logRestock, "\t\t ||                                                       ||\n");
-    fprintf(logRestock, "\t\t ||=======================================================||\n");
+    fprintf(logRestock, "\t\t   __________________________________________________________________________\n");
+    fprintf(logRestock, "\t\t ||                                                                          ||\n");
+    fprintf(logRestock, "\t\t ||                              L O G  R E S T O C K                        ||\n");
+    fprintf(logRestock, "\t\t ||                                                                          ||\n");
+    fprintf(logRestock, "\t\t ||==========================================================================||\n");
     fprintf(logRestock, "\t\t    > Waktu Restock: %-37s\n", writeStock.waktuRestock);
     if (isPemilik)
-    fprintf(logRestock, "\t\t || > Nama Pemilik : %-37s||\n", writeStock.namaYgRestock);
+    fprintf(logRestock, "\t\t || > Nama Pemilik : %-56s||\n", writeStock.namaYgRestock);
     if (isKaryawan)
-    fprintf(logRestock, "\t\t || > Nama Karyawan: %-37s||\n", writeStock.namaYgRestock);
-    fprintf(logRestock, "\t\t ||=======================================================||\n");
+    fprintf(logRestock, "\t\t || > Nama Karyawan: %-56s||\n", writeStock.namaYgRestock);
+    fprintf(logRestock, "\t\t ||==========================================================================||\n");
     
     int elemenDaftarMenu = 0;
     do {
@@ -299,24 +301,22 @@ void prosesRestock (int *restock)
         printf("\t\t Kode makanan: %s\n", readMenu.kodeMakanan);
         printf("\t\t Input jumlah restock: ");
         inputInteger(restock);
-        printf("\t\t _______________________________________________________\n");
+        printf("\t\t _________________________________________________________\n");
 
         if(*restock != 0) {
             writeStock.stockLama = readMenu.stock;
             writeStock.jumlahRestock = *restock;
             readMenu.stock += *restock;
             writeStock.stockSkrg = readMenu.stock;
-            fprintf(logRestock, "\t\t || > Nama Makanan : %-37s||\n", readMenu.namaMakanan);
-            fprintf(logRestock, "\t\t || > Kode Makanan : %-37s||\n", readMenu.kodeMakanan);
-            fprintf(logRestock, "\t\t || > Stock Lama   : %-37d||\n", writeStock.stockLama);
-            fprintf(logRestock, "\t\t || > Restock      : %-37d||\n", *restock);
-            fprintf(logRestock, "\t\t || > Stock Baru   : %-37d||\n", writeStock.stockSkrg);
-            fprintf(logRestock, "\t\t ||=======================================================||\n");
+            fprintf(logRestock, "\t\t || > Nama Makanan : %-30s | > Stock Lama   : %-6d||\n", readMenu.namaMakanan, writeStock.stockLama);
+            fprintf(logRestock, "\t\t || > Kode Makanan : %-30s | > Restock      : %-6d||\n", readMenu.kodeMakanan, *restock);
+            fprintf(logRestock, "\t\t ||                                                 | > Stock Baru   : %-6d||\n", writeStock.stockSkrg);
+            fprintf(logRestock, "\t\t ||--------------------------------------------------------------------------||\n");
         }
         fprintf(tempDaftarMenu, "%s;%s;%s;%s;%.2f;%d;\n", readMenu.jenisMakanan, readMenu.kodeMakanan, readMenu.namaMakanan, 
         readMenu.deskripsiMakanan, readMenu.hargaMakanan, readMenu.stock);
     } while (!feof(fileDaftarMenu));
-    fprintf(logRestock, "\t\t ||_______________________________________________________||\n");
+    fprintf(logRestock, "\t\t ||__________________________________________________________________________||\n");
 
     fclose(logRestock);
     fclose(fileDaftarMenu);
