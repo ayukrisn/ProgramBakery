@@ -111,12 +111,6 @@ void akunPemilik()
             signInPemilik();
         } else if (pilihan == 2 ) {
             systemCLS();
-            remove("dataKaryawan.txt");
-            remove("dataMembership.txt");
-            remove("dataTransaksi.txt");
-            remove("jadwalRestock.txt");
-            remove("dataPemilik.txt");
-            remove("logRestock.txt");
             signUpPemilik();
         } else if (pilihan == 3 ) {
             systemCLS();
@@ -150,6 +144,11 @@ void signUpPemilik()
 
     //Memeriksa apakah fprint berhasil
     if(fprintf != 0) {
+        remove("dataKaryawan.txt");
+        remove("dataMembership.txt");
+        remove("dataTransaksi.txt");
+        remove("jadwalRestock.txt");
+        remove("logRestock.txt");
         printf("\t\t ______________________________________________________ \n");
         printf("\t\t|                Sign Up Pemilik Berhasil.             |\n");
         printf("\t\t|------------------------------------------------------|\n");

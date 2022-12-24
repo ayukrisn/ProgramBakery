@@ -17,7 +17,6 @@
 #include "aksesAdmin.h"
 #include "pendukung.h"
 #include "daftarMenuRev.h"
-
 #include "restock.h"
 #include "aksesPelanggan.h"
 
@@ -43,8 +42,7 @@ int validasiInteger (int *varInt)
         //Memeriksa apakah ada integer/karakter atau tidak
         //Kalau hanya integer, maka ==1. Kalau ada yang lain, !=1
         if(sscanf(buffer, "%d %c", varInt, &character) == 1) return *varInt;
-    }
-    return 0;
+    } else return 0;
 }
 /*
     Validasi input integer 2
@@ -135,9 +133,11 @@ void inputHarga(float *varFloat)
 */
 bool validasiNama (char *varNama)
 {
+    // Menyimpan panjang dari string
     int panjangKarakter;
+    // Digunakan dalam loop untuk memeriksa tiap elemen di string
     int elemenNama;
-
+    // Validasi benar atau tidak
     bool statusValidasiNama = true;
 
     fflush(stdin);
@@ -181,8 +181,7 @@ void inputNama (char *varNama)
     while (1) {
         
         fflush(stdin);
-        bool hasilValidasi = validasiNama(varNama);
-        if (hasilValidasi) {
+        if (validasiNama(varNama)) {
             break;
         } else {
         printf("\n\t\t Masukan salah. Mohon masukkan nama sesuai arahan.\n");
@@ -246,8 +245,7 @@ void inputUsername (char *varUsername)
 {
     while (1) {
         fflush(stdin);
-        bool hasilValidasi = validasiUsername(varUsername);
-        if (hasilValidasi) {
+        if (validasiUsername(varUsername)) {
             break;
         } else {
         printf("\n\t\t Masukan salah. Mohon masukkan nama sesuai arahan.\n");
@@ -331,8 +329,7 @@ void inputPassword (char *varPassword)
     bool hasilValidasi;
     while (1) {
         fflush(stdin);
-        hasilValidasi = validasiPassword(varPassword);
-        if (hasilValidasi) {
+        if (validasiPassword(varPassword)) {
             break;
         } else {
         printf("\n\t\t Masukan salah. Mohon masukkan nama sesuai arahan.\n");
