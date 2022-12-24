@@ -443,6 +443,14 @@ void manageDaftarMenu()
     Prosedur dapat dilihat di restock.c
 */
 void manageStockP() {
+
+    // Memeriksa apakah file daftar menu sudah ada atau belum
+    if (!cekFileDaftarMenu()) {
+        systemPause();
+        systemCLS();
+        manageDaftarMenu();
+    }
+
     int pilihan;
     printf("\t\t _______________________________________________________ \n");
     printf("\t\t|                 M A N A G E  S T O C K                |\n");
@@ -539,6 +547,13 @@ void menuAwalKaryawan()
 */
 void manageStockK()
 {
+    // Memeriksa apakah file daftar menu sudah ada atau belum
+    if (!cekFileDaftarMenu()) {
+        systemPause();
+        systemCLS();
+        menuAwalKaryawan();
+    }
+
     int pilihan;
     printf("\t\t _______________________________________________________ \n");
     printf("\t\t|                  M A N A G E  S T O C K               |\n");
@@ -580,13 +595,22 @@ void manageStockK()
 
 /*
     Prosedur menu konfirmasi pembukaan program untuk pelanggan
-    bila update stock belum dilaksanakan
+    bila update stock belum dilaksanakan atau file menu tidak ada
     Bila terkonfirmasi, melanjutkan ke menu masuk pelanggan
     pada aksesPelanggan.c
 */
 void konfirmasiBuka()
 {
+    // Memeriksa apakah file daftar menu sudah ada atau belum
+    if (!cekFileDaftarMenu()) {
+        systemPause();
+        systemCLS();
+        if (isPemilik) manageDaftarMenu();
+        else if (isKaryawan) menuAwalKaryawan();
+    }
+
     int pilihan;
+    // Memeriksa apakah update stock sudah dilakukan
     if(!updateStockPagi && !updateStockSiang && !updateStockSore) {
         printf("\t\t _______________________________________________________ \n");
         printf("\t\t|                [!] P E R I N G A T A N                |\n");
