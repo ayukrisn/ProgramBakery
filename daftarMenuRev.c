@@ -163,9 +163,9 @@ void lihatDaftarMenu()
         if (isPelanggan) {
             menuAwalPelanggan();
         } else if (isKaryawan) {
-            manageDaftarMenu();
-        } else if (isPemilik) {
             menuAwalKaryawan();
+        } else if (isPemilik) {
+            manageDaftarMenu();
         }
     }
 }
@@ -184,7 +184,7 @@ void showDaftarMenuJenis()
 	printf("\t\t ________________________________________________________________________________________________________\n");
     printf("\t\t|                                        D A F T A R  M E N U                                            |\n");
     printf("\t\t|                                         CAKE ME OUT BAKERY                                             |\n");
-    printf("\t\t|                                       Jenis Makanan: %-48s  |\n", writeMenu.jenisMakanan);
+    printf("\t\t|                                       Jenis Makanan : %-47s  |\n", writeMenu.jenisMakanan);
     printf("\t\t| ______________________________________________________________________________________________________ |\n");
     printf("\t\t| NO | KODE |  NAMA MAKANAN        |                         DESKRIPSI                        |   HARGA  |\n");
     printf("\t\t| ------------------------------------------------------------------------------------------------------ |\n");
@@ -211,8 +211,8 @@ void showDaftarMenuAll()
     fileDaftarMenu = fopen("dataDaftarMenu.txt", "r");
 
 	printf("\t\t ________________________________________________________________________________________________________\n");
-    printf("\t\t|                                        D A F T A R  M E N U                                            |\n");
-    printf("\t\t|                                         CAKE ME OUT BAKERY                                             |\n");
+    printf("\t\t|                                          D A F T A R  M E N U                                          |\n");
+    printf("\t\t|                                           CAKE ME OUT BAKERY                                           |\n");
     printf("\t\t| ______________________________________________________________________________________________________ |\n");
     printf("\t\t| NO | KODE |  NAMA MAKANAN        |                         DESKRIPSI                        |   HARGA  |\n");
     printf("\t\t| ------------------------------------------------------------------------------------------------------ |\n");
@@ -248,6 +248,7 @@ void tambahDaftarMenu()
     printf("\t\t|---------------------------------------------------------|\n");
     printf("\t\t|             [5] Kembali ke menu sebelumnya              |\n");
 	printf("\t\t|_________________________________________________________|\n");
+    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-5) : ");
     pilihanUser(&pilihanJenis, 1, 5);
     if (pilihanJenis == 1) strcpy(writeMenu.jenisMakanan, "Bread");
     else if (pilihanJenis == 2) strcpy(writeMenu.jenisMakanan, "Cookies");
@@ -345,9 +346,9 @@ void tambahDaftarMenu()
 */
 void hapusDaftarMenu()
 {
-    printf("\t\t _______________________________________________________ \n");
-    printf("\t\t|              H A P U S  D A F T A R  M E N U          |\n");
-    printf("\t\t|_______________________________________________________|\n");
+    printf("\t\t ________________________________________________________________________________________________________ \n");
+    printf("\t\t|                                     H A P U S  D A F T A R  M E N U                                    |\n");
+    printf("\t\t|________________________________________________________________________________________________________|\n");
 
     if (!cekFileDaftarMenu()) {
         systemPause();
@@ -359,7 +360,7 @@ void hapusDaftarMenu()
     showDaftarMenuAll();
 
     // Input kode makanan yang ingin dihapus
-    printf("\t\t  Ketik kode makanan yang ingin dihapus : ");
+    printf("\t\t Ketik kode makanan yang ingin dihapus : \n");
     inputKode(writeMenu.kodeMakanan);
 
     // Membuka file daftar menu untuk dibaca

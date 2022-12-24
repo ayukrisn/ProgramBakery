@@ -37,7 +37,7 @@ void cetakStruk(FILE *pfileStruk, int urutan)
         fprintf(pfileStruk, "\t\t|                  C A K E  M E  O U T  B A K E R Y               | \n");   
         fprintf(pfileStruk, "\t\t|                   S T R U K  P E M B A Y A R A N                |\n");
 	    fprintf(pfileStruk, "\t\t|=================================================================|\n");
-        fprintf(pfileStruk, "\t\t  Waktu Pembayaran: %s", transaksi.waktuTransaksi);
+        fprintf(pfileStruk, "\t\t  > Waktu Pembayaran : %s", transaksi.waktuTransaksi);
         fprintf(pfileStruk, "\t\t| > Nama Pegawai     : %-43s|\n", transaksi.namaKaryawan);
         fprintf(pfileStruk, "\t\t| > Nama Pelanggan   : %-43s|\n", transaksi.namaPelanggan);
         fprintf(pfileStruk, "\t\t|_________________________________________________________________|\n");
@@ -99,10 +99,10 @@ void readFileStruk(FILE *pfileStruk)
 
 void lihatRiwayatTransaksi()
 {
-    printf("\t\t ______________________________________________________ \n");
-    printf("\t\t|                                                      |\n");
-    printf("\t\t|            R I W A Y A T  T R A N S A K S I          |\n");
-    printf("\t\t|______________________________________________________|\n");
+    printf("\t\t _________________________________________________________________ \n");
+    printf("\t\t|                                                                 |\n");
+    printf("\t\t|                 R I W A Y A T  T R A N S A K S I                |\n");
+    printf("\t\t|_________________________________________________________________|\n");
 
     FILE *riwayatTransaksi;
     riwayatTransaksi = fopen("dataTransaksi.txt", "r");
@@ -110,15 +110,19 @@ void lihatRiwayatTransaksi()
     fclose(riwayatTransaksi);
     systemPause();
     systemCLS();
-    menuAwalPemilik();
+    if (isKaryawan){
+        menuAwalKaryawan();
+    } else if (isPemilik){
+        menuAwalPemilik();
+    }
 }
 
 void riwayatTransaksiMember()
 {
-    printf("\t\t ______________________________________________________ \n");
-    printf("\t\t|                                                      |\n");
-    printf("\t\t|            R I W A Y A T  T R A N S A K S I          |\n");
-    printf("\t\t|______________________________________________________|\n");
+    printf("\t\t _________________________________________________________________ \n");
+    printf("\t\t|                                                                 |\n");
+    printf("\t\t|                 R I W A Y A T  T R A N S A K S I                |\n");
+    printf("\t\t|_________________________________________________________________|\n");
     
     FILE *riwayatTransaksi;
     

@@ -17,7 +17,6 @@
 #include "aksesAdmin.h"
 #include "pendukung.h"
 #include "daftarMenuRev.h"
-
 #include "restock.h"
 #include "aksesPelanggan.h"
 
@@ -206,7 +205,7 @@ bool validasiUsername(char *varUsername)
     printf("\n\t\t Username setidaknya terdiri dari 8 karakter.\n");
     printf("\t\t Username : ");
     // Menerima input dan memeriksa apakah input NULL atau tidak
-    if(fgets(varUsername, 20, stdin) == NULL) return false;
+    if(fgets(varUsername, 20, stdin) == NULL) statusValidasiUsername = false;
     //Mengganti '\n' dengan '\0'
     varUsername[strcspn(varUsername, "\n")] = '\0';
     // Memeriksa apakah panjang karakter yang diberikan
@@ -250,7 +249,7 @@ void inputUsername (char *varUsername)
         if (hasilValidasi) {
             break;
         } else {
-        printf("\n\t\t Masukan salah. Mohon masukkan nama sesuai arahan.\n");
+        printf("\n\t\t Masukan salah. Mohon masukkan username sesuai arahan.\n");
         }
     }
 }

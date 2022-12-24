@@ -75,9 +75,9 @@ void lihatStock()
     // Output header
 	printf("\t\t _________________________________________________________\n");
     printf("\t\t|                    DAFTAR STOCK                         |\n");
-    printf("\t\t| ________________________________________________________|\n");
+    printf("\t\t|_________________________________________________________|\n");
     printf("\t\t| NO | KODE |  NAMA MAKANAN                | JUMLAH STOCK |\n");
-    printf("\t\t| --------------------------------------------------------|\n");
+    printf("\t\t|---------------------------------------------------------|\n");
 
     //Deklarasi dan define nomor = 1 untuk urutan tabel
     int nomor = 1;
@@ -112,9 +112,10 @@ void lihatStock()
 void riwayatRestock()
 {
     // Menampilkan header
-    printf("\t\t _______________________________________________________ \n");
-    printf("\t\t|              R I W A Y A T  R E S T O C K             |\n");
-    printf("\t\t|_______________________________________________________|\n");
+    printf("\t\t   __________________________________________________________________________ \n");
+    printf("\t\t ||                                                                          ||\n");
+    printf("\t\t ||                       R I W A Y A T  R E S T O C K                       ||\n");
+    printf("\t\t ||__________________________________________________________________________||\n");
 
     // Membuka file dan memeriksa apakah file ada atau tidak
     FILE *fileRestock;
@@ -154,19 +155,19 @@ void aturJadwalRestock()
     printf("\t\t|_______________________________________________________|\n");
 
     // Instruksi untuk input masing2 jadwal
-    printf("\t\t Input jadwal jam restock (Format: 24 jam. Contoh: 16)\n\n");
-    printf("\t\t Batas jam restock pagi: Jam 9-10\n");
-    printf("\t\t Jam restock pagi:");
+    printf("\t\t Input jadwal jam restock (Format : 24 jam. Contoh : 16)\n\n");
+    printf("\t\t Batas jam restock pagi : Jam 9-10\n");
+    printf("\t\t Jam restock pagi :");
     pilihanUser(&jamRestock.pagi, 9, 10);
     printf("\t\t _____________________________________________________________________________\n"); 
 
-    printf("\n\t\t Batas jam restock siang: Jam 11-15\n");
-    printf("\t\t Jam restock siang: ");
+    printf("\n\t\t Batas jam restock siang : Jam 11-15\n");
+    printf("\t\t Jam restock siang : ");
     pilihanUser(&jamRestock.siang, 11, 15);
     printf("\t\t _____________________________________________________________________________\n"); 
 
-    printf("\n\t\t Batas jam restock sore: Jam 17-19\n");
-    printf("\t\t Jam restock sore: ");
+    printf("\n\t\t Batas jam restock sore : Jam 17-19\n");
+    printf("\t\t Jam restock sore : ");
     pilihanUser(&jamRestock.sore, 17, 19);
     printf("\t\t _____________________________________________________________________________\n");
 
@@ -419,14 +420,14 @@ void prosesRestock (int *restock)
 
     fprintf(logRestock, "\t\t   __________________________________________________________________________\n");
     fprintf(logRestock, "\t\t ||                                                                          ||\n");
-    fprintf(logRestock, "\t\t ||                              L O G  R E S T O C K                        ||\n");
+    fprintf(logRestock, "\t\t ||                           L O G  R E S T O C K                           ||\n");
     fprintf(logRestock, "\t\t ||                                                                          ||\n");
     fprintf(logRestock, "\t\t ||==========================================================================||\n");
-    fprintf(logRestock, "\t\t    > Waktu Restock: %-37s\n", writeStock.waktuRestock);
+    fprintf(logRestock, "\t\t || > Waktu Restock : %-36s||\n", writeStock.waktuRestock);
     if (isPemilik)
-    fprintf(logRestock, "\t\t || > Nama Pemilik : %-56s||\n", writeStock.namaYgRestock);
+    fprintf(logRestock, "\t\t || > Nama Pemilik  : %-55s||\n", writeStock.namaYgRestock);
     if (isKaryawan)
-    fprintf(logRestock, "\t\t || > Nama Karyawan: %-56s||\n", writeStock.namaYgRestock);
+    fprintf(logRestock, "\t\t || > Nama Karyawan : %-55s||\n", writeStock.namaYgRestock);
     fprintf(logRestock, "\t\t ||==========================================================================||\n");
     
     // Loop untuk melakukan restock makanan

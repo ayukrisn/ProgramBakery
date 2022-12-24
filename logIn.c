@@ -102,7 +102,7 @@ void akunPemilik()
         printf("\t\t| [2] Tidak, saya ingin melakukan sign up.                                      |\n");
         printf("\t\t| [3] Kembali ke menu awal.                                                     |\n");
         printf("\t\t|-------------------------------------------------------------------------------|\n");
-        printf("\t\t| CATATAN: Bila melakukan sign up, maka data yang sebelumnya ada akan terhapus. |\n");
+        printf("\t\t| CATATAN : Bila melakukan sign up, maka data yang sebelumnya ada akan terhapus.|\n");
         printf("\t\t|_______________________________________________________________________________|\n");
         printf("\t\t  Ketik pilihan dengan angka yang tertera (1-3) : ");
         pilihanUser(&pilihan, 1, 3);
@@ -188,7 +188,7 @@ void signInPemilik () {
 
             fclose(signIn);
             printf("\t\t ______________________________________________________ \n");
-            printf("\t\t|                Sign In telah berhasil.               |\n");
+            printf("\t\t|                Sign in telah berhasil.               |\n");
             printf("\t\t|______________________________________________________|\n");
             printf("\t\t  Selamat datang, %s.\n", dataPemilik.nama);
             getchar();
@@ -260,14 +260,14 @@ void signUpKaryawan()
     //Memeriksa apakah fprintf berhasil
     if(fprintf != 0) {
         printf("\t\t _______________________________________________________ \n");
-        printf("\t\t|               Sign Up karyawan berhasil.              |\n");
+        printf("\t\t|               Sign up karyawan berhasil.              |\n");
         printf("\t\t|_______________________________________________________|\n");
         systemPause();
         systemCLS();
         manageKaryawan();
     } else {
         printf("\t\t _______________________________________________________ \n");
-        printf("\t\t|           Terjadi error pada proses Sign In.          |\n");
+        printf("\t\t|           Terjadi error pada proses sign in.          |\n");
         printf("\t\t|_______________________________________________________|\n");
         exit(1);
     }
@@ -293,7 +293,7 @@ void signInKaryawan () {
         menuPertama();
     } else {
         printf("\t\t _______________________________________________________ \n");
-        printf("\t\t|       Silahkan lakukan Sign In terlebih dahulu.       |\n");
+        printf("\t\t|       Silahkan lakukan sign in terlebih dahulu.       |\n");
         printf("\t\t|_______________________________________________________|\n");
         printf("\t\t  Username : ");
         scanf("%19[^\n]", writeUser.karyawan.username);
@@ -315,7 +315,7 @@ void signInKaryawan () {
             dataKaryawan = readUser.karyawan;
 
             printf("\t\t _______________________________________________________ \n");
-            printf("\t\t|                Sign In telah berhasil.                |\n");
+            printf("\t\t|                Sign in telah berhasil.                |\n");
             printf("\t\t|_______________________________________________________|\n");
             printf("\t\t  Selamat datang, %s.\n", dataKaryawan.nama);
             fclose(signIn);
@@ -336,6 +336,5 @@ void signInKaryawan () {
         systemCLS();
         menuPertama();
         }
-
     }
 }

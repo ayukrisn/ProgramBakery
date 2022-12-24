@@ -2,7 +2,7 @@
 		|                  C A K E  M E  O U T  B A K E R Y               | 
 		|                   S T R U K  P E M B A Y A R A N                |
 		|=================================================================|
-		  Waktu Pembayaran: Thu Dec 22 20:32:52 2022
+		  > Waktu Pembayaran : Thu Dec 22 20:32:52 2022                   
 		| > Nama Pegawai     : Ayu Krisna                                 |
 		| > Nama Pelanggan   : Akiko Hansel                               |
 		|_________________________________________________________________|
@@ -30,7 +30,7 @@
 		|                  C A K E  M E  O U T  B A K E R Y               | 
 		|                   S T R U K  P E M B A Y A R A N                |
 		|=================================================================|
-		  Waktu Pembayaran: Thu Dec 22 20:33:42 2022
+		  > Waktu Pembayaran : Thu Dec 22 20:33:42 2022                   
 		| > Nama Pegawai     : Ayu Krisna                                 |
 		| > Nama Pelanggan   : Akiko Hansel                               |
 		|_________________________________________________________________|
@@ -70,7 +70,7 @@
 		|                  C A K E  M E  O U T  B A K E R Y               | 
 		|                   S T R U K  P E M B A Y A R A N                |
 		|=================================================================|
-		  Waktu Pembayaran: Sat Dec 24 10:49:59 2022
+		  > Waktu Pembayaran : Sat Dec 24 10:49:59 2022                   
 		| > Nama Pegawai     : Ayu Krisna                                 |
 		| > Nama Pelanggan   : Akiko Hansel                               |
 		|_________________________________________________________________|
@@ -98,7 +98,7 @@
 		|                  C A K E  M E  O U T  B A K E R Y               | 
 		|                   S T R U K  P E M B A Y A R A N                |
 		|=================================================================|
-		  Waktu Pembayaran: Sat Dec 24 11:13:15 2022
+		  > Waktu Pembayaran : Sat Dec 24 11:13:15 2022                   
 		| > Nama Pegawai     : Ayu Krisna                                 |
 		| > Nama Pelanggan   : Yunia Lestari                              |
 		|_________________________________________________________________|
@@ -115,4 +115,5 @@
 		|_________________________________________________________________|
 		| > Total Pembayaran : Rp30000.00                                 |
 		| > Kembalian        : Rp2000.00                                  |
-		 _________________________________________________________________ 
+		|_________________________________________________________________|
+		

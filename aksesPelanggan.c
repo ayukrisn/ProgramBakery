@@ -141,7 +141,7 @@ void signUpAccount()
         printf("\t\t _____________________________________________________________________ \n");
         printf("\t\t|                   Sign up member account berhasil.                  |\n");
         printf("\t\t|---------------------------------------------------------------------|\n");
-        printf("\t\t|               Silahkan masuk kembali melalui Sign In.               |\n");
+        printf("\t\t|               Silahkan masuk kembali melalui sign in.               |\n");
         printf("\t\t|_____________________________________________________________________|\n");
         systemPause();
         systemCLS();
@@ -295,13 +295,13 @@ void lihatDaftarMenuM()
 
     lihatDaftarMenu();
         int pilihan;
-        printf("\t\t _________________________________________________________________ \n");    
-        printf("\t\t|                        Lanjutkan ke pemesanan?                  |\n");
-	    printf("\t\t|-----------------------------------------------------------------|\n");
-        printf("\t\t|                        [1] Ya        [2] Tidak                  |\n");
-        printf("\t\t|-----------------------------------------------------------------|\n");
-        printf("\t\t|               [3] Sign out dan kembali ke menu masuk            |\n");
-	    printf("\t\t|_________________________________________________________________|\n");
+        printf("\t\t ________________________________________________________________________________________________________ \n");    
+        printf("\t\t|                                        Lanjutkan ke pemesanan?                                         |\n");
+	    printf("\t\t|--------------------------------------------------------------------------------------------------------|\n");
+        printf("\t\t|                                        [1] Ya          [2] Tidak                                       |\n");
+        printf("\t\t|--------------------------------------------------------------------------------------------------------|\n");
+        printf("\t\t|                                 [3] Sign out dan kembali ke menu masuk                                 |\n");
+	    printf("\t\t|________________________________________________________________________________________________________|\n");
         printf("\t\t  Ketik pilihan dengan angka yang tertera (1-3) : ");
     pilihanUser(&pilihan, 1, 3);
     fflush(stdin);
@@ -326,20 +326,20 @@ void pemesanan() {
     bool pemesananDone = false;
     char namaYgStokHabis[20];
     int sisaStok;
-    printf("\t\t _________________________________________________________________ \n"); 
-    printf("\t\t|                  C A K E  M E  O U T  B A K E R Y               | \n");   
-    printf("\t\t|                         P E M E S A N A N                       |\n");
-	printf("\t\t|-----------------------------------------------------------------|\n");
+    printf("\t\t ________________________________________________________________________________________________________ \n"); 
+    printf("\t\t|                                    C A K E  M E  O U T  B A K E R Y                                    |\n");   
+    printf("\t\t|                                           P E M E S A N A N                                            |\n");
+	printf("\t\t|--------------------------------------------------------------------------------------------------------|\n");
     // Selama pelanggan tidak menghentikan pemesanan ulang
     while (1) {
-        printf("\t\t Urutan ke %d\n", urutan);
-        printf("\t\t Masukkan kode makanan (Contoh: CABK)\n");
-        printf("\t\t Kode Makanan yang diinginkan: ");
+        //printf("\t\t  Urutan ke %d\n", urutan);
+        printf("\t\t  Masukkan kode makanan (Contoh : CABK)\n");
+        printf("\t\t  Kode Makanan yang diinginkan : ");
         // Untuk sementara, kode makanan ga make validasi. Nanti make
         scanf("%[^\n]", DTransaksi[urutan].kodeMakanan);
         getchar();
 
-        printf("\t\t Banyak pembelian            : ");
+        printf("\t\t  Banyak pembelian             : ");
         inputInteger(&DTransaksi[urutan].banyakPembelian);
 
         FILE *fileDaftarMenu;
@@ -362,12 +362,12 @@ void pemesanan() {
                     DTransaksi[urutan].hargaSatuan = readMenu.hargaMakanan;
                     DTransaksi[urutan].hargaTotal = DTransaksi[urutan].hargaSatuan*DTransaksi[urutan].banyakPembelian;
                     pemesananDone = true; //Artinya dia sudah melakukan pemesanan
-                    printf("\t\t _________________________________________________________________\n");
-                    printf("\t\t| Pesanan ke-%-2d                                                   |\n", urutan+1);
-                    printf("\t\t| > Nama Pesanan  : %-45s |\n", DTransaksi[urutan].namaMakanan);
-                    printf("\t\t| > Harga Satuan  : Rp%-43.2f |\n", DTransaksi[urutan].hargaSatuan);
-                    printf("\t\t| > Pembelian     : %-2d                                            |\n", DTransaksi[urutan].banyakPembelian);
-	                printf("\t\t| > Harga Total   : Rp%-43.2f |\n", DTransaksi[urutan].hargaTotal);
+                    printf("\t\t ________________________________________________________________________________________________________\n");
+                    printf("\t\t| Pesanan ke-%-2d                                                                                          |\n", urutan+1);
+                    printf("\t\t| > Nama Pesanan  : %-84s |\n", DTransaksi[urutan].namaMakanan);
+                    printf("\t\t| > Harga Satuan  : Rp%-82.2f |\n", DTransaksi[urutan].hargaSatuan);
+                    printf("\t\t| > Pembelian     : %-2d                                                                                   |\n", DTransaksi[urutan].banyakPembelian);
+	                printf("\t\t| > Harga Total   : Rp%-82.2f |\n", DTransaksi[urutan].hargaTotal);
                 } else {
                     strcpy(namaYgStokHabis, readMenu.namaMakanan);
                     sisaStok = readMenu.stock;
@@ -384,46 +384,46 @@ void pemesanan() {
         rename("tempDaftarMenu.txt","dataDaftarMenu.txt");
 
         if (!kodeKetemu) {
-            printf("\t\t _________________________________________________________________\n");
-            printf("\t\t|  Kode makanan tidak ditemukan. Ingin mengulang input pemesanan? |\n");
-	        printf("\t\t|-----------------------------------------------------------------|\n");
+            printf("\t\t ________________________________________________________________________________________________________\n");
+            printf("\t\t|                     Kode makanan tidak ditemukan. Ingin mengulang input pemesanan?                     |\n");
+	        printf("\t\t|--------------------------------------------------------------------------------------------------------|\n");
         } else if (!stokCukup) {
             kodeKetemu = false;
             time_t waktuL = time(NULL);
             struct tm *waktuLokal = localtime(&waktuL);
             int jam = waktuLokal->tm_hour;
-            printf("\t\t _________________________________________________________________\n");
-            printf("\t\t|                   Maaf, stok makanan tidak cukup!               |\n");
-	        printf("\t\t|-----------------------------------------------------------------|\n");
-            printf("\t\t| > Sisa stok %-20s = %-29d|\n", namaYgStokHabis, sisaStok);
+            printf("\t\t ________________________________________________________________________________________________________\n");
+            printf("\t\t|                                    Maaf, stok makanan tidak cukup!                                     |\n");
+	        printf("\t\t|--------------------------------------------------------------------------------------------------------|\n");
+            printf("\t\t| > Sisa stok %-20s = %-68d|\n", namaYgStokHabis, sisaStok);
             if (jam > jamRestock.sore)
-            printf("\t\t|                 Pilihan Anda akan direstock besok.              |\n");
+            printf("\t\t| > Pilihan Anda akan direstock besok.                                                                    |\n");
             else if (jam > jamRestock.siang)
-            printf("\t\t|                Restock akan dilakukan di jam %2d:00              |\n", jamRestock.sore);
+            printf("\t\t| > Restock akan dilakukan di jam %2d:00                                                                  |\n", jamRestock.sore);
             else if (jam > jamRestock.pagi)
-            printf("\t\t|                Restock akan dilakukan di jam %2d:00              |\n", jamRestock.siang);
-	        printf("\t\t|-----------------------------------------------------------------|\n");
-            printf("\t\t|                 Ingin mengulang input pemesanan?                |\n");
+            printf("\t\t| > Restock akan dilakukan di jam %2d:00                                                                  |\n", jamRestock.siang);
+	        printf("\t\t|--------------------------------------------------------------------------------------------------------|\n");
+            printf("\t\t|                                    Ingin mengulang input pemesanan?                                    |\n");
         }
 
         if (kodeKetemu && stokCukup) {
             kodeKetemu = false;
             stokCukup = false;
             urutan++;
-            printf("\t\t _________________________________________________________________\n");
-            printf("\t\t|                  P E M E S A N A N  S E L E S A I               |\n");
-            printf("\t\t|                 Ingin melakukan pemesanan lainnya?              |\n");
-	        printf("\t\t|-----------------------------------------------------------------|\n");
+            printf("\t\t ________________________________________________________________________________________________________\n");
+            printf("\t\t|                                    P E M E S A N A N  S E L E S A I                                    |\n");
+            printf("\t\t|                                   Ingin melakukan pemesanan lainnya?                                   |\n");
+	        printf("\t\t|--------------------------------------------------------------------------------------------------------|\n");
 
         }
-            printf("\t\t|                   [1] Ya              [2] Tidak                 |\n");
-	        printf("\t\t|_________________________________________________________________|\n");
+            printf("\t\t|                                      [1] Ya              [2] Tidak                                     |\n");
+	        printf("\t\t|________________________________________________________________________________________________________|\n");
             printf("\t\t  Ketik pilihan dengan angka yang tertera (1-2) : ");
             pilihanUser(&pilihan, 1, 2);
             fflush(stdin);
             if (pilihan == 2) {
                 if (pemesananDone) { //Artinya dia sudah melakukan pemesanan
-                printf("\t\t Anda akan diarahkan ke pembayaran.\n");
+                printf("\t\t  Anda akan diarahkan ke pembayaran.\n");
                 systemPause();
                 systemCLS();
                 pembayaran(); 
@@ -489,7 +489,7 @@ void hitungPembayaran()
 {
     float uangKurang = 0;
     while (1) {
-        printf("\t\t| > Masukkan nominal pembayaran Anda     : ");
+        printf("\t\t  > Masukkan nominal pembayaran Anda : Rp");
         inputHarga( &transaksi.jumlahPembayaran);
         if (transaksi.jumlahPembayaran >= transaksi.hargaTotal )
         {
@@ -498,8 +498,10 @@ void hitungPembayaran()
         } else if (transaksi.jumlahPembayaran < transaksi.hargaTotal)
         {
             uangKurang = transaksi.hargaTotal - transaksi.jumlahPembayaran;
+            printf("\t\t _________________________________________________________________ \n");
             printf("\t\t| Maaf, nominal pembayaran Anda kurang Rp%-25.2f|\n", uangKurang);
             printf("\t\t| Silahkan masukkan nominal yang sesuai.                          |\n");
+            printf("\t\t|_________________________________________________________________|\n");
         }
     }
 }
@@ -512,7 +514,7 @@ void pembayaran()
         printf("\t\t|                  C A K E  M E  O U T  B A K E R Y               | \n");   
         printf("\t\t|                        P E M B A Y A R A N                      |\n");
 	    printf("\t\t|=================================================================|\n");
-        printf("\t\t  Waktu Pembayaran: %s", transaksi.waktuTransaksi);
+        printf("\t\t  > Waktu Pembayaran : %s", transaksi.waktuTransaksi);
         printf("\t\t| > Nama Pegawai     : %-43s|\n", transaksi.namaKaryawan);
         printf("\t\t| > Nama Pelanggan   : %-43s|\n", transaksi.namaPelanggan);
         printf("\t\t|_________________________________________________________________|\n");
@@ -531,13 +533,13 @@ void pembayaran()
 	    printf("\t\t| > Harga Total      : Rp%-41.2f|\n", transaksi.hargaTotal);
         printf("\t\t|_________________________________________________________________|\n");
         hitungPembayaran();
-        printf("\t\t| > Total Pembayaran : Rp%-41.2f|\n", transaksi.jumlahPembayaran);
-	    printf("\t\t| > Kembalian        : Rp%-41.2f|\n", transaksi.jumlahKembalian);
+        printf("\t\t| > Total Pembayaran                 : Rp%-25.2f|\n", transaksi.jumlahPembayaran);
+	    printf("\t\t| > Kembalian                        : Rp%-25.2f|\n", transaksi.jumlahKembalian);
         printf("\t\t|=================================================================|\n");
         printf("\t\t|               P E M B A Y A R A N  S E L E S A I                |\n");
         printf("\t\t|          Anda dapat menunjukkan struk pembayaran pada           |\n");
         printf("\t\t|            karyawan yang bertugas. Selamat Menikmati!           |\n");
-	    printf("\t\t ================================================================= \n");
+	    printf("\t\t ================================================================= ");
         simpanStrukPelanggan(urutan);
         simpanRiwayatTransaksi(urutan);
         

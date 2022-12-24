@@ -59,6 +59,7 @@ void menuAwalPemilik()
     pilihanUser(&pilihan, 1, 7);
     fflush(stdin);
     if (pilihan == 1) {
+        systemCLS();
         konfirmasiBuka();
     } else if (pilihan == 2) {
         systemCLS();
@@ -172,7 +173,7 @@ void showListMembership()
         
         {
             fscanf(fileMember, "%[^;];%[^;];%[^;];\n", readUser.membership.nama, readUser.membership.username, readUser.membership.password);
-            printf("\t\t| %d | %-12s | %-11s | %-12s |\n", print, readUser.membership.nama, readUser.membership.username, readUser.membership.password);
+            printf("\t\t|  %-4d| %-12s| %-12s| %-19s|\n", print, readUser.membership.nama, readUser.membership.username, readUser.membership.password);
             printf("\t\t|_______________________________________________________|\n");
             print++;
         }
@@ -333,7 +334,7 @@ void showListKaryawan()
         
         {
             fscanf(fileKaryawan, "%[^;];%[^;];%[^;];\n", readUser.karyawan.nama, readUser.karyawan.username, readUser.karyawan.password);
-            printf("\t\t| %d   | %s          | %s          | %s                 |\n", print, readUser.karyawan.nama, readUser.karyawan.username, readUser.karyawan.password);
+            printf("\t\t|  %-4d| %-12s| %-12s| %-19s|\n", print, readUser.karyawan.nama, readUser.karyawan.username, readUser.karyawan.password);
             printf("\t\t|_______________________________________________________|\n");
             print++;
         }
@@ -533,7 +534,7 @@ void menuAwalKaryawan()
             lihatDaftarMenuK();
         } else if (pilihan == 4 ) {
             systemCLS();
-            //lihatRiwayatTransaksi();
+            lihatRiwayatTransaksi();
         } else if (pilihan == 5) {
             isKaryawan = false;
             systemCLS();
@@ -566,7 +567,7 @@ void manageStockK()
     printf("\t\t| [4] Lihat jumlah stock                                |\n");
     printf("\t\t| [5] Kembali ke menu karyawan                          |\n");
     printf("\t\t|_______________________________________________________|\n");
-    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-5) :        \n");
+    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-5) : ");
     pilihanUser(&pilihan, 1, 5);
     fflush(stdin);
     if (pilihan == 1) {
