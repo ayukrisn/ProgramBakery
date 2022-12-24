@@ -70,10 +70,9 @@ void simpanStrukPelanggan(int urutan)
         strcpy(namaFile, dataMembership.username);
         strcat(namaFile, ".txt");
         riwayatStrukPelanggan = fopen(namaFile, "a");
-    } else {
-        riwayatStrukPelanggan = fopen(namaGuest, "w");
+        cetakStruk(riwayatStrukPelanggan, urutan);
     }
-    cetakStruk(riwayatStrukPelanggan, urutan);
+    
 }
 
 void simpanRiwayatTransaksi(int urutan)
