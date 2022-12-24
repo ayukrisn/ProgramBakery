@@ -187,7 +187,7 @@ void showDaftarMenuJenis()
         systemCLS();
         if(isMember) menuAwalPelanggan();
         else if(isKaryawan) menuAwalKaryawan();
-        else if(isPemilik) menuAwalPemilik();
+        else if(isPemilik) manageDaftarMenu();
      }
 
 	printf("\t\t ________________________________________________________________________________________________________\n");
@@ -225,7 +225,7 @@ void showDaftarMenuAll()
         systemCLS();
         if(isMember) menuAwalPelanggan();
         else if(isKaryawan) menuAwalKaryawan();
-        else if(isPemilik) menuAwalPemilik();
+        else if(isPemilik) manageDaftarMenu();
      }
 
 	printf("\t\t ________________________________________________________________________________________________________\n");
