@@ -123,9 +123,12 @@ typedef struct {
     float d200k;
 } tipeDiskon;
 extern tipeDiskon nominalDiskon;
+
+
 /*
     Bool untuk memastikan apakah restock sudah
-    dilakukan atau belum
+    dilakukan atau belum. Bila sudah diupdate,
+    variabel akan diset ke true
 */
 extern bool updateStockPagi;
 extern bool updateStockSiang;

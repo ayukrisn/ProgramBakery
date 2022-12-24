@@ -2,7 +2,8 @@
 ==================================================
     Source code "restock.c" berisi definisi dari
     fungsi/prosedur untuk manajemen restock
-    Contoh: update dan lihat restock
+    - Set jam restock, atur jam restock, lihat
+        status restock, lihat jumlah stock, dsb
 ==================================================
 */
 
@@ -22,30 +23,18 @@
 
 /*
     Bool untuk memastikan apakah restock sudah
-    dilakukan atau belum
+    dilakukan atau belum. Bila sudah diupdate,
+    variabel akan diset ke true
 */
 bool updateStockPagi; bool updateStockSiang; bool updateStockSore;
 restock jamRestock;
+
 /*
     Struct yang digunakan pada saat
     berurusan dengan stock makanan
 */
 logRestock writeStock; logRestock readStock;
 
-    /*//Menambahkan jam jadwal restock
-    printf("\t\t Input jadwal jam restock (Format: 24 jam. Contoh: 16)\n\n");
-    printf("\t\t Batas jam restock pagi: Jam 7-10\n");
-    printf("\t\t Jam restock pagi:");
-    pilihanUser(&writeMenu.jamJadwalStockPagi, 7, 10);
-
-    printf("\n\t\t Batas jam restock pagi: Jam 11-15\n");
-    printf("\t\t Jam restock siang: ");
-    pilihanUser(&writeMenu.jamJadwalStockSiang, 11, 15);
-
-    printf("\n\t\t Batas jam restock pagi: Jam 17-19\n");
-    printf("\t\t Jam restock sore: ");
-    pilihanUser(&writeMenu.jamJadwalStockSore, 17, 19);
-    printf("\t\t _____________________________________________________________________________\n"); */
 
 /*
 =================================================================
@@ -53,33 +42,49 @@ logRestock writeStock; logRestock readStock;
 =================================================================
 */
 
-/*
+/*  ------------------------------------------
+    SET JAM RESTOCK
     Mengatur jadwal restock berdasarkan
     jadwal yang sudah diset pemilik sebelumnya
+    ------------------------------------------
 */
 void setJamRestock()
 {
+    // Membuka file
     FILE *jadwalRestock;
     jadwalRestock = fopen("jadwalRestock.txt", "r");
+
+    // Membaca jam restock yang sudah diset sebelumnya
     fscanf(jadwalRestock, "%d;%d;%d;", &jamRestock.pagi, &jamRestock.siang, &jamRestock.sore);
+
+    // Menutup file
     fclose(jadwalRestock);
 }
 
-/*
+/*  =====================================
+    LIHAT STOCK
     Melihat stock yang ada pada saat ini
+    =====================================
 */
 void lihatStock()
 {
+    // Membuka file
     FILE *fileDaftarMenu;
     fileDaftarMenu = fopen("dataDaftarMenu.txt", "r");
 
+    // Output header
 	printf("\t\t _________________________________________________________\n");
     printf("\t\t|                    DAFTAR STOCK                         |\n");
     printf("\t\t| ________________________________________________________|\n");
     printf("\t\t| NO | KODE |  NAMA MAKANAN                | JUMLAH STOCK |\n");
     printf("\t\t| --------------------------------------------------------|\n");
 
+    //Deklarasi dan define nomor = 1 untuk urutan tabel
     int nomor = 1;
+    /*
+        Selama file belum menyentuh akhir, scan tiap baris pada file
+        dan tampilkan ke layar. Nomor increment
+    */
     while(!feof(fileDaftarMenu))
     {
         fscanf(fileDaftarMenu, "%[^;];%[^;];%[^;];%[^;];%f;%d;\n", readMenu.jenisMakanan, readMenu.kodeMakanan, readMenu.namaMakanan, 
@@ -88,53 +93,67 @@ void lihatStock()
         nomor++;
     }
     printf("\t\t|_________________________________________________________|\n");
+
+    // Tutup file
     fclose(fileDaftarMenu);
 
     systemPause();
     systemCLS();
+    // Jika pemilik, kembali ke menu pemilik. Jika karyawan, kembali ke menu karyawan
     if (isPemilik) manageStockP();
     if (isKaryawan) manageStockK();
 }
 
-/*
+/*  ==================================
+    RIWAYAT RESTOCK
     Melihat riwayat penambahan stock
+    ==================================
 */
 void riwayatRestock()
 {
-    char text[200];
+    // Menampilkan header
     printf("\t\t _______________________________________________________ \n");
-    printf("\t\t|                  R I W A Y A T  S T O C K             |\n");
+    printf("\t\t|              R I W A Y A T  R E S T O C K             |\n");
     printf("\t\t|_______________________________________________________|\n");
 
+    // Membuka file dan memeriksa apakah file ada atau tidak
     FILE *fileRestock;
     fileRestock = fopen("logRestock.txt", "r");
     if(fileRestock == NULL)
     {
+        // Bila tidak ada, tampilkan info dan kembali ke menu manage stock
         printf("\t\t Belum ada riwayat stock atau file tidak dapat dibuka.\n");
         systemPause();
         systemCLS();
         manageStockP();
     }
 
-    while(fgets(text, sizeof(text), fileRestock)) {
-        printf("%s", text);
+    // Menampilkan setiap karakter pada file hingga file habis
+    char c;
+    while((c=fgetc(fileRestock))!=EOF){
+        printf("%c", c);
     }
 
+    // Tutup file dan kembali ke menu manage stock
     fclose(fileRestock);
     systemPause();
     systemCLS();
     manageStockP();
 }
 
-/*
+/*  ======================================================
+    ATUR JADWAL RESTOCK
     Prosedur di mana pemilik dapat mengatur jadwal restock
+    ======================================================
 */
 void aturJadwalRestock() 
 {
+    // Menampilkan header
     printf("\t\t _______________________________________________________ \n");
     printf("\t\t|           A T U R  J A D W A L  R E S T O C K         |\n");
     printf("\t\t|_______________________________________________________|\n");
 
+    // Instruksi untuk input masing2 jadwal
     printf("\t\t Input jadwal jam restock (Format: 24 jam. Contoh: 16)\n\n");
     printf("\t\t Batas jam restock pagi: Jam 9-10\n");
     printf("\t\t Jam restock pagi:");
@@ -158,6 +177,7 @@ void aturJadwalRestock()
     fprintf(jadwalRestock, "%d;%d;%d;\n", jamRestock.pagi, jamRestock.siang, jamRestock.sore);
     fclose(jadwalRestock);
 
+    // Menampilkan instruksi dan kembali ke menu manage stock pemilik
     printf("\t\t _______________________________________________________ \n");
     printf("\t\t|   J A D W A L  R E S T O C K  S U D A H  D I A T U R  |\n");
     printf("\t\t|_______________________________________________________|\n");
@@ -166,115 +186,197 @@ void aturJadwalRestock()
     manageStockP();
 }
 
-/*
+/*  ===============================
+    STATUS RESTOCK
     Melihat status restock saat ini
+    ===============================
 */
 void statusRestock()
 {
+    // Menampilkan header
     printf("\t\t _______________________________________________________ \n");
     printf("\t\t|               S T A T U S  R E S T O C K              |\n");
     printf("\t\t|_______________________________________________________|\n");
+
+    // Mengambil waktu lokal dan memasukkan ke dalam struct
     time_t waktu = time(NULL);
     struct tm *waktuLokal = localtime(&waktu);
+
+    /*
+        Memeriksa status restock pagi dengan boolean
+        dibandingkan dengan jam saat ini
+    */
     printf("\t\t| > Status restock pagi:                                |\n");
     if((!updateStockPagi) && (waktuLokal->tm_hour > jamRestock.pagi)) 
         printf("\t\t| > BELUM DIUPDATE - MELEWATI JADWAL                    |\n");
-    if((!updateStockPagi) && (waktuLokal->tm_hour < jamRestock.pagi)) 
+    else if((!updateStockPagi) && (waktuLokal->tm_hour < jamRestock.pagi)) 
         printf("\t\t| > BELUM DIUPDATE                                      |\n");
-    if(updateStockPagi)
+    else if(updateStockPagi)
         printf("\t\t| > SUDAH DIUPDATE                                      |\n");
+
+    /*
+        Memeriksa status restock siang dengan boolean
+        dibandingkan dengan jam saat ini
+    */
     printf("\t\t| > Status restock siang:                               |\n");
     if((!updateStockSiang) && (waktuLokal->tm_hour > jamRestock.siang)) 
         printf("\t\t| > BELUM DIUPDATE - MELEWATI JADWAL                    |\n");
-    if((!updateStockSiang) && (waktuLokal->tm_hour < jamRestock.siang)) 
+    else if((!updateStockSiang) && (waktuLokal->tm_hour < jamRestock.siang)) 
         printf("\t\t| > BELUM DIUPDATE                                      |\n");
-    if(updateStockSiang)
+    else if(updateStockSiang)
         printf("\t\t| > SUDAH DIUPDATE                                      |\n");
+
+    /*
+        Memeriksa status restock sore dengan boolean
+        dibandingkan dengan jam saat ini
+    */
     printf("\t\t| > Status restock sore:                                |\n");
     if((!updateStockSore) && (waktuLokal->tm_hour > jamRestock.sore)) 
         printf("\t\t| > BELUM DIUPDATE - MELEWATI JADWAL                    |\n");
-    if((!updateStockSore) && (waktuLokal->tm_hour < jamRestock.sore)) 
+    else if((!updateStockSore) && (waktuLokal->tm_hour < jamRestock.sore)) 
         printf("\t\t| > BELUM DIUPDATE                                      |\n");
-    if(updateStockSore)
+    else if(updateStockSore)
         printf("\t\t| > SUDAH DIUPDATE                                      |\n");
     printf("\t\t|_______________________________________________________|\n");
     
+    // Kembali ke menu manage stock pemilik
     systemPause();
     systemCLS();
     manageStockP();
 }
 
 /*
+    ===========================================================
     PROSEDUR UNTUK MELAKUKAN RESTOCK
+    - restock jadwal pagi/siang/sore, waktu restock, dan proses restock
+    ===========================================================
+*/
+
+/*  -----------------------
+    RESTOCK JADWAL PAGI
+    Melakukan restock pagi
+    -----------------------
 */
 void restockJadwalPagi()
 {
+    // Menampilkan header
     printf("\t\t _______________________________________________________ \n");
     printf("\t\t|                  R E S T O C K  P A G I               |\n");
     printf("\t\t|_______________________________________________________|\n");
 
+    // Memeriksa apakah daftar menu ada atau tidak
     if (!cekFileDaftarMenu()) {
+        // Bila tidak, kembali ke menu manage stock
         systemPause();
         systemCLS();
-        manageStockK();
+        // Menentukan ke menu karyawan atau pemilik
+        if (isKaryawan) manageStockK();
+        else if (isPemilik) manageStockP();
     }
+
+    // Memanggil prosedur untuk mereset stock
     resetStock();
+
+    // Variabel restock pagi
     int restockPagi;
+    // Memanggil prosedur untuk melakukan restock
     prosesRestock(&restockPagi);
+
+    // Stock pagi sudah dilakukan
     updateStockPagi = true;
 
+    // Kembali ke menu manage stock
     systemPause();
     systemCLS();
     if (isPemilik) manageStockP();
     if (isKaryawan) manageStockK();
 }
 
+/*  -----------------------
+    RESTOCK JADWAL SIANG
+    Melakukan restock siang
+    -----------------------
+*/
 void restockJadwalSiang()
 {
+    // Menampilkan header
     printf("\t\t _______________________________________________________ \n");
     printf("\t\t|                 R E S T O C K  S I A N G              |\n");
     printf("\t\t|_______________________________________________________|\n");
 
+     // Memeriksa apakah daftar menu ada atau tidak
     if (!cekFileDaftarMenu()) {
         systemPause();
         systemCLS();
-        manageStockK();
+        // Menentukan ke menu karyawan atau pemilik
+        if (isKaryawan) manageStockK();
+        else if (isPemilik) manageStockP();
     }
+
+    // Memeriksa apakah update pagi dilakukan atau tidak
+    // Jika belum, reset stock kemarin
     if (!updateStockPagi) resetStock();
+
+    // Variabel restock siang
     int restockSiang;
+
+    // Memanggil prosedur untuk melakukan restock
     prosesRestock(&restockSiang);
+
+    // Stock siang sudah dilakukan
     updateStockSiang = true;
 
+    // Kembali ke menu manage stock
     systemPause();
     systemCLS();
     if (isPemilik) manageStockP();
     if (isKaryawan) manageStockK();
 }
 
+/*  -----------------------
+    RESTOCK JADWAL SORE
+    Melakukan restock sore
+    -----------------------
+*/
 void restockJadwalSore()
 {
+    // Menampilkan header
     printf("\t\t _______________________________________________________ \n");
     printf("\t\t|                 R E S T O C K  S O R E                |\n");
     printf("\t\t|_______________________________________________________|\n");
 
+    // Memeriksa apakah file daftar menu ada atau tidak
     if (!cekFileDaftarMenu()) {
         systemPause();
         systemCLS();
-        manageStockK();
+        // Menentukan ke menu karyawan atau pemilik
+        if (isKaryawan) manageStockK();
+        else if (isPemilik) manageStockP();
     }
+
+    // Bila update pagi dan siang tidak dilakukan, reset stock kemarin
     if (!updateStockPagi && !updateStockSiang) resetStock();
+
+    // Variabel stock sore
     int restockSore;
+
+    // Memanggil prosedur proses restock
     prosesRestock(&restockSore);
+
+    // Stock sore sudah dilakukan
     updateStockSore = true;
 
+    // Kembali ke menu manage stock
     systemPause();
     systemCLS();
     if (isPemilik) manageStockP();
     if (isKaryawan) manageStockK();
 }
 
-/*
-    Mendapatkan catatan waktu dilaksanakan restock
+/*  -----------------------------------------------
+    WAKTU RESTOCK
+    Mendapatkan catatan waktu pelaksanaan restock
+    -----------------------------------------------
 */
 void waktuRestock (FILE *pfileLog)
 {
@@ -284,8 +386,11 @@ void waktuRestock (FILE *pfileLog)
     printf("\t\t Waktu Restock: %s", writeStock.waktuRestock);
 }
 
-/*
-    Proses melakukan restock
+/*  ----------------------------------------------
+    PROSES RESTOCK
+    Proses melakukan restock, dipanggil di setiap
+    prosedur update restock
+    ----------------------------------------------
 */
 void prosesRestock (int *restock)
 {
@@ -363,8 +468,10 @@ void prosesRestock (int *restock)
     printf("\t\t|_______________________________________________________|\n");
 }
 
-/*
+/*  ------------------------
+    RESET STOCK
     Mereset stock menjadi 0
+    ------------------------
 */
 void resetStock()
 {

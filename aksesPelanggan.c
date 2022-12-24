@@ -538,7 +538,16 @@ void pembayaran()
         printf("\t\t|          Anda dapat menunjukkan struk pembayaran pada           |\n");
         printf("\t\t|            karyawan yang bertugas. Selamat Menikmati!           |\n");
 	    printf("\t\t ================================================================= \n");
+        simpanStrukPelanggan(urutan);
+        simpanRiwayatTransaksi(urutan);
+        
         urutan = 0;
+        transaksi.totalPembelian = 0;
+        transaksi.hargaSblmDiskon = 0;
+        transaksi.hargaTotal = 0;
+        transaksi.totalDiskon = 0;
+        transaksi.jumlahPembayaran = 0;
+        transaksi.jumlahKembalian = 0;
         getchar();
         systemPause();
         systemCLS();
