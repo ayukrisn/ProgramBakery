@@ -88,7 +88,7 @@ void akunPemilik()
     periksaData = fopen("dataPemilik.txt", "r");
     if (periksaData == NULL) {
         printf("\t\t ____________________________________________________________________ \n");
-        printf("\t\t| Anda belum memiliki akun. Silahkan melanjutkan ke Sign Un Pemilik. |\n");
+        printf("\t\t| Anda belum memiliki akun. Silahkan melanjutkan ke Sign Up Pemilik. |\n");
         printf("\t\t|____________________________________________________________________|\n");
         systemPause();
         systemCLS();
@@ -144,6 +144,11 @@ void signUpPemilik()
 
     //Memeriksa apakah fprint berhasil
     if(fprintf != 0) {
+        remove("dataKaryawan.txt");
+        remove("dataMembership.txt");
+        remove("dataTransaksi.txt");
+        remove("jadwalRestock.txt");
+        remove("logRestock.txt");
         printf("\t\t ______________________________________________________ \n");
         printf("\t\t|                Sign Up Pemilik Berhasil.             |\n");
         printf("\t\t|------------------------------------------------------|\n");
