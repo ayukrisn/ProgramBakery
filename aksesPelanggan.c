@@ -96,6 +96,8 @@ void tanyaAkun()
 void signUpAccount()
 {
     printf("\t\t _____________________________________________________________________ \n");
+    printf("\t\t|                  S I G N  U P  M E M B E R S H I P                  |\n");
+    printf("\t\t|---------------------------------------------------------------------|\n");
     printf("\t\t|         Silahkan lakukan sign up data member terlebih dahulu.       |\n");
     printf("\t\t|_____________________________________________________________________|\n");
 
@@ -174,6 +176,8 @@ void signInAccount()
         menuPertama();
     } else {
         printf("\t\t _____________________________________________________________________ \n");
+        printf("\t\t|                  S I G N  I N  M E M B E R S H I P                  |\n");
+        printf("\t\t|---------------------------------------------------------------------|\n");
         printf("\t\t|              Silahkan lakukan sign in terlebih dahulu.              |\n");
         printf("\t\t|_____________________________________________________________________|\n");
         printf("\t\t  Username : ");
@@ -197,7 +201,8 @@ void signInAccount()
             printf("\t\t _____________________________________________________________________ \n");
             printf("\t\t|                Sign in member account telah berhasil.               |\n");
             printf("\t\t|_____________________________________________________________________|\n");
-            printf("\t\t  Selamat datang, %s\n", dataMembership.nama);
+            printf("\t\t |                     Selamat datang, %-30s|\n", dataMembership.nama);
+            printf("\t\t  |_________________________________________________________________|\n");
             fclose(signInMember);
             isMember = true;
             systemPause();
