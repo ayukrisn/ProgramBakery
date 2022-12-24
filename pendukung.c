@@ -332,7 +332,7 @@ void inputPassword (char *varPassword)
         if (validasiPassword(varPassword)) {
             break;
         } else {
-        printf("\n\t\t Masukan salah. Mohon masukkan nama sesuai arahan.\n");
+        printf("\n\t\t Masukan salah. Mohon masukkan password sesuai arahan.\n");
         }
     }
 }
