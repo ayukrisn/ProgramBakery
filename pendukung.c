@@ -139,6 +139,7 @@ bool validasiNama (char *varNama)
     int elemenNama;
     // Validasi benar atau tidak
     bool statusValidasiNama = true;
+    bool digit = false; bool simbol = false;
 
     fflush(stdin);
     printf("\t\t Nama : ");
@@ -157,17 +158,20 @@ bool validasiNama (char *varNama)
     for (elemenNama = 0; elemenNama <= panjangKarakter; elemenNama++) {
         // Jika karakter adalah digit, maka nama salah
         if (isdigit(varNama[elemenNama])) {
-            printf("\t\t Nama mengandung digit angka.\n");
             statusValidasiNama = false;
-            break;
+            digit = true;
         }
         // Jika karakter adalah simbol, maka nama salah
         if (ispunct(varNama[elemenNama])) {
-            printf("\t\t Nama mengandung simbol.\n");
             statusValidasiNama = false;
-            break;
+            simbol = true;
         }
     }
+
+    // Memberi instruksi bila ditemukan digit atau simbol
+    if (digit) printf("\t\t Nama mengandung digit angka.\n");
+    if (simbol) printf("\t\t Nama mengandung simbol.\n");
+
     return statusValidasiNama;
 }
 
@@ -200,6 +204,7 @@ bool validasiUsername(char *varUsername)
     int elemenUsername;
 
     bool statusValidasiUsername = true;
+    bool spasi=false; bool simbol=false;
 
     fflush(stdin);
     printf("\n\t\t Username setidaknya terdiri dari 8 karakter.\n");
@@ -220,19 +225,19 @@ bool validasiUsername(char *varUsername)
     for (elemenUsername = 0; elemenUsername <= panjangKarakter; elemenUsername++) {
         // Jika karakter adalah spasi, maka username salah
         if (isspace(varUsername[elemenUsername])) {
-            printf("\t\t Username mengandung whitespace.\n");
-            //return false;
             statusValidasiUsername= false;
-            break;
+            spasi = true;
         }
         // Jika karakter adalah simbol, maka username salah
         if (ispunct(varUsername[elemenUsername])) {
-            printf("\t\t Username mengandung simbol.\n");
-            //return false;
             statusValidasiUsername = false;
-            break;
+            simbol = true;
         }
     }
+
+    if(spasi) printf("\t\t Username mengandung whitespace.\n");
+    if(simbol) printf("\t\t Username mengandung simbol.\n");
+    
     return(statusValidasiUsername);
 }
 
@@ -351,6 +356,7 @@ bool validasiKode (char *varKode)
 
     char buffer[20];
     bool statusValidasiKode = true;
+    bool digit = false; bool simbol = false; bool spasi = false;
 
     fflush(stdin);
     printf("\t\t Kode Makanan : ");
@@ -369,23 +375,24 @@ bool validasiKode (char *varKode)
     for (elemenKode = 0; elemenKode <= panjangKarakter; elemenKode++) {
         // Jika karakter adalah digit, maka nama salah
         if (isdigit(buffer[elemenKode])) {
-            printf("\t\t Kode makanan mengandung digit angka.\n");
             statusValidasiKode = false;
-            break;
+            digit = true;
         }
         // Jika karakter adalah simbol, maka nama salah
         if (ispunct(buffer[elemenKode])) {
-            printf("\t\t Kode makanan mengandung simbol.\n");
             statusValidasiKode = false;
-            break;
+            simbol = true;
         }
         if (isspace(buffer[elemenKode])) {
-            printf("\t\t Kode makanan mengandung whitespace.\n");
-            //return false;
             statusValidasiKode= false;
-            break;
+            spasi = true;
         }
     }
+
+    if(digit) printf("\t\t Kode makanan mengandung digit angka.\n");
+    if(simbol) printf("\t\t Kode makanan mengandung simbol.\n");
+    if(spasi) printf("\t\t Kode makanan mengandung whitespace.\n");
+
     if (statusValidasiKode){
         int i;
         for(i=0; i < (strlen(buffer)); i++) {
