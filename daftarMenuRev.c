@@ -181,6 +181,15 @@ void showDaftarMenuJenis()
     FILE *fileDaftarMenu;
     fileDaftarMenu = fopen("dataDaftarMenu.txt", "r");
 
+    // Melalukan pengecekan file daftar menu
+    if (!cekFileDaftarMenu()) {
+        systemPause();
+        systemCLS();
+        if(isMember) menuAwalPelanggan();
+        else if(isKaryawan) menuAwalKaryawan();
+        else if(isPemilik) manageDaftarMenu();
+     }
+
 	printf("\t\t ________________________________________________________________________________________________________\n");
     printf("\t\t|                                        D A F T A R  M E N U                                            |\n");
     printf("\t\t|                                         CAKE ME OUT BAKERY                                             |\n");
@@ -209,6 +218,15 @@ void showDaftarMenuAll()
 {
     FILE *fileDaftarMenu;
     fileDaftarMenu = fopen("dataDaftarMenu.txt", "r");
+
+    // Melalukan pengecekan file daftar menu
+    if (!cekFileDaftarMenu()) {
+        systemPause();
+        systemCLS();
+        if(isMember) menuAwalPelanggan();
+        else if(isKaryawan) menuAwalKaryawan();
+        else if(isPemilik) manageDaftarMenu();
+     }
 
 	printf("\t\t ________________________________________________________________________________________________________\n");
     printf("\t\t|                                          D A F T A R  M E N U                                          |\n");
