@@ -1,6 +1,6 @@
 Bread;BRHD;Hokkaido Dome;Sweet bread with cookies topping;10500.00;119;
 Bread;BRHT;Hamtaro;Hazelnut chocolate bread with vanilla cream;12000.00;212;
-Bread;BRTL;Twilight;Bread filled with minced meat, onion, and parsley on top;10500.00;106;
+Bread;BRTL;Twilight;Bread filled with minced meat, onion, and parsley;10500.00;106;
 Cookies;COGC;Granola Caramel;Cookies with granola and caramel;18000.00;21;
 Cookies;COCM;Crunchy Mede;Cashew nuts fried with crispy flour;55000.00;211;
 Cookies;COTC;Triple Magic;Chocolate cookies with oatmeal, raisin, and almond;15000.00;121;

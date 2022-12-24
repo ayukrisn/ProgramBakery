@@ -195,26 +195,26 @@ void showDaftarMenuJenis()
     printf("\t\t|                                         CAKE ME OUT BAKERY                                             |\n");
     printf("\t\t|                                       Jenis Makanan : %-47s  |\n", writeMenu.jenisMakanan);
     printf("\t\t| ______________________________________________________________________________________________________ |\n");
-    printf("\t\t| NO | KODE |  NAMA MAKANAN        |                         DESKRIPSI                        |   HARGA  |\n");
+    printf("\t\t| NO | KODE |  NAMA MAKANAN        |                        DESKRIPSI                       |    HARGA   |\n");
     printf("\t\t| ------------------------------------------------------------------------------------------------------ |\n");
     int nomor = 1;
     while(!feof(fileDaftarMenu)) {
         fscanf(fileDaftarMenu, "%[^;];%[^;];%[^;];%[^;];%f;%d;\n", readMenu.jenisMakanan, readMenu.kodeMakanan, readMenu.namaMakanan, 
         readMenu.deskripsiMakanan, &readMenu.hargaMakanan, &readMenu.stock);
         if(strcmp(writeMenu.jenisMakanan, readMenu.jenisMakanan)==0) {
-            printf("\t\t| %-2d | %-4s | %-20s | %-56s | %-5.2f |\n", nomor, readMenu.kodeMakanan, readMenu.namaMakanan, readMenu.deskripsiMakanan, readMenu.hargaMakanan);  
+            printf("\t\t| %-2d | %-4s | %-20s | %-54s | Rp%-5.2f |\n", nomor, readMenu.kodeMakanan, readMenu.namaMakanan, readMenu.deskripsiMakanan, readMenu.hargaMakanan);  
             printf("\t\t| ______________________________________________________________________________________________________ |\n");
             nomor++;
         }
     }
     fclose(fileDaftarMenu);
-    printf("\t\t| ______________________________________________________________________________________________________ |\n");
+    // printf("\t\t| ______________________________________________________________________________________________________ |\n");
 }
 
 /*
     Melihat seluruh daftar menu
 */
-void showDaftarMenuAll()
+void 
 {
     FILE *fileDaftarMenu;
     fileDaftarMenu = fopen("dataDaftarMenu.txt", "r");
@@ -232,7 +232,7 @@ void showDaftarMenuAll()
     printf("\t\t|                                          D A F T A R  M E N U                                          |\n");
     printf("\t\t|                                           CAKE ME OUT BAKERY                                           |\n");
     printf("\t\t| ______________________________________________________________________________________________________ |\n");
-    printf("\t\t| NO | KODE |  NAMA MAKANAN        |                         DESKRIPSI                        |   HARGA  |\n");
+    printf("\t\t| NO | KODE |  NAMA MAKANAN        |                        DESKRIPSI                       |    HARGA   |\n");
     printf("\t\t| ------------------------------------------------------------------------------------------------------ |\n");
     
     int nomor = 1;
@@ -240,11 +240,11 @@ void showDaftarMenuAll()
     {
         fscanf(fileDaftarMenu, "%[^;];%[^;];%[^;];%[^;];%f;%d;\n", readMenu.jenisMakanan, readMenu.kodeMakanan, readMenu.namaMakanan, 
         readMenu.deskripsiMakanan, &readMenu.hargaMakanan, &readMenu.stock);
-    printf("\t\t| %-2d | %-4s | %-20s | %-56s | %-5.2f |\n", nomor, readMenu.kodeMakanan, readMenu.namaMakanan, readMenu.deskripsiMakanan, readMenu.hargaMakanan); 
+    printf("\t\t| %-2d | %-4s | %-20s | %-54s | Rp%-5.2f |\n", nomor, readMenu.kodeMakanan, readMenu.namaMakanan, readMenu.deskripsiMakanan, readMenu.hargaMakanan); 
     printf("\t\t| ______________________________________________________________________________________________________ |\n");
         nomor++;
     }
-    printf("\t\t| ______________________________________________________________________________________________________ |\n");
+    // printf("\t\t| ______________________________________________________________________________________________________ |\n");
     fclose(fileDaftarMenu);
 }
     
