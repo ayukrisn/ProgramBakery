@@ -66,10 +66,13 @@ typedef struct {
     int jamJadwalStockSore;
     int stock;
 } dataMenu;
-extern dataMenu simpanMenu[50];
 extern dataMenu writeMenu;
 extern dataMenu readMenu;
 
+/*
+    Struct yang digunakan pada saat
+    berurusan dengan jadwal restock
+*/
 typedef struct {
     int pagi;
     int siang;
@@ -82,8 +85,8 @@ extern restock jamRestock;
     berurusan dengan stock makanan
 */
 typedef struct {
-    char waktuRestock[30]; //nanti pake asctime
-    char namaYgRestock[20]; //nanti strcpy("dataKaryawan.nama", "logRestock.namaKaryawan") dsb
+    char waktuRestock[30]; //menggunakan asctime
+    char namaYgRestock[20]; //nama org yg melakukan restock
     int stockLama; //stock sebelum restock
     int jumlahRestock; //banyaknya restock
     int stockSkrg; //stock setelah restock
@@ -91,6 +94,10 @@ typedef struct {
 extern logRestock writeStock;
 extern logRestock readStock;
 
+/*
+    Struct untuk menyimpan data detail
+    transaksi
+*/
 typedef struct {
     char namaMakanan[20];
     char kodeMakanan[5];
@@ -100,8 +107,11 @@ typedef struct {
 } detailTransaksi;
 extern detailTransaksi DTransaksi[12];
 
+/*
+    Struct untuk menyimpan data transaksi
+*/
 typedef struct {
-    char namaPelanggan[30]; //nama mungkin bisa dari dataMembership.nama atau variabel char nama buat pelanggan biasa
+    char namaPelanggan[30]; 
     char namaKaryawan[30];
     char waktuTransaksi[30];
     int totalPembelian;

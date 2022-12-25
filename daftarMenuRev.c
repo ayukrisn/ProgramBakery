@@ -28,8 +28,6 @@
            untuk dimasukkan ke file/variabel program
     readMenu:  data yang dibaca dari file, yang nanti dimasukkan
            ke variabel di dalam program
-    simpanMenu:  variabel yang digunakan untuk menyimpan data
-           selama program dijalankan
 */
 dataMenu writeMenu; dataMenu readMenu;
 
