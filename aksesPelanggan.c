@@ -475,7 +475,7 @@ void hitungTotalBiaya() {
 
     //Jika pelanggan adalah member, maka mendapatkan diskon
     if (isMember) {
-        nominalDiskon.d50k = 0.01; nominalDiskon.d100k = 0.3; nominalDiskon.d200k = 0.5;
+        nominalDiskon.d50k = 0.1; nominalDiskon.d100k = 0.3; nominalDiskon.d200k = 0.5;
         if (transaksi.hargaSblmDiskon >= 50000) transaksi.totalDiskon = transaksi.hargaSblmDiskon * nominalDiskon.d50k;
         if (transaksi.hargaSblmDiskon >= 100000) transaksi.totalDiskon = transaksi.hargaSblmDiskon * nominalDiskon.d100k;
         if (transaksi.hargaSblmDiskon >= 200000) transaksi.totalDiskon = transaksi.hargaSblmDiskon * nominalDiskon.d200k;
