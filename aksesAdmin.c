@@ -460,9 +460,9 @@ void manageStockP() {
     printf("\t\t|-------------------------------------------------------|\n");
     printf("\t\t| [1] Lihat stock saat ini                              |\n");
     printf("\t\t| [2] Atur jadwal restock                               |\n");
-    printf("\t\t| [3] Tambahkan stock jadwal pagi                       |\n");
-    printf("\t\t| [4] Tambahkan stock jadwal siang                      |\n");
-    printf("\t\t| [5] Tambahkan stock jadwal sore                       |\n");
+    printf("\t\t| [3] Tambahkan stock jadwal pagi  (%2d:00)              |\n", jamRestock.pagi);
+    printf("\t\t| [4] Tambahkan stock jadwal siang (%2d:00)              |\n", jamRestock.siang);
+    printf("\t\t| [5] Tambahkan stock jadwal sore  (%2d:00)              |\n", jamRestock.sore);
     printf("\t\t| [6] Lihat riwayat stock                               |\n");
     printf("\t\t| [7] Lihat status stock                                |\n");
     printf("\t\t| [8] Kembali ke menu pemilik                           |\n");
@@ -561,9 +561,9 @@ void manageStockK()
     printf("\t\t|_______________________________________________________|\n");
     printf("\t\t|           Silahkan pilih menu yang diinginkan.        |\n");
     printf("\t\t|-------------------------------------------------------|\n");
-    printf("\t\t| [1] Tambahkan stock jadwal pagi                       |\n");
-    printf("\t\t| [2] Tambahkan stock jadwal siang                      |\n");
-    printf("\t\t| [3] Tambahkan stock jadwal sore                       |\n");
+    printf("\t\t| [1] Tambahkan stock jadwal pagi  (%2d:00)              |\n", jamRestock.pagi);
+    printf("\t\t| [2] Tambahkan stock jadwal siang (%2d:00)              |\n", jamRestock.siang);
+    printf("\t\t| [3] Tambahkan stock jadwal sore  (%2d:00)              |\n", jamRestock.sore);
     printf("\t\t| [4] Lihat jumlah stock                                |\n");
     printf("\t\t| [5] Kembali ke menu karyawan                          |\n");
     printf("\t\t|_______________________________________________________|\n");
