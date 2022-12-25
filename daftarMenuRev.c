@@ -423,15 +423,17 @@ void hapusDaftarMenu()
     readMenu.deskripsiMakanan, readMenu.hargaMakanan, readMenu.stock);
         }
     }
-    printf("\t\t _______________________________________________________ \n");
-    printf("\t\t|             Data telah dihapus dari file.             |\n");
-    printf("\t\t|_______________________________________________________|\n");
     fclose(fileDaftarMenu);
     fclose(tempDaftarMenu);
 
     // Ganti file baru dengan file lama
     remove("dataDaftarMenu.txt");
     rename("tempDaftarMenu.txt","dataDaftarMenu.txt");
+
+    printf("\t\t _______________________________________________________ \n");
+    printf("\t\t|             Data telah dihapus dari file.             |\n");
+    printf("\t\t|_______________________________________________________|\n");
+    
     systemPause();
     systemCLS();
     manageDaftarMenu();
