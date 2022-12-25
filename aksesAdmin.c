@@ -565,10 +565,11 @@ void manageStockK()
     printf("\t\t| [2] Tambahkan stock jadwal siang (%2d:00)              |\n", jamRestock.siang);
     printf("\t\t| [3] Tambahkan stock jadwal sore  (%2d:00)              |\n", jamRestock.sore);
     printf("\t\t| [4] Lihat jumlah stock                                |\n");
-    printf("\t\t| [5] Kembali ke menu karyawan                          |\n");
+    printf("\t\t| [5] Lihat status restock                              |\n");
+    printf("\t\t| [6] Kembali ke menu karyawan                          |\n");
     printf("\t\t|_______________________________________________________|\n");
-    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-5) : ");
-    pilihanUser(&pilihan, 1, 5);
+    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-6) : ");
+    pilihanUser(&pilihan, 1, 6);
     fflush(stdin);
     if (pilihan == 1) {
         systemCLS();
@@ -582,7 +583,10 @@ void manageStockK()
         } else if (pilihan == 4 ) {
             systemCLS();
             lihatStock();
-        } else if (pilihan == 5) {
+        } else if (pilihan == 5 ) {
+            systemCLS();
+            statusRestock(); 
+        } else if (pilihan == 6) {
             systemCLS();
             menuAwalKaryawan();
         }

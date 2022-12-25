@@ -243,7 +243,8 @@ void statusRestock()
     // Kembali ke menu manage stock pemilik
     systemPause();
     systemCLS();
-    manageStockP();
+    if (isPemilik) manageStockP();
+    else if (isKaryawan) manageStockK();
 }
 
 /*
