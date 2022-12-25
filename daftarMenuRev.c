@@ -214,7 +214,7 @@ void showDaftarMenuJenis()
 /*
     Melihat seluruh daftar menu
 */
-void 
+void showDaftarMenuAll()
 {
     FILE *fileDaftarMenu;
     fileDaftarMenu = fopen("dataDaftarMenu.txt", "r");
