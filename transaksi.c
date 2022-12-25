@@ -90,9 +90,22 @@ void simpanRiwayatTransaksi(int urutan)
 
 void readFileStruk(FILE *pfileStruk)
 {
-    char c;
-    while((c=fgetc(pfileStruk))!=EOF){
-        printf("%c", c);
+    if(pfileStruk == NULL) {
+        printf("\t\t _________________________________________________________________ \n");
+        printf("\t\t|                                                                 |\n");
+        printf("\t\t|                 Riwayat transaksi tidak ditemukan               |\n");
+        printf("\t\t|_________________________________________________________________|\n");
+        systemPause();
+        systemCLS();
+        if (isPelanggan) menuAwalPelanggan();
+        else if (isKaryawan) menuAwalKaryawan();
+        else if (isPemilik) menuAwalPemilik();
+    } 
+    else {
+        char c;
+        while((c=fgetc(pfileStruk))!=EOF){
+            printf("%c", c);
+        }
     }
 }
 
