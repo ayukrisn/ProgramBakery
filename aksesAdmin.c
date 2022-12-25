@@ -4,7 +4,7 @@
     fungsi/prosedur yang dapat dijalankan
     oleh pemilik dan karyawan
     Contoh: membuka program untuk pelanggan, 
-            manage akun karyawan
+            manage akun karyawan dan membership
             manage daftar menu
             manage status penjualan
 ==================================================
@@ -22,8 +22,13 @@
 #include "pendukung.h"
 #include "daftarMenuRev.h"
 #include "restock.h"
+#include "transaksi.h"
 #include "aksesPelanggan.h"
 
+/*
+    Bool untuk menandakan apakah yang melakukan log in
+    merupakan pemilik atau karyawan
+*/
 bool isPemilik = false; bool isKaryawan = false;
 /*
     ===========================================================================
@@ -32,7 +37,7 @@ bool isPemilik = false; bool isKaryawan = false;
 */
 
 /*
-    Prosedur menu awal setelah melakukan sign in pemilik
+    Menu awal setelah melakukan sign in pemilik
 */
 void menuAwalPemilik()
 {
@@ -47,13 +52,14 @@ void menuAwalPemilik()
     printf("\t\t| [3] Manage akun membership                            |\n");
     printf("\t\t| [4] Manage daftar menu                                |\n");
     printf("\t\t| [5] Manage sistem stock                               |\n");
-    printf("\t\t| [6] Manage riwayat transaksi                          |\n");
+    printf("\t\t| [6] Lihat riwayat transaksi                           |\n");
     printf("\t\t| [7] Sign out dan kembali ke menu awal                 |\n");
     printf("\t\t|_______________________________________________________|\n");
     printf("\t\t  Ketik pilihan dengan angka yang tertera (1-7) : ");
     pilihanUser(&pilihan, 1, 7);
     fflush(stdin);
     if (pilihan == 1) {
+        systemCLS();
         konfirmasiBuka();
     } else if (pilihan == 2) {
         systemCLS();
@@ -69,7 +75,7 @@ void menuAwalPemilik()
         manageStockP();
     } else if (pilihan == 6 ) {
         systemCLS();
-        //manageRiwayatTransaksi();
+        lihatRiwayatTransaksi();
     } else if (pilihan == 7 ) {
         isPemilik = false;
         systemCLS();
@@ -115,7 +121,6 @@ void manageAkunMembership()
 /*
     Melihat daftar akun membership
 */
-
 void listMembership()
 {
     showListMembership();
@@ -168,7 +173,7 @@ void showListMembership()
         
         {
             fscanf(fileMember, "%[^;];%[^;];%[^;];\n", readUser.membership.nama, readUser.membership.username, readUser.membership.password);
-            printf("\t\t| %d | %-12s | %-11s | %-12s |\n", print, readUser.membership.nama, readUser.membership.username, readUser.membership.password);
+            printf("\t\t|  %-4d| %-12s| %-12s| %-19s|\n", print, readUser.membership.nama, readUser.membership.username, readUser.membership.password);
             printf("\t\t|_______________________________________________________|\n");
             print++;
         }
@@ -176,10 +181,10 @@ void showListMembership()
     fclose(fileMember);
 }
 
+
 /*
     Menghapus daftar akun membership
 */
-
 void hapusMembership()
 {
     printf("\t\t _______________________________________________________ \n");
@@ -188,7 +193,7 @@ void hapusMembership()
     showListMembership();
 
     printf("\t\t  Ketik username membership yang ingin dihapus : ");
-    scanf("%[^\n]", writeUser.membership.username);
+    scanf("%19[^\n]", writeUser.membership.username);
     getchar();
 
     FILE *fileMember;
@@ -238,10 +243,10 @@ void hapusMembership()
     }
 }
 
+
 /*
     Menunjukkan menu untuk memanage akun karyawan
 */
-
 void manageKaryawan()
 {
     int pilihan;
@@ -273,10 +278,10 @@ void manageKaryawan()
         }
 }
 
+
 /*
     Melihat daftar karyawan
 */
-
 void listKaryawan()
 {
     showListKaryawan();
@@ -329,7 +334,7 @@ void showListKaryawan()
         
         {
             fscanf(fileKaryawan, "%[^;];%[^;];%[^;];\n", readUser.karyawan.nama, readUser.karyawan.username, readUser.karyawan.password);
-            printf("\t\t| %d   | %s          | %s          | %s                 |\n", print, readUser.karyawan.nama, readUser.karyawan.username, readUser.karyawan.password);
+            printf("\t\t|  %-4d| %-12s| %-12s| %-19s|\n", print, readUser.karyawan.nama, readUser.karyawan.username, readUser.karyawan.password);
             printf("\t\t|_______________________________________________________|\n");
             print++;
         }
@@ -338,6 +343,9 @@ void showListKaryawan()
 }
 
 
+/*
+    Menghapus akun karyawan
+*/
 void hapusKaryawan() 
 {
     printf("\t\t _______________________________________________________ \n");
@@ -346,7 +354,7 @@ void hapusKaryawan()
     showListKaryawan();
 
     printf("\t\t  Ketik username karyawan yang ingin dihapus : ");
-    scanf("%[^\n]", writeUser.karyawan.username);
+    scanf("%19[^\n]", writeUser.karyawan.username);
     getchar();
 
     FILE *fileKaryawan;
@@ -436,6 +444,14 @@ void manageDaftarMenu()
     Prosedur dapat dilihat di restock.c
 */
 void manageStockP() {
+
+    // Memeriksa apakah file daftar menu sudah ada atau belum
+    if (!cekFileDaftarMenu()) {
+        systemPause();
+        systemCLS();
+        manageDaftarMenu();
+    }
+
     int pilihan;
     printf("\t\t _______________________________________________________ \n");
     printf("\t\t|                 M A N A G E  S T O C K                |\n");
@@ -451,7 +467,7 @@ void manageStockP() {
     printf("\t\t| [7] Lihat status stock                                |\n");
     printf("\t\t| [8] Kembali ke menu pemilik                           |\n");
     printf("\t\t|_______________________________________________________|\n");
-    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-8) :        \n");
+    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-8) : ");
     pilihanUser(&pilihan, 1, 8);
     fflush(stdin);
     if (pilihan == 1) {
@@ -518,7 +534,7 @@ void menuAwalKaryawan()
             lihatDaftarMenuK();
         } else if (pilihan == 4 ) {
             systemCLS();
-            //lihatRiwayatTransaksi();
+            lihatRiwayatTransaksi();
         } else if (pilihan == 5) {
             isKaryawan = false;
             systemCLS();
@@ -532,6 +548,13 @@ void menuAwalKaryawan()
 */
 void manageStockK()
 {
+    // Memeriksa apakah file daftar menu sudah ada atau belum
+    if (!cekFileDaftarMenu()) {
+        systemPause();
+        systemCLS();
+        menuAwalKaryawan();
+    }
+
     int pilihan;
     printf("\t\t _______________________________________________________ \n");
     printf("\t\t|                  M A N A G E  S T O C K               |\n");
@@ -544,7 +567,7 @@ void manageStockK()
     printf("\t\t| [4] Lihat jumlah stock                                |\n");
     printf("\t\t| [5] Kembali ke menu karyawan                          |\n");
     printf("\t\t|_______________________________________________________|\n");
-    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-5) :        \n");
+    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-5) : ");
     pilihanUser(&pilihan, 1, 5);
     fflush(stdin);
     if (pilihan == 1) {
@@ -573,21 +596,32 @@ void manageStockK()
 
 /*
     Prosedur menu konfirmasi pembukaan program untuk pelanggan
-    bila update stock pagi belum dilaksanakan
+    bila update stock belum dilaksanakan atau file menu tidak ada
+    Bila terkonfirmasi, melanjutkan ke menu masuk pelanggan
+    pada aksesPelanggan.c
 */
 void konfirmasiBuka()
 {
+    // Memeriksa apakah file daftar menu sudah ada atau belum
+    if (!cekFileDaftarMenu()) {
+        systemPause();
+        systemCLS();
+        if (isPemilik) manageDaftarMenu();
+        else if (isKaryawan) menuAwalKaryawan();
+    }
+
     int pilihan;
-    if(!updateStockPagi) {
+    // Memeriksa apakah update stock sudah dilakukan
+    if(!updateStockPagi && !updateStockSiang && !updateStockSore) {
         printf("\t\t _______________________________________________________ \n");
         printf("\t\t|                [!] P E R I N G A T A N                |\n");
         printf("\t\t|                                                       |\n");
-        printf("\t\t|            Anda belum melakukan restock pagi.         |\n");
+        printf("\t\t|              Anda belum melakukan restock.            |\n");
         printf("\t\t|       Lanjutkan membuka program untuk pelanggan?      |\n");
         printf("\t\t|_______________________________________________________|\n");
         printf("\t\t| [1] Ya, lanjutkan                                     |\n");
-        printf("\t\t| [2] Tidak, lanjutkan ke restock pagi                  |\n");
-        printf("\t\t| [3] Tidak, kembali ke menu karyawan                   |\n");
+        printf("\t\t| [2] Tidak, lanjutkan ke bagian restock                |\n");
+        printf("\t\t| [3] Tidak, kembali ke menu awal                       |\n");
         printf("\t\t|_______________________________________________________|\n");
         printf("\t\t  Ketik pilihan dengan angka yang tertera (1-3) : ");
         pilihanUser(&pilihan, 1, 5);
@@ -597,16 +631,25 @@ void konfirmasiBuka()
         menuMasukPelanggan();
         } else if (pilihan == 2) {
             systemCLS();
-            restockJadwalPagi();
+            if (isPemilik)
+            manageStockP();
+            else if (isKaryawan)
+            manageStockK();
         } else if (pilihan == 3 ) {
             systemCLS();
-            menuAwalKaryawan();
+            if (isKaryawan) menuAwalKaryawan();
+            if (isPemilik) menuAwalPemilik();
         }
+    } else {
+        systemCLS();
+        menuMasukPelanggan();
     }
 }
 
+
 /*
     Konfirmasi untuk menutup menu pelanggan
+    Menu pelanggan hanya dapat ditutup oleh pemilik
 */
 void konfirmasiTutup() 
 {
@@ -619,11 +662,11 @@ void konfirmasiTutup()
     
     if(isPemilik) {
         printf("\t\t  Username : ");
-        scanf("%[^\n]", writeUser.pemilik.username);
+        scanf("%19[^\n]", writeUser.pemilik.username);
         getchar();
 
         printf("\t\t  Password : ");
-        scanf("%[^\n]", writeUser.pemilik.password);
+        scanf("%19[^\n]", writeUser.pemilik.password);
         getchar();
 
         //Memeriksa apakah username dan password yang diberikan benar atau tidak
@@ -636,11 +679,11 @@ void konfirmasiTutup()
     } 
     if(isKaryawan) {
         printf("\t\t  Username : ");
-        scanf("%[^\n]", writeUser.karyawan.username);
+        scanf("%19[^\n]", writeUser.karyawan.username);
         getchar();
 
         printf("\t\t  Password : ");
-        scanf("%[^\n]", writeUser.karyawan.password);
+        scanf("%19[^\n]", writeUser.karyawan.password);
         getchar();
 
         //Memeriksa apakah username dan password yang diberikan benar atau tidak

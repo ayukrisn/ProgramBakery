@@ -16,15 +16,6 @@
 #define LOG_IN_H
 
 /*
-    DEKLARASI VARIABEL
-*/
-
-
-
-/*
-    DEKLARASI PROSEDUR DAN FUNGSI
-*/
-/*
         void menuPertama();
     Prosedur yang dipanggil untuk menampilkan menu pertama
     pada saat program dijalankan

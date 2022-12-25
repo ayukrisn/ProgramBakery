@@ -92,8 +92,8 @@ extern logRestock writeStock;
 extern logRestock readStock;
 
 typedef struct {
-    char namaMakanan;
-    char kodeMakanan;
+    char namaMakanan[20];
+    char kodeMakanan[5];
     float hargaSatuan;
     int banyakPembelian;
     float hargaTotal;
@@ -101,20 +101,34 @@ typedef struct {
 extern detailTransaksi DTransaksi[12];
 
 typedef struct {
-    char kodeTransaksi;
-    char usernameM[20]; //strcpy dari dataMembership.username, klo pelanggan biasa strcpy "GuestCostumer"
     char namaPelanggan[30]; //nama mungkin bisa dari dataMembership.nama atau variabel char nama buat pelanggan biasa
     char namaKaryawan[30];
-    char usernameK[20];
     char waktuTransaksi[30];
     int totalPembelian;
+    float hargaSblmDiskon;
+    float totalDiskon;
     float hargaTotal;
+    float jumlahPembayaran;
+    float jumlahKembalian;
 } dataTransaksi;
-extern dataTransaksi Transaksi;
+extern dataTransaksi transaksi;
+
+/*
+    Struct untuk menyimpan tipe diskon
+    untuk membership
+*/
+typedef struct {
+    float d50k;
+    float d100k;
+    float d200k;
+} tipeDiskon;
+extern tipeDiskon nominalDiskon;
+
 
 /*
     Bool untuk memastikan apakah restock sudah
-    dilakukan atau belum
+    dilakukan atau belum. Bila sudah diupdate,
+    variabel akan diset ke true
 */
 extern bool updateStockPagi;
 extern bool updateStockSiang;
@@ -124,6 +138,7 @@ extern bool updateStockSore;
     Bool untuk memastikan apakah pelanggan yang masuk merupakan 
     pelanggan dengan membership atau tidak
 */
+extern bool isPelanggan;
 extern bool isMember;
 
 /*

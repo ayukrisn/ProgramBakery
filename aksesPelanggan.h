@@ -15,5 +15,8 @@
 #define AKSES_PELANGGAN_H
 
 void menuMasukPelanggan(); void tanyaAkun(); void signUpAccount(); void signInAccount();
+    void menuAwalPelanggan(); void lihatDaftarMenuM();
+
+void pemesanan(); void transaksiPelanggan(); void pembayaran(); void hitungPembayaran(); void hitungTotalBiaya();
 
 #endif //AKSES_PELANGGAN_H

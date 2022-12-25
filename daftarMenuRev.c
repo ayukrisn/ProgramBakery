@@ -18,6 +18,7 @@
 #include "pendukung.h"
 #include "daftarMenuRev.h"
 #include "restock.h"
+#include "transaksi.h"
 #include "aksesPelanggan.h"
 
 /*
@@ -36,6 +37,11 @@ dataMenu writeMenu; dataMenu readMenu;
 =================================================================
  P E R I K S A  D A F T A R  M E N U
 =================================================================
+*/
+
+/*
+    Prosedur yang digunakan untuk memeriksa
+    apakah file daftar menu ada atau tidak
 */
 bool cekFileDaftarMenu()
 {
@@ -67,14 +73,17 @@ bool cekFileDaftarMenu()
 */ 
 void lihatDaftarMenuP()
 {
+    // Melalukan pengecekan file daftar menu
      if (!cekFileDaftarMenu()) {
         systemPause();
         systemCLS();
         manageDaftarMenu();
      }
     
+    // Memanggil prosedur untuk melihat daftar menu
     lihatDaftarMenu();
 
+    // Menanyakan ingin kembali ke menu yg mana
     int pilihan;
     printf("\t\t _______________________________________________________ \n");    
     printf("\t\t|           Ingin kembali ke menu sebelumnya?           |\n");
@@ -101,43 +110,22 @@ void lihatDaftarMenuP()
 void lihatDaftarMenuK()
 {
 
+    // Melalukan pengecekan file daftar menu
     if (!cekFileDaftarMenu()) {
         systemPause();
         systemCLS();
         menuAwalKaryawan();
      }
 
+    // Memanggil prosedur untuk melihat daftar menu
     lihatDaftarMenu();
+
+    // Kembali ke menu awal
     systemPause();
     systemCLS();
     menuAwalKaryawan();
 }
 
-/*
-    Lihat daftar menu untuk pelanggan
-*/ 
-void lihatDaftarMenuM()
-{
-    if (!cekFileDaftarMenu()) {
-        systemPause();
-        systemCLS();
-        menuMasukPelanggan();
-     }
-
-    lihatDaftarMenu();
-        int pilihan;
-        printf("\t\t _________________________________________________________________ \n");    
-        printf("\t\t|                        Lanjutkan ke pemesanan?                  |\n");
-	    printf("\t\t|-----------------------------------------------------------------|\n");
-        printf("\t\t|                        [1] Ya        [2] Tidak                  |\n");
-        printf("\t\t|-----------------------------------------------------------------|\n");
-        printf("\t\t|               [3] Sign out dan kembali ke menu masuk            |\n");
-	    printf("\t\t|_________________________________________________________________|\n");
-        printf("\t\t  Ketik pilihan dengan angka yang tertera (1-3) : ");
-    systemPause();
-    systemCLS();
-    menuAwalKaryawan();
-}
 
 /*
     Memilih daftar menu yang diinginkan
@@ -172,7 +160,13 @@ void lihatDaftarMenu()
     //Bila pilih kembali
     } else if (pilihan == 6) {
         systemCLS();
-        menuAwalPemilik();
+        if (isPelanggan) {
+            menuAwalPelanggan();
+        } else if (isKaryawan) {
+            menuAwalKaryawan();
+        } else if (isPemilik) {
+            manageDaftarMenu();
+        }
     }
 }
 
@@ -187,53 +181,70 @@ void showDaftarMenuJenis()
     FILE *fileDaftarMenu;
     fileDaftarMenu = fopen("dataDaftarMenu.txt", "r");
 
-	  printf("\t\t __________________________________________________________________________________________________\n");
-	  printf("\t\t|                                    D A F T A R  M E N U                                          |\n");
-    printf("\t\t|                                     CAKE ME OUT BAKERY                                           |\n");
-    printf("\t\t|                                  Jenis Makanan: %-49s|\n", writeMenu.jenisMakanan);
-    printf("\t\t| _________________________________________________________________________________________________|\n");
-    printf("\t\t| NO | KODE |  NAMA MAKANAN   |                         DESKRIPSI                        |  HARGA  |\n");
-    printf("\t\t| ------------------------------------------------------------------------------------------------ |\n");
+    // Melalukan pengecekan file daftar menu
+    if (!cekFileDaftarMenu()) {
+        systemPause();
+        systemCLS();
+        if(isMember) menuAwalPelanggan();
+        else if(isKaryawan) menuAwalKaryawan();
+        else if(isPemilik) manageDaftarMenu();
+     }
 
+	printf("\t\t ________________________________________________________________________________________________________\n");
+    printf("\t\t|                                        D A F T A R  M E N U                                            |\n");
+    printf("\t\t|                                         CAKE ME OUT BAKERY                                             |\n");
+    printf("\t\t|                                       Jenis Makanan : %-47s  |\n", writeMenu.jenisMakanan);
+    printf("\t\t| ______________________________________________________________________________________________________ |\n");
+    printf("\t\t| NO | KODE |  NAMA MAKANAN        |                        DESKRIPSI                       |    HARGA   |\n");
+    printf("\t\t| ------------------------------------------------------------------------------------------------------ |\n");
     int nomor = 1;
     while(!feof(fileDaftarMenu)) {
-              fscanf(fileDaftarMenu, "%[^;];%[^;];%[^;];%[^;];%f;%d;\n", readMenu.jenisMakanan, readMenu.kodeMakanan, readMenu.namaMakanan, 
+        fscanf(fileDaftarMenu, "%[^;];%[^;];%[^;];%[^;];%f;%d;\n", readMenu.jenisMakanan, readMenu.kodeMakanan, readMenu.namaMakanan, 
         readMenu.deskripsiMakanan, &readMenu.hargaMakanan, &readMenu.stock);
         if(strcmp(writeMenu.jenisMakanan, readMenu.jenisMakanan)==0) {
-
-            printf("\t\t| %-2d | %-4s | %-20s | %-50s | %-5.2f |\n", nomor, readMenu.kodeMakanan, readMenu.namaMakanan, readMenu.deskripsiMakanan, readMenu.hargaMakanan);  
+            printf("\t\t| %-2d | %-4s | %-20s | %-54s | Rp%-5.2f |\n", nomor, readMenu.kodeMakanan, readMenu.namaMakanan, readMenu.deskripsiMakanan, readMenu.hargaMakanan);  
+            printf("\t\t| ______________________________________________________________________________________________________ |\n");
             nomor++;
+        }
     }
-    printf("\t\t|__________________________________________________________________________________________________|\n");
     fclose(fileDaftarMenu);
-}
+    // printf("\t\t| ______________________________________________________________________________________________________ |\n");
 }
 
 /*
     Melihat seluruh daftar menu
 */
-void showDaftarMenuAll()
+void 
 {
     FILE *fileDaftarMenu;
     fileDaftarMenu = fopen("dataDaftarMenu.txt", "r");
 
-	printf("\t\t __________________________________________________________________________________________________\n");
-    printf("\t\t|                                    D A F T A R  M E N U                                          |\n");
-    printf("\t\t|                                     CAKE ME OUT BAKERY                                           |\n");
-    printf("\t\t| _________________________________________________________________________________________________|\n");
-    printf("\t\t| NO | KODE |  NAMA MAKANAN        |                      DESKRIPSI                     |   HARGA  |\n");
-    printf("\t\t| ------------------------------------------------------------------------------------------------ |\n");
+    // Melalukan pengecekan file daftar menu
+    if (!cekFileDaftarMenu()) {
+        systemPause();
+        systemCLS();
+        if(isMember) menuAwalPelanggan();
+        else if(isKaryawan) menuAwalKaryawan();
+        else if(isPemilik) manageDaftarMenu();
+     }
+
+	printf("\t\t ________________________________________________________________________________________________________\n");
+    printf("\t\t|                                          D A F T A R  M E N U                                          |\n");
+    printf("\t\t|                                           CAKE ME OUT BAKERY                                           |\n");
+    printf("\t\t| ______________________________________________________________________________________________________ |\n");
+    printf("\t\t| NO | KODE |  NAMA MAKANAN        |                        DESKRIPSI                       |    HARGA   |\n");
+    printf("\t\t| ------------------------------------------------------------------------------------------------------ |\n");
     
     int nomor = 1;
     while(!feof(fileDaftarMenu))
     {
         fscanf(fileDaftarMenu, "%[^;];%[^;];%[^;];%[^;];%f;%d;\n", readMenu.jenisMakanan, readMenu.kodeMakanan, readMenu.namaMakanan, 
         readMenu.deskripsiMakanan, &readMenu.hargaMakanan, &readMenu.stock);
-        printf("\t\t| %-2d | %-4s | %-20s | %-50s | %-5.2f |\n", nomor, readMenu.kodeMakanan, readMenu.namaMakanan, readMenu.deskripsiMakanan, readMenu.hargaMakanan); 
-        printf("\t\t|__________________________________________________________________________________________________|\n");
+    printf("\t\t| %-2d | %-4s | %-20s | %-54s | Rp%-5.2f |\n", nomor, readMenu.kodeMakanan, readMenu.namaMakanan, readMenu.deskripsiMakanan, readMenu.hargaMakanan); 
+    printf("\t\t| ______________________________________________________________________________________________________ |\n");
         nomor++;
     }
-    printf("\t\t |________________________________________________________________________________________________|\n");
+    // printf("\t\t| ______________________________________________________________________________________________________ |\n");
     fclose(fileDaftarMenu);
 }
     
@@ -255,6 +266,7 @@ void tambahDaftarMenu()
     printf("\t\t|---------------------------------------------------------|\n");
     printf("\t\t|             [5] Kembali ke menu sebelumnya              |\n");
 	printf("\t\t|_________________________________________________________|\n");
+    printf("\t\t  Ketik pilihan dengan angka yang tertera (1-5) : ");
     pilihanUser(&pilihanJenis, 1, 5);
     if (pilihanJenis == 1) strcpy(writeMenu.jenisMakanan, "Bread");
     else if (pilihanJenis == 2) strcpy(writeMenu.jenisMakanan, "Cookies");
@@ -275,23 +287,20 @@ void tambahDaftarMenu()
 
     //Menambahkan kode makanan (perlu validasi)
     printf("\t\t Format kode makanan: 4 huruf (2 huruf mewakili jenis, 2 huruf mewakili nama)\n");
-    printf("\t\t Kode makanan : ");
-    scanf("%[^\n]", writeMenu.kodeMakanan);
-    getchar();
-    printf("\t\t _____________________________________________________________________________\n");
+    inputKode(writeMenu.kodeMakanan);
+    
     //Menambahkan nama makanan
     inputNama(writeMenu.namaMakanan);
-    printf("\t\t _____________________________________________________________________________\n");
+    
     //Menambahkan deskripsi makanan
     printf("\t\t Deskripsi makanan : ");
-    scanf("%[^\n]", writeMenu.deskripsiMakanan);
+    scanf("%99[^\n]", writeMenu.deskripsiMakanan);
     getchar();
-    printf("\t\t _____________________________________________________________________________\n");
+
     //Menambahkan harga makanan
     printf("\t\t Harga makanan : ");
-    scanf("%f", &writeMenu.hargaMakanan);
-    getchar();
-    printf("\t\t _____________________________________________________________________________\n");
+    inputHarga(&writeMenu.hargaMakanan);
+    
     writeMenu.stock = 0;
 
     // printf("Data dari user: %s\n%s\n%.2f\n", writeMenu.namaMakanan, writeMenu.deskripsiMakanan, writeMenu.hargaMakanan);
@@ -355,9 +364,9 @@ void tambahDaftarMenu()
 */
 void hapusDaftarMenu()
 {
-    printf("\t\t _______________________________________________________ \n");
-    printf("\t\t|              H A P U S  D A F T A R  M E N U          |\n");
-    printf("\t\t|_______________________________________________________|\n");
+    printf("\t\t ________________________________________________________________________________________________________ \n");
+    printf("\t\t|                                     H A P U S  D A F T A R  M E N U                                    |\n");
+    printf("\t\t|________________________________________________________________________________________________________|\n");
 
     if (!cekFileDaftarMenu()) {
         systemPause();
@@ -365,15 +374,18 @@ void hapusDaftarMenu()
         manageDaftarMenu();
     }
     
+    // Menunjukkan seluruh daftar menu terlebih dahulu
     showDaftarMenuAll();
 
-    printf("\t\t  Ketik kode makanan yang ingin dihapus : ");
-    scanf("%[^\n]", writeMenu.kodeMakanan);
-    getchar();
+    // Input kode makanan yang ingin dihapus
+    printf("\t\t Ketik kode makanan yang ingin dihapus : \n");
+    inputKode(writeMenu.kodeMakanan);
 
+    // Membuka file daftar menu untuk dibaca
     FILE *fileDaftarMenu;
     fileDaftarMenu = fopen("dataDaftarMenu.txt", "r");
 
+    // Mencari kode makanan yang cocok dengan data yg ada
     int cari=0;
      do {
         fscanf(fileDaftarMenu, "%[^;];%[^;];%[^;];%[^;];%f;%d;\n", readMenu.jenisMakanan, readMenu.kodeMakanan, readMenu.namaMakanan, 
@@ -389,6 +401,7 @@ void hapusDaftarMenu()
         }
     } while (!feof(fileDaftarMenu));
 
+    // Bila tidak ditemukan, berikan instruksi dan kembali ke menu sebelumnya
     if(cari==0) {
         printf("\t\t _______________________________________________________ \n");
 	    printf("\t\t|                 Data tidak ditemukan.                 |\n");
@@ -397,7 +410,8 @@ void hapusDaftarMenu()
         systemCLS();
         manageDaftarMenu();
     } else {
-
+    
+    // Bila ditemukan, lakukan rewrite ke file baru
     FILE *tempDaftarMenu;
 	tempDaftarMenu=fopen("tempDaftarMenu.txt","w+");
 	rewind(fileDaftarMenu);
@@ -409,13 +423,17 @@ void hapusDaftarMenu()
     readMenu.deskripsiMakanan, readMenu.hargaMakanan, readMenu.stock);
         }
     }
+    fclose(fileDaftarMenu);
+    fclose(tempDaftarMenu);
+
+    // Ganti file baru dengan file lama
+    remove("dataDaftarMenu.txt");
+    rename("tempDaftarMenu.txt","dataDaftarMenu.txt");
+
     printf("\t\t _______________________________________________________ \n");
     printf("\t\t|             Data telah dihapus dari file.             |\n");
     printf("\t\t|_______________________________________________________|\n");
-    fclose(fileDaftarMenu);
-    fclose(tempDaftarMenu);
-    remove("dataDaftarMenu.txt");
-    rename("tempDaftarMenu.txt","dataDaftarMenu.txt");
+    
     systemPause();
     systemCLS();
     manageDaftarMenu();

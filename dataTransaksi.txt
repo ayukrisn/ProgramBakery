@@ -1,0 +1,119 @@
+		 _________________________________________________________________ 
+		|                  C A K E  M E  O U T  B A K E R Y               | 
+		|                   S T R U K  P E M B A Y A R A N                |
+		|=================================================================|
+		  > Waktu Pembayaran : Thu Dec 22 20:32:52 2022                   
+		| > Nama Pegawai     : Ayu Krisna                                 |
+		| > Nama Pelanggan   : Akiko Hansel                               |
+		|_________________________________________________________________|
+		| Pesanan ke-1                                                    |
+		| > Nama Pesanan     : Tiramisu Slice                             |
+		| > Harga Satuan     : Rp22000.00                                 |
+		| > Pembelian        : 12                                         |
+		| > Harga Total      : Rp264000.00                                |
+		|_________________________________________________________________|
+		| Pesanan ke-2                                                    |
+		| > Nama Pesanan     : Eq Cheese                                  |
+		| > Harga Satuan     : Rp27500.00                                 |
+		| > Pembelian        : 12                                         |
+		| > Harga Total      : Rp330000.00                                |
+		|_________________________________________________________________|
+		| > Total Pembelian  : 24                                         |
+		| > Sub Total        : Rp594000.00                                |
+		| > Total Diskon     : Rp297000.00                                |
+		| > Harga Total      : Rp297000.00                                |
+		|_________________________________________________________________|
+		| > Total Pembayaran : Rp1000000.00                               |
+		| > Kembalian        : Rp703000.00                                |
+		 _________________________________________________________________ 
+		 _________________________________________________________________ 
+		|                  C A K E  M E  O U T  B A K E R Y               | 
+		|                   S T R U K  P E M B A Y A R A N                |
+		|=================================================================|
+		  > Waktu Pembayaran : Thu Dec 22 20:33:42 2022                   
+		| > Nama Pegawai     : Ayu Krisna                                 |
+		| > Nama Pelanggan   : Akiko Hansel                               |
+		|_________________________________________________________________|
+		| Pesanan ke-1                                                    |
+		| > Nama Pesanan     : Tiramisu Slice                             |
+		| > Harga Satuan     : Rp22000.00                                 |
+		| > Pembelian        : 12                                         |
+		| > Harga Total      : Rp264000.00                                |
+		|_________________________________________________________________|
+		| Pesanan ke-2                                                    |
+		| > Nama Pesanan     : Eq Cheese                                  |
+		| > Harga Satuan     : Rp27500.00                                 |
+		| > Pembelian        : 12                                         |
+		| > Harga Total      : Rp330000.00                                |
+		|_________________________________________________________________|
+		| Pesanan ke-3                                                    |
+		| > Nama Pesanan     : Choco Rain Slice                           |
+		| > Harga Satuan     : Rp18000.00                                 |
+		| > Pembelian        : 12                                         |
+		| > Harga Total      : Rp216000.00                                |
+		|_________________________________________________________________|
+		| Pesanan ke-4                                                    |
+		| > Nama Pesanan     : Mocha Meyses                               |
+		| > Harga Satuan     : Rp25000.00                                 |
+		| > Pembelian        : 1                                          |
+		| > Harga Total      : Rp25000.00                                 |
+		|_________________________________________________________________|
+		| > Total Pembelian  : 61                                         |
+		| > Sub Total        : Rp1429000.00                               |
+		| > Total Diskon     : Rp714500.00                                |
+		| > Harga Total      : Rp714500.00                                |
+		|_________________________________________________________________|
+		| > Total Pembayaran : Rp800000.00                                |
+		| > Kembalian        : Rp85500.00                                 |
+		 _________________________________________________________________ 
+		 _________________________________________________________________ 
+		|                  C A K E  M E  O U T  B A K E R Y               | 
+		|                   S T R U K  P E M B A Y A R A N                |
+		|=================================================================|
+		  > Waktu Pembayaran : Sat Dec 24 10:49:59 2022                   
+		| > Nama Pegawai     : Ayu Krisna                                 |
+		| > Nama Pelanggan   : Akiko Hansel                               |
+		|_________________________________________________________________|
+		| Pesanan ke-1                                                    |
+		| > Nama Pesanan     : Twilight                                   |
+		| > Harga Satuan     : Rp10500.00                                 |
+		| > Pembelian        : 3                                          |
+		| > Harga Total      : Rp31500.00                                 |
+		|_________________________________________________________________|
+		| Pesanan ke-2                                                    |
+		| > Nama Pesanan     : Eq Cheese                                  |
+		| > Harga Satuan     : Rp27500.00                                 |
+		| > Pembelian        : 4                                          |
+		| > Harga Total      : Rp110000.00                                |
+		|_________________________________________________________________|
+		| > Total Pembelian  : 7                                          |
+		| > Sub Total        : Rp141500.00                                |
+		| > Total Diskon     : Rp42450.00                                 |
+		| > Harga Total      : Rp99050.00                                 |
+		|_________________________________________________________________|
+		| > Total Pembayaran : Rp150000.00                                |
+		| > Kembalian        : Rp50950.00                                 |
+		 _________________________________________________________________ 
+		 _________________________________________________________________ 
+		|                  C A K E  M E  O U T  B A K E R Y               | 
+		|                   S T R U K  P E M B A Y A R A N                |
+		|=================================================================|
+		  > Waktu Pembayaran : Sat Dec 24 11:13:15 2022                   
+		| > Nama Pegawai     : Ayu Krisna                                 |
+		| > Nama Pelanggan   : Yunia Lestari                              |
+		|_________________________________________________________________|
+		| Pesanan ke-1                                                    |
+		| > Nama Pesanan     : Soft Cheese                                |
+		| > Harga Satuan     : Rp28000.00                                 |
+		| > Pembelian        : 1                                          |
+		| > Harga Total      : Rp28000.00                                 |
+		|_________________________________________________________________|
+		| > Total Pembelian  : 1                                          |
+		| > Sub Total        : Rp28000.00                                 |
+		| > Total Diskon     : Rp0.00                                     |
+		| > Harga Total      : Rp28000.00                                 |
+		|_________________________________________________________________|
+		| > Total Pembayaran : Rp30000.00                                 |
+		| > Kembalian        : Rp2000.00                                  |
+		|_________________________________________________________________|
+		

@@ -1,164 +1,58 @@
-		   _______________________________________________________
-		 ||                                                       ||
-		 ||                  L O G  R E S T O C K                 ||
-		 ||                                                       ||
-		 ||=======================================================||
-		    > Waktu Restock: Sat Dec 17 05:15:08 2022
-            
-		 || > Nama Karyawan: Ayu Krisna                           ||
-		 ||=======================================================||
-		 || > Nama Makanan : Hokkaido Dome                        ||
-		 || > Kode Makanan : BRHD                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 12                                   ||
-		 || > Stock Baru   : 12                                   ||
-		 ||=======================================================||
-		 || > Nama Makanan : Hamtaro                              ||
-		 || > Kode Makanan : BRHT                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 12                                   ||
-		 || > Stock Baru   : 12                                   ||
-		 ||=======================================================||
-		 || > Nama Makanan : Twilight                             ||
-		 || > Kode Makanan : BRTL                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 12                                   ||
-		 || > Stock Baru   : 12                                   ||
-		 ||=======================================================||
-		 || > Nama Makanan : Granola Caramel                      ||
-		 || > Kode Makanan : COGC                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 12                                   ||
-		 || > Stock Baru   : 12                                   ||
-		 ||=======================================================||
-		 || > Nama Makanan : Crunchy Mede                         ||
-		 || > Kode Makanan : COCM                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 12                                   ||
-		 || > Stock Baru   : 12                                   ||
-		 ||=======================================================||
-		 || > Nama Makanan : Triple Magic                         ||
-		 || > Kode Makanan : COTC                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 12                                   ||
-		 || > Stock Baru   : 12                                   ||
-		 ||=======================================================||
-		 || > Nama Makanan : Blackforest Slice                    ||
-		 || > Kode Makanan : CKBF                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 12                                   ||
-		 || > Stock Baru   : 12                                   ||
-		 ||=======================================================||
-		 || > Nama Makanan : Choco Rain Slice                     ||
-		 || > Kode Makanan : CKCR                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 12                                   ||
-		 || > Stock Baru   : 12                                   ||
-		 ||=======================================================||
-		 || > Nama Makanan : Tiramisu Slice                       ||
-		 || > Kode Makanan : CKTM                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 12                                   ||
-		 || > Stock Baru   : 12                                   ||
-		 ||=======================================================||
-		 || > Nama Makanan : Soft Cheese                          ||
-		 || > Kode Makanan : TOSC                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 12                                   ||
-		 || > Stock Baru   : 12                                   ||
-		 ||=======================================================||
-		 || > Nama Makanan : Mocha Meyses                         ||
-		 || > Kode Makanan : TOMM                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 12                                   ||
-		 || > Stock Baru   : 12                                   ||
-		 ||=======================================================||
-		 || > Nama Makanan : Eq Cheese                            ||
-		 || > Kode Makanan : TOEQ                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 12                                   ||
-		 || > Stock Baru   : 12                                   ||
-		 ||=======================================================||
-		 ||_______________________________________________________||
-		   _______________________________________________________
-		 ||                                                       ||
-		 ||                  L O G  R E S T O C K                 ||
-		 ||                                                       ||
-		 ||=======================================================||
-		    > Waktu Restock: Sat Dec 17 05:19:04 2022
-            
-		 || > Nama Karyawan: Winson Tan                           ||
-		 ||=======================================================||
-		 || > Nama Makanan : Hokkaido Dome                        ||
-		 || > Kode Makanan : BRHD                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 3                                    ||
-		 || > Stock Baru   : 3                                    ||
-		 ||=======================================================||
-		 || > Nama Makanan : Hamtaro                              ||
-		 || > Kode Makanan : BRHT                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 3                                    ||
-		 || > Stock Baru   : 3                                    ||
-		 ||=======================================================||
-		 || > Nama Makanan : Twilight                             ||
-		 || > Kode Makanan : BRTL                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 3                                    ||
-		 || > Stock Baru   : 3                                    ||
-		 ||=======================================================||
-		 || > Nama Makanan : Granola Caramel                      ||
-		 || > Kode Makanan : COGC                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 3                                    ||
-		 || > Stock Baru   : 3                                    ||
-		 ||=======================================================||
-		 || > Nama Makanan : Crunchy Mede                         ||
-		 || > Kode Makanan : COCM                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 3                                    ||
-		 || > Stock Baru   : 3                                    ||
-		 ||=======================================================||
-		 || > Nama Makanan : Triple Magic                         ||
-		 || > Kode Makanan : COTC                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 3                                    ||
-		 || > Stock Baru   : 3                                    ||
-		 ||=======================================================||
-		 || > Nama Makanan : Blackforest Slice                    ||
-		 || > Kode Makanan : CKBF                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 3                                    ||
-		 || > Stock Baru   : 3                                    ||
-		 ||=======================================================||
-		 || > Nama Makanan : Choco Rain Slice                     ||
-		 || > Kode Makanan : CKCR                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 3                                    ||
-		 || > Stock Baru   : 3                                    ||
-		 ||=======================================================||
-		 || > Nama Makanan : Tiramisu Slice                       ||
-		 || > Kode Makanan : CKTM                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 3                                    ||
-		 || > Stock Baru   : 3                                    ||
-		 ||=======================================================||
-		 || > Nama Makanan : Soft Cheese                          ||
-		 || > Kode Makanan : TOSC                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 3                                    ||
-		 || > Stock Baru   : 3                                    ||
-		 ||=======================================================||
-		 || > Nama Makanan : Mocha Meyses                         ||
-		 || > Kode Makanan : TOMM                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 3                                    ||
-		 || > Stock Baru   : 3                                    ||
-		 ||=======================================================||
-		 || > Nama Makanan : Eq Cheese                            ||
-		 || > Kode Makanan : TOEQ                                 ||
-		 || > Stock Lama   : 0                                    ||
-		 || > Restock      : 3                                    ||
-		 || > Stock Baru   : 3                                    ||
-		 ||=======================================================||
-		 ||_______________________________________________________||
+		   __________________________________________________________________________
+		 ||                                                                          ||
+		 ||                              L O G  R E S T O C K                        ||
+		 ||                                                                          ||
+		 ||==========================================================================||
+		    > Waktu Restock: Thu Dec 22 20:29:44 2022                                 
+		 ||                                                                          ||
+		 || > Nama Pemilik : Ayu Krisna                                              ||
+		 ||==========================================================================||
+		 || > Nama Makanan : Hokkaido Dome                  | > Stock Lama   : 0     ||
+		 || > Kode Makanan : BRHD                           | > Restock      : 121   ||
+		 ||                                                 | > Stock Baru   : 121   ||
+		 ||--------------------------------------------------------------------------||
+		 || > Nama Makanan : Hamtaro                        | > Stock Lama   : 0     ||
+		 || > Kode Makanan : BRHT                           | > Restock      : 212   ||
+		 ||                                                 | > Stock Baru   : 212   ||
+		 ||--------------------------------------------------------------------------||
+		 || > Nama Makanan : Twilight                       | > Stock Lama   : 0     ||
+		 || > Kode Makanan : BRTL                           | > Restock      : 121   ||
+		 ||                                                 | > Stock Baru   : 121   ||
+		 ||--------------------------------------------------------------------------||
+		 || > Nama Makanan : Granola Caramel                | > Stock Lama   : 0     ||
+		 || > Kode Makanan : COGC                           | > Restock      : 21    ||
+		 ||                                                 | > Stock Baru   : 21    ||
+		 ||--------------------------------------------------------------------------||
+		 || > Nama Makanan : Crunchy Mede                   | > Stock Lama   : 0     ||
+		 || > Kode Makanan : COCM                           | > Restock      : 212   ||
+		 ||                                                 | > Stock Baru   : 212   ||
+		 ||--------------------------------------------------------------------------||
+		 || > Nama Makanan : Triple Magic                   | > Stock Lama   : 0     ||
+		 || > Kode Makanan : COTC                           | > Restock      : 121   ||
+		 ||                                                 | > Stock Baru   : 121   ||
+		 ||--------------------------------------------------------------------------||
+		 || > Nama Makanan : Blackforest Slice              | > Stock Lama   : 0     ||
+		 || > Kode Makanan : CKBF                           | > Restock      : 21    ||
+		 ||                                                 | > Stock Baru   : 21    ||
+		 ||--------------------------------------------------------------------------||
+		 || > Nama Makanan : Choco Rain Slice               | > Stock Lama   : 0     ||
+		 || > Kode Makanan : CKCR                           | > Restock      : 21    ||
+		 ||                                                 | > Stock Baru   : 21    ||
+		 ||--------------------------------------------------------------------------||
+		 || > Nama Makanan : Tiramisu Slice                 | > Stock Lama   : 0     ||
+		 || > Kode Makanan : CKTM                           | > Restock      : 12    ||
+		 ||                                                 | > Stock Baru   : 12    ||
+		 ||--------------------------------------------------------------------------||
+		 || > Nama Makanan : Soft Cheese                    | > Stock Lama   : 0     ||
+		 || > Kode Makanan : TOSC                           | > Restock      : 12    ||
+		 ||                                                 | > Stock Baru   : 12    ||
+		 ||--------------------------------------------------------------------------||
+		 || > Nama Makanan : Mocha Meyses                   | > Stock Lama   : 0     ||
+		 || > Kode Makanan : TOMM                           | > Restock      : 12    ||
+		 ||                                                 | > Stock Baru   : 12    ||
+		 ||--------------------------------------------------------------------------||
+		 || > Nama Makanan : Eq Cheese                      | > Stock Lama   : 0     ||
+		 || > Kode Makanan : TOEQ                           | > Restock      : 1212  ||
+		 ||                                                 | > Stock Baru   : 1212  ||
+		 ||--------------------------------------------------------------------------||
+		 ||__________________________________________________________________________||
