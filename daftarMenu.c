@@ -1,6 +1,6 @@
 /*
 ==================================================
-    Source code "daftarMenuRev.c" berisi definisi 
+    Source code "daftarMenu.c" berisi definisi 
     dari fungsi/prosedur untuk manage menu
     Contoh: show menu, edit menu, dsb
 ==================================================

@@ -177,7 +177,7 @@ void aturJadwalRestock()
     jadwalRestock = fopen("jadwalRestock.txt", "w");
     fprintf(jadwalRestock, "%d;%d;%d;\n", jamRestock.pagi, jamRestock.siang, jamRestock.sore);
     fclose(jadwalRestock);
-
+    setJamRestock();
     // Menampilkan instruksi dan kembali ke menu manage stock pemilik
     printf("\t\t _______________________________________________________ \n");
     printf("\t\t|   J A D W A L  R E S T O C K  S U D A H  D I A T U R  |\n");
