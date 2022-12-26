@@ -19,7 +19,7 @@
         Library untuk keperluan definisi tipe data boolean
     [5] #include <ctype.h>
         Library untuk keperluan klasifikasi character sesuai tipenya
-    [6] #include "logIn.h", #include "variabel.h", #include "aksesAdmin.h", #include "pendukung.h", #include "daftarMenuRev.h"
+    [6] #include "logIn.h", #include "variabel.h", #include "aksesAdmin.h", #include "pendukung.h", #include "daftarMenu.h"
         Header file yang berisi deklarasi dari fungsi/variabel file.c lain
 ==================================================
 */
@@ -33,7 +33,7 @@
 #include "variabel.h"
 #include "aksesAdmin.h"
 #include "pendukung.h"
-#include "daftarMenuRev.h"
+#include "daftarMenu.h"
 #include "restock.h"
 #include "transaksi.h"
 #include "aksesPelanggan.h"

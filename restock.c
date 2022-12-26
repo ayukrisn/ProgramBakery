@@ -17,7 +17,7 @@
 #include "variabel.h"
 #include "aksesAdmin.h"
 #include "pendukung.h"
-#include "daftarMenuRev.h"
+#include "daftarMenu.h"
 #include "restock.h"
 #include "transaksi.h"
 

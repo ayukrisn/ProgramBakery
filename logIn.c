@@ -2,8 +2,7 @@
 ==================================================
     Source code "logIn.c" berisi definisi dari
     fungsi/prosedur untuk menjalankan sign in
-    atau sign up untuk pemilik, karyawan, dan 
-    pembeli (membership)
+    atau sign up untuk pemilik dan karyawan
 ==================================================
 */
 
@@ -18,7 +17,7 @@
 #include "variabel.h"
 #include "aksesAdmin.h"
 #include "pendukung.h"
-#include "daftarMenuRev.h"
+#include "daftarMenu.h"
 #include "restock.h"
 #include "transaksi.h"
 #include "aksesPelanggan.h"
