@@ -424,7 +424,7 @@ void prosesRestock (int *restock)
     fprintf(logRestock, "\t\t ||                           L O G  R E S T O C K                           ||\n");
     fprintf(logRestock, "\t\t ||                                                                          ||\n");
     fprintf(logRestock, "\t\t ||==========================================================================||\n");
-    fprintf(logRestock, "\t\t || > Waktu Restock : %-36s||\n", writeStock.waktuRestock);
+    fprintf(logRestock, "\t\t    > Waktu Restock : %-36s\n", writeStock.waktuRestock);
     if (isPemilik)
     fprintf(logRestock, "\t\t || > Nama Pemilik  : %-55s||\n", writeStock.namaYgRestock);
     if (isKaryawan)

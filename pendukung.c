@@ -445,6 +445,6 @@ void systemCLS()
 */
 void systemPause()
 {
-    printf("\n\t\t Tekan tombol keyboard untuk melanjutkan.");
+    printf("\n\t\t Tekan tombol ENTER untuk melanjutkan.");
     getchar();
 }
