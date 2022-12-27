@@ -292,8 +292,9 @@ void tambahDaftarMenu()
     
     //Menambahkan deskripsi makanan
     printf("\t\t Deskripsi makanan : ");
-    scanf("%99[^\n]", writeMenu.deskripsiMakanan);
+    scanf("%54[^\n]", writeMenu.deskripsiMakanan);
     getchar();
+    fflush(stdin);
 
     //Menambahkan harga makanan
     printf("\t\t Harga makanan : ");

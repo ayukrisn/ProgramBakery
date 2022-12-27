@@ -174,11 +174,11 @@ void signInPemilik (){
     printf("\t\t|      Silahkan melakukan Sign In terlebih dahulu      |\n");
     printf("\t\t|______________________________________________________|\n");
     printf("\t\t  Username : ");
-    scanf("%20s", writeUser.pemilik.username);
+    scanf("%19s", writeUser.pemilik.username);
     fflush(stdin);
 
     printf("\t\t  Password : ");
-    scanf("%20s", writeUser.pemilik.password);
+    scanf("%19s", writeUser.pemilik.password);
     fflush(stdin);
 
     FILE *signIn;
@@ -305,10 +305,12 @@ void signInKaryawan () {
         printf("\t\t  Username : ");
         scanf("%19[^\n]", writeUser.karyawan.username);
         getchar();
+        fflush(stdin);
 
         printf("\t\t  Password : ");
         scanf("%19[^\n]", writeUser.karyawan.password);
         getchar();
+        fflush(stdin);
 
         //Memeriksa apakah username dan password yang diberikan benar atau tidak
         bool tidakKetemu = 0;

@@ -14,8 +14,8 @@
 
 bool isPelanggan = false;
 bool isMember = false;
-char namaGuest[20];
-detailTransaksi DTransaksi[12];
+char namaGuest[30];
+detailTransaksi DTransaksi[20];
 dataTransaksi transaksi;
 int urutan = 0;
 tipeDiskon nominalDiskon;
@@ -181,12 +181,14 @@ void signInAccount()
         printf("\t\t|              Silahkan lakukan sign in terlebih dahulu.              |\n");
         printf("\t\t|_____________________________________________________________________|\n");
         printf("\t\t  Username : ");
-        scanf("%[^\n]", writeUser.membership.username);
+        scanf("%19[^\n]", writeUser.membership.username);
         getchar();
+        fflush(stdin);
 
         printf("\t\t  Password : ");
-        scanf("%[^\n]", writeUser.membership.password);
+        scanf("%19[^\n]", writeUser.membership.password);
         getchar();
+        fflush(stdin);
 
         //Memeriksa apakah username dan password yang diberikan benar atau tidak
         bool tidakKetemu = 0;
@@ -341,8 +343,9 @@ void pemesanan() {
         printf("\t\t  Masukkan kode makanan (Contoh : CABK)\n");
         printf("\t\t  Kode Makanan yang diinginkan : ");
         // Untuk sementara, kode makanan ga make validasi. Nanti make
-        scanf("%[^\n]", DTransaksi[urutan].kodeMakanan);
+        scanf("%19[^\n]", DTransaksi[urutan].kodeMakanan);
         getchar();
+        fflush(stdin);
 
         printf("\t\t  Banyak pembelian             : ");
         inputInteger(&DTransaksi[urutan].banyakPembelian);

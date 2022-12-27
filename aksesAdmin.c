@@ -195,6 +195,7 @@ void hapusMembership()
     printf("\t\t  Ketik username membership yang ingin dihapus : ");
     scanf("%19[^\n]", writeUser.membership.username);
     getchar();
+    fflush(stdin);
 
     FILE *fileMember;
     fileMember = fopen("dataMembership.txt", "r");
@@ -356,6 +357,7 @@ void hapusKaryawan()
     printf("\t\t  Ketik username karyawan yang ingin dihapus : ");
     scanf("%19[^\n]", writeUser.karyawan.username);
     getchar();
+    fflush(stdin);
 
     FILE *fileKaryawan;
     fileKaryawan = fopen("dataKaryawan.txt", "r");
@@ -628,7 +630,7 @@ void konfirmasiBuka()
         printf("\t\t| [3] Tidak, kembali ke menu awal                       |\n");
         printf("\t\t|_______________________________________________________|\n");
         printf("\t\t  Ketik pilihan dengan angka yang tertera (1-3) : ");
-        pilihanUser(&pilihan, 1, 5);
+        pilihanUser(&pilihan, 1, 3);
         fflush(stdin);
         if (pilihan == 1) {
         systemCLS();
@@ -668,10 +670,12 @@ void konfirmasiTutup()
         printf("\t\t  Username : ");
         scanf("%19[^\n]", writeUser.pemilik.username);
         getchar();
+        fflush(stdin);
 
         printf("\t\t  Password : ");
         scanf("%19[^\n]", writeUser.pemilik.password);
         getchar();
+        fflush(stdin);
 
         //Memeriksa apakah username dan password yang diberikan benar atau tidak
         if(strcmp(writeUser.pemilik.username, dataPemilik.username)==0 && strcmp(writeUser.pemilik.password, dataPemilik.password)==0) {
@@ -685,10 +689,12 @@ void konfirmasiTutup()
         printf("\t\t  Username : ");
         scanf("%19[^\n]", writeUser.karyawan.username);
         getchar();
+        fflush(stdin);
 
         printf("\t\t  Password : ");
         scanf("%19[^\n]", writeUser.karyawan.password);
         getchar();
+        fflush(stdin);
 
         //Memeriksa apakah username dan password yang diberikan benar atau tidak
         if(strcmp(writeUser.karyawan.username, dataKaryawan.username)==0 && strcmp(writeUser.pemilik.password, dataKaryawan.password)==0) {

@@ -441,7 +441,7 @@ void systemCLS()
 
 /*
     Pengganti system("pause"); > menjeda program hingga user memasukkan
-    key apapun
+    ENTER
 */
 void systemPause()
 {

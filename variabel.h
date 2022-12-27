@@ -28,7 +28,7 @@ typedef struct {
 extern daftarData dataKaryawan;
 extern daftarData dataPemilik;
 extern daftarData dataMembership;
-extern char namaGuest[20]; //bila pengguna bukan member
+extern char namaGuest[30]; //bila pengguna bukan member
 
 /*
     Union yang akan digunakan saat berurusan dengan file
@@ -59,7 +59,7 @@ typedef struct {
     char jenisMakanan[10];
     char kodeMakanan[5];
     char namaMakanan[20];
-    char deskripsiMakanan[100];
+    char deskripsiMakanan[60];
     float hargaMakanan;
     int jamJadwalStockPagi;
     int jamJadwalStockSiang;
@@ -105,7 +105,7 @@ typedef struct {
     int banyakPembelian;
     float hargaTotal;
 } detailTransaksi;
-extern detailTransaksi DTransaksi[12];
+extern detailTransaksi DTransaksi[20];
 
 /*
     Struct untuk menyimpan data transaksi
