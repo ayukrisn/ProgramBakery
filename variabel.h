@@ -123,6 +123,17 @@ typedef struct {
 } dataTransaksi;
 extern dataTransaksi transaksi;
 
+typedef struct {
+    char dataTransaksi[2000];
+    int tanggalTransaksi;
+    int bulanTransaksi;
+    int tahunTransaksi;
+    char usernamePelanggan[30];
+    char usernameKaryawan[30];
+} dataRiwayatTransaksi;
+extern dataRiwayatTransaksi writeLogTransaksi;
+extern dataRiwayatTransaksi readLogTransaksi;
+
 /*
     Struct untuk menyimpan tipe diskon
     untuk membership

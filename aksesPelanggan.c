@@ -256,7 +256,7 @@ void menuAwalPelanggan()
         pemesanan();
     } else if (pilihan == 3){
         systemCLS();
-        riwayatTransaksiMember();
+        showRiwayatTransaksiMember();
     } else if (pilihan == 4){
         systemCLS();
         isMember = false;
@@ -548,7 +548,6 @@ void pembayaran()
         printf("\t\t|          Anda dapat menunjukkan struk pembayaran pada           |\n");
         printf("\t\t|            karyawan yang bertugas. Selamat Menikmati!           |\n");
 	    printf("\t\t ================================================================= ");
-        simpanStrukPelanggan(urutan);
         simpanRiwayatTransaksi(urutan);
         
         urutan = 0;

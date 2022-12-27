@@ -75,7 +75,7 @@ void menuAwalPemilik()
         manageStockP();
     } else if (pilihan == 6 ) {
         systemCLS();
-        lihatRiwayatTransaksi();
+        menulihatRiwayatTransaksi();
     } else if (pilihan == 7 ) {
         isPemilik = false;
         systemCLS();
@@ -536,7 +536,7 @@ void menuAwalKaryawan()
             lihatDaftarMenuK();
         } else if (pilihan == 4 ) {
             systemCLS();
-            lihatRiwayatTransaksi();
+            menulihatRiwayatTransaksi();
         } else if (pilihan == 5) {
             isKaryawan = false;
             systemCLS();
