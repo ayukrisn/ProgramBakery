@@ -3,6 +3,11 @@
     Header file "transaksi.h" berisi deklarasi dari 
     prosedur, fungsi, atau pun variabel yang 
     didefinisikan di dalam transaksi.c
+
+    Kontributor: I Gusti Ayu Krisna Kusuma Dewi
+                 (2205551072)
+    Informasi lengkap dapat dilihat pada history
+    commit GitHub
 ==================================================
 */
 
@@ -15,8 +20,15 @@
 #ifndef TRANSAKSI_H
 #define TRANSAKSI_H
 
-void cetakStruk(FILE *pfileStruk, int urutan); void simpanStrukPelanggan(int urutan); void simpanRiwayatTransaksi(int urutan);
+void waktuSaatIni(); void infoStruk();
 
-void riwayatTransaksiMember(); void lihatRiwayatTransaksi(); void readFileStruk(FILE *pfileStruk);
+void cetakStruk(FILE *pfileStruk, int urutan); void simpanRiwayatTransaksi(int urutan); void cekFileStruk();
+
+void menulihatRiwayatTransaksi(); void showRiwayatTransaksiAll();
+
+void showRiwayatTransaksiK(); void showRiwayatTransaksiP(); void menuCariRiwayatWaktu();
+
+void showRiwayatTransaksiHariIni(); void showRiwayatTransaksiKemarin(); void showRiwayatTransaksiBulanIni();
+    void showRiwayatTransaksiBulanLalu(); void showRiwayatTransaksiTanggal(); void showRiwayatTransaksiMember();
 
 #endif //TRANSAKSI_H

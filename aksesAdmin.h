@@ -3,6 +3,11 @@
     Header file "aksesAdmin.h" berisi deklarasi dari 
     prosedur, fungsi, atau pun variabel yang 
     didefinisikan di dalam aksesAdmin.c
+
+    Kontributor: I Gusti Ayu Krisna Kusuma Dewi
+                 (2205551072)
+    Informasi lengkap dapat dilihat pada history
+    commit GitHub
 ==================================================
 */
 

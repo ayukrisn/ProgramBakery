@@ -3,6 +3,11 @@
     Header file "variabel.h" berisi deklarasi
     dari variabel-variabel yang akan digunakan
     pada program ini
+
+    Kontributor: I Gusti Ayu Krisna Kusuma Dewi
+                 (2205551072)
+    Informasi lengkap dapat dilihat pada history
+    commit GitHub
 ==================================================
 */
 
@@ -122,6 +127,20 @@ typedef struct {
     float jumlahKembalian;
 } dataTransaksi;
 extern dataTransaksi transaksi;
+
+/*
+    Struct untuk menyimpan data riwayat transaksi
+*/
+typedef struct {
+    char dataTransaksi[2000];
+    int tanggalTransaksi;
+    int bulanTransaksi;
+    int tahunTransaksi;
+    char usernamePelanggan[30];
+    char usernameKaryawan[30];
+} dataRiwayatTransaksi;
+extern dataRiwayatTransaksi writeLogTransaksi;
+extern dataRiwayatTransaksi readLogTransaksi;
 
 /*
     Struct untuk menyimpan tipe diskon

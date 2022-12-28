@@ -3,6 +3,11 @@
     Header file "pendukung.h" berisi deklarasi dari 
     prosedur, fungsi, atau pun variabel yang 
     didefinisikan di dalam pendukung.c
+
+    Kontributor: I Gusti Ayu Krisna Kusuma Dewi
+                 (2205551072)
+    Informasi lengkap dapat dilihat pada history
+    commit GitHub
 ==================================================
 */
 

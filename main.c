@@ -2,6 +2,13 @@
 ==================================================
     Source code "main.c" berisi fungsi int main
     sebagai source code utama
+
+    Kontributor: 
+    > Ni Kadek Ari Diah Lestari (2205551069)
+    > I Gusti Ayu Krisna Kusuma Dewi (2205551072)
+
+    Informasi lengkap dapat dilihat pada history
+    commit GitHub
 ==================================================
 */
 
