@@ -540,6 +540,7 @@ void showRiwayatTransaksiBulanLalu()
     }
 
     systemPause();
+    systemCLS();
     menulihatRiwayatTransaksi();
 }
 
