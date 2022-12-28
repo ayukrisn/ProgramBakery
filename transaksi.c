@@ -1,8 +1,16 @@
 /*
 ==================================================
-    Source code "restock.c" berisi definisi dari
-    fungsi/prosedur untuk manajemen restock
-    Contoh: update dan lihat restock
+    Source code "transaksi.c" berisi definisi dari
+    fungsi/prosedur untuk mmencetak dan melihat
+    struk
+
+    Kontributor: I Gusti Ayu Krisna Kusuma Dewi
+                 (2205551072)
+    Merapikan kode dan memeriksa bug:
+                 Ni Kadek Ari Lestari
+                (2205551069)
+    Informasi lengkap dapat dilihat pada history
+    commit GitHub
 ==================================================
 */
 
@@ -30,9 +38,10 @@
 dataRiwayatTransaksi writeLogTransaksi;
 dataRiwayatTransaksi readLogTransaksi;
 
-/*
+/* -----------------------------
     Mendapatkan waktu saat ini
     (tanggal, bulan, dan tahun)
+   -----------------------------
 */
 void waktuSaatIni()
 {
@@ -42,9 +51,11 @@ void waktuSaatIni()
     writeLogTransaksi.bulanTransaksi = waktuLokal->tm_mon + 1;
     writeLogTransaksi.tanggalTransaksi = waktuLokal->tm_mday;
 }
-/*
+
+/* ----------------------------------------------
     Mendapatkan detail untuk riwayat transaksi
     agar dapat dipanggil sesuai dengan keinginan
+    ---------------------------------------------
 */
 void infoStruk()
 {
@@ -61,8 +72,9 @@ void infoStruk()
     }
 }
 
-/*
+/*  -----------------------------
     Melakukan cetak struk
+    -----------------------------
 */
 void cetakStruk(FILE *pfileStruk, int urutan) 
 {
@@ -98,22 +110,11 @@ void cetakStruk(FILE *pfileStruk, int urutan)
         fclose(pfileStruk);
 }
 
-/*
-void simpanStrukPelanggan(int urutan)
-{
-    FILE *riwayatStrukPelanggan;
-    if (isMember) {
-        char namaFile[40];
-        strcpy(namaFile, dataMembership.username);
-        strcat(namaFile, ".txt");
-        riwayatStrukPelanggan = fopen(namaFile, "a");
-    } else {
-        riwayatStrukPelanggan = fopen("strukCetak.txt", "w");
-    } 
-    cetakStruk(riwayatStrukPelanggan, urutan);
-}
+/*  --------------------------------------------
+    Fungsi yang dipanggil untuk menyimpan
+    riwayat transaksi ke file dataTransaksi.txt
+    --------------------------------------------
 */
-
 void simpanRiwayatTransaksi(int urutan)
 {
     FILE *riwayatStruk;
@@ -127,6 +128,11 @@ void simpanRiwayatTransaksi(int urutan)
     =============================
 */
 
+/*  --------------------------------------------
+    Fungsi yang digunakan untuk memeriksa
+    ketersediaan file dataTransaksi.txt
+    --------------------------------------------
+*/
 void cekFileStruk()
 {
     FILE *riwayatTransaksi;
@@ -134,7 +140,7 @@ void cekFileStruk()
     if(riwayatTransaksi == NULL) {
         printf("\t\t _________________________________________________________________ \n");
         printf("\t\t|                                                                 |\n");
-        printf("\t\t|                 Riwayat transaksi tidak ditemukan               |\n");
+        printf("\t\t|            File data riwayat transaksi tidak ditemukan          |\n");
         printf("\t\t|_________________________________________________________________|\n");
         fclose(riwayatTransaksi);
         systemPause();
@@ -146,7 +152,11 @@ void cekFileStruk()
     fclose(riwayatTransaksi);
 }
 
-
+/*  --------------------------------------------
+    Menunjukkan menu riwayat transaksi
+    dan memberikan opsi filter yang diinginkan
+    --------------------------------------------
+*/
 void menulihatRiwayatTransaksi()
 {
     cekFileStruk();
@@ -184,16 +194,21 @@ void menulihatRiwayatTransaksi()
     }
 }
 
+/*  -------------------------------------------------
+    Memberikan output dari seluruh riwayat transaksi
+    -------------------------------------------------
+*/
 void showRiwayatTransaksiAll()
 {
-    FILE *riwayatTransaksi;
-    riwayatTransaksi = fopen("dataTransaksi.txt", "r");
     
     printf("\t\t _________________________________________________________________ \n");
     printf("\t\t|                 R I W A Y A T  T R A N S A K S I                |\n");
     printf("\t\t|-----------------------------------------------------------------|\n");
     printf("\t\t|               Cari berdasarkan: Seluruh Transaksi               |\n");
     printf("\t\t|_________________________________________________________________|\n\n");
+
+    FILE *riwayatTransaksi;
+    riwayatTransaksi = fopen("dataTransaksi.txt", "r");
 
     int nomor = 1;
     do {
@@ -209,13 +224,14 @@ void showRiwayatTransaksiAll()
 
     systemPause();
     systemCLS();
-    if (isKaryawan){
-        menuAwalKaryawan();
-    } else if (isPemilik){
-        menuAwalPemilik();
-    }
+    menulihatRiwayatTransaksi();
 }
 
+/*  ------------------------------------------
+    Memberikan output dari riwayat transaksi
+    berdasarkan karyawan yang dipilih
+    ------------------------------------------
+*/
 void showRiwayatTransaksiK()
 {
     FILE *riwayatTransaksi;
@@ -255,13 +271,14 @@ void showRiwayatTransaksiK()
 
     systemPause();
     systemCLS();
-    if (isKaryawan){
-        menuAwalKaryawan();
-    } else if (isPemilik){
-        menuAwalPemilik();
-    }
+    menulihatRiwayatTransaksi();
 }
 
+/*  ------------------------------------------------
+    Memberikan output dari seluruh riwayat transaksi
+    berdasarkan username pelanggan
+    ------------------------------------------------
+*/
 void showRiwayatTransaksiP()
 {
     FILE *riwayatTransaksi;
@@ -303,13 +320,14 @@ void showRiwayatTransaksiP()
 
     systemPause();
     systemCLS();
-    if (isKaryawan){
-        menuAwalKaryawan();
-    } else if (isPemilik){
-        menuAwalPemilik();
-    }
+    menulihatRiwayatTransaksi();
 }
 
+/*  ------------------------------------------------
+    Menu untuk memilih filter riwayat transaksi
+    berdasarkan waktu
+    ------------------------------------------------
+*/
 void menuCariRiwayatWaktu()
 {
     int pilihan;
@@ -345,11 +363,15 @@ void menuCariRiwayatWaktu()
         showRiwayatTransaksiTanggal();
     } else if (pilihan == 6) {
         systemCLS();
-        if (isPemilik) menuAwalPemilik();
-        else if (isKaryawan) menuAwalKaryawan();
+        menulihatRiwayatTransaksi();
     }
 }
 
+/*  ------------------------------------------------
+    Memberikan output dari seluruh riwayat
+    transaksi hari ini
+    ------------------------------------------------
+*/
 void showRiwayatTransaksiHariIni()
 {
     waktuSaatIni();
@@ -386,14 +408,15 @@ void showRiwayatTransaksiHariIni()
 
     systemPause();
     systemCLS();
-    if (isKaryawan){
-        menuAwalKaryawan();
-    } else if (isPemilik){
-        menuAwalPemilik();
-    }
+    menulihatRiwayatTransaksi();
 
 }
 
+/*  ---------------------------------------
+    Memberikan output dari seluruh riwayat 
+    transaksi kemarin
+    ---------------------------------------
+*/
 void showRiwayatTransaksiKemarin()
 {
     waktuSaatIni();
@@ -430,13 +453,14 @@ void showRiwayatTransaksiKemarin()
 
     systemPause();
     systemCLS();
-    if (isKaryawan){
-        menuAwalKaryawan();
-    } else if (isPemilik){
-        menuAwalPemilik();
-    }
+    menulihatRiwayatTransaksi();
 }
 
+/*  -----------------------------------------
+    Memberikan output dari seluruh riwayat 
+    transaksi bulan ini
+    -----------------------------------------
+*/
 void showRiwayatTransaksiBulanIni()
 {
     waktuSaatIni();
@@ -473,13 +497,14 @@ void showRiwayatTransaksiBulanIni()
 
     systemPause();
     systemCLS();
-    if (isKaryawan){
-        menuAwalKaryawan();
-    } else if (isPemilik){
-        menuAwalPemilik();
-    }
+    menulihatRiwayatTransaksi();
 }
 
+/*  ----------------------------------------
+    Memberikan output dari seluruh riwayat 
+    transaksi bulan lalu
+    -----------------------------------------
+*/
 void showRiwayatTransaksiBulanLalu()
 {
     waktuSaatIni();
@@ -497,7 +522,7 @@ void showRiwayatTransaksiBulanLalu()
     do {
         fscanf(riwayatTransaksi, "%d;%d;%d;%[^;];%[^;];%[^;];\n", &readLogTransaksi.tanggalTransaksi, &readLogTransaksi.bulanTransaksi, &readLogTransaksi.tahunTransaksi, 
         readLogTransaksi.usernamePelanggan, readLogTransaksi.usernameKaryawan, readLogTransaksi.dataTransaksi);
-        if((writeLogTransaksi.bulanTransaksi=1 == readLogTransaksi.bulanTransaksi) && (writeLogTransaksi.tahunTransaksi == readLogTransaksi.tahunTransaksi)) {
+        if((writeLogTransaksi.bulanTransaksi-1 == readLogTransaksi.bulanTransaksi) && (writeLogTransaksi.tahunTransaksi == readLogTransaksi.tahunTransaksi)) {
             printf("\t\t =================================================================\n");
             printf("\t\t|                       Transaksi Ke-%-5d                        |\n", nomor);
             printf("\t\t =================================================================");
@@ -515,14 +540,14 @@ void showRiwayatTransaksiBulanLalu()
     }
 
     systemPause();
-    systemCLS();
-    if (isKaryawan){
-        menuAwalKaryawan();
-    } else if (isPemilik){
-        menuAwalPemilik();
-    }
+    menulihatRiwayatTransaksi();
 }
 
+/*  ------------------------------------------------
+    Memberikan output dari seluruh riwayat 
+    transaksi berdasarkan tanggal yang diberikan
+    ------------------------------------------------
+*/
 void showRiwayatTransaksiTanggal()
 {
     FILE *riwayatTransaksi;
@@ -578,13 +603,14 @@ void showRiwayatTransaksiTanggal()
 
     systemPause();
     systemCLS();
-    if (isKaryawan){
-        menuAwalKaryawan();
-    } else if (isPemilik){
-        menuAwalPemilik();
-    }
+    menulihatRiwayatTransaksi();
 }
 
+/*  -----------------------------------------
+    Memberikan output dari seluruh riwayat 
+    transaksi pada masing-masing member
+    -----------------------------------------
+*/
 void showRiwayatTransaksiMember()
 {
     FILE *riwayatTransaksi;

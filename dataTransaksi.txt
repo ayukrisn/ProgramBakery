@@ -1,11 +1,11 @@
-27;12;2022;akikohansel;ayukrisna;		 
+16;05;2022;yuikinan;rendrakiren;		 
 		 _________________________________________________________________ 
 		|                  C A K E  M E  O U T  B A K E R Y               | 
 		|                   S T R U K  P E M B A Y A R A N                |
 		|=================================================================|
-		  > Waktu Pembayaran : Tue Dec 27 14:35:42 2022
-		| > Nama Pegawai     : Ayu Krisna                                 |
-		| > Nama Pelanggan   : Akiko Hansel                               |
+		  > Waktu Pembayaran : Mon May 16 14:35:42 2022
+		| > Nama Pegawai     : Rendra Kiren                               |
+		| > Nama Pelanggan   : Yui Kinan                                  |
 		|_________________________________________________________________|
 		| Pesanan ke-1                                                    |
 		| > Nama Pesanan     : Blackforest Slice                          |
@@ -27,7 +27,7 @@
 		|                  C A K E  M E  O U T  B A K E R Y               | 
 		|                   S T R U K  P E M B A Y A R A N                |
 		|=================================================================|
-		  > Waktu Pembayaran : Tue Dec 26 19:20:27 2022
+		  > Waktu Pembayaran : Mon Dec 26 19:20:27 2022
 		| > Nama Pegawai     : Ayu Krisna                                 |
 		| > Nama Pelanggan   : Akiko Hansel                               |
 		|_________________________________________________________________|
@@ -81,7 +81,7 @@
 		|                  C A K E  M E  O U T  B A K E R Y               | 
 		|                   S T R U K  P E M B A Y A R A N                |
 		|=================================================================|
-		  > Waktu Pembayaran : Tue Nov 28 20:21:50 2022
+		  > Waktu Pembayaran : Wed Nov 28 20:21:50 2022
 		| > Nama Pegawai     : Ayu Krisna                                 |
 		| > Nama Pelanggan   : Akiko Hansel                               |
 		|_________________________________________________________________|

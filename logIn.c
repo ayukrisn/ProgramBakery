@@ -3,6 +3,14 @@
     Source code "logIn.c" berisi definisi dari
     fungsi/prosedur untuk menjalankan sign in
     atau sign up untuk pemilik dan karyawan
+
+    Kontributor: I Gusti Ayu Krisna Kusuma Dewi
+                 (2205551072)
+    Merapikan kode dan memeriksa bug:
+                 Ni Kadek Ari Lestari
+                (2205551069)
+    Informasi lengkap dapat dilihat pada history
+    commit GitHub
 ==================================================
 */
 

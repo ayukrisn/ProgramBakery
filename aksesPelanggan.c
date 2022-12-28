@@ -1,3 +1,20 @@
+/*
+=======================================================================
+    Source code "aksesPelanggan.c" berisi definisi 
+    dari fungsi/prosedur untuk manage menu
+    Contoh: show menu, edit menu, dsb
+
+    Kontributor 1: I Gusti Ayu Krisna Kusuma Dewi
+                 (2205551072)
+    Kontributor 2: Ni Kadek Ari Lestari
+                 (2205551069)
+                 - Bagian void menuMasukPelanggan(); void tanyaAkun(); 
+                 void signUpAccount(); void signInAccount();
+    Informasi lengkap dapat dilihat pada history
+    commit GitHub
+=======================================================================
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -1,8 +1,8 @@
 /*
 ==================================================
-    Header file "aksespelanggan.h" berisi deklarasi dari 
+    Header file "aksesPelanggan.h" berisi deklarasi dari 
     prosedur, fungsi, atau pun variabel yang 
-    didefinisikan di dalam aksespelanggan.c
+    didefinisikan di dalam aksesPelanggan.c
 ==================================================
 */
 
