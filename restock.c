@@ -218,7 +218,7 @@ void statusRestock()
     printf("\t\t| > Status restock pagi:                                |\n");
     if((!updateStockPagi) && (waktuLokal->tm_hour > jamRestock.pagi)) 
         printf("\t\t| > BELUM DIUPDATE - MELEWATI JADWAL                    |\n");
-    else if((!updateStockPagi) && ((waktuLokal->tm_hour < jamRestock.pagi) || (waktuLokal->tm_hour == jamRestock.pagi))) 
+    else if((!updateStockPagi) && (waktuLokal->tm_hour <= jamRestock.pagi)) 
         printf("\t\t| > BELUM DIUPDATE                                      |\n");
     else if(updateStockPagi)
         printf("\t\t| > SUDAH DIUPDATE                                      |\n");
@@ -230,7 +230,7 @@ void statusRestock()
     printf("\t\t| > Status restock siang:                               |\n");
     if((!updateStockSiang) && (waktuLokal->tm_hour > jamRestock.siang)) 
         printf("\t\t| > BELUM DIUPDATE - MELEWATI JADWAL                    |\n");
-    else if((!updateStockSiang) && ((waktuLokal->tm_hour < jamRestock.siang) || (waktuLokal->tm_hour == jamRestock.siang))) 
+    else if((!updateStockSiang) && (waktuLokal->tm_hour <= jamRestock.siang)) 
         printf("\t\t| > BELUM DIUPDATE                                      |\n");
     else if(updateStockSiang)
         printf("\t\t| > SUDAH DIUPDATE                                      |\n");
@@ -242,7 +242,7 @@ void statusRestock()
     printf("\t\t| > Status restock sore:                                |\n");
     if((!updateStockSore) && (waktuLokal->tm_hour > jamRestock.sore)) 
         printf("\t\t| > BELUM DIUPDATE - MELEWATI JADWAL                    |\n");
-    else if((!updateStockSore) && ((waktuLokal->tm_hour < jamRestock.sore) || (waktuLokal->tm_hour == jamRestock.sore))) 
+    else if((!updateStockSore) && (waktuLokal->tm_hour <= jamRestock.sore)) 
         printf("\t\t| > BELUM DIUPDATE                                      |\n");
     else if(updateStockSore)
         printf("\t\t| > SUDAH DIUPDATE                                      |\n");
