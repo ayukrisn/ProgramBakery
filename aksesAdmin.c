@@ -8,11 +8,12 @@
             manage daftar menu
             manage status penjualan
 
-    Kontributor: I Gusti Ayu Krisna Kusuma Dewi
+    Kontributor 1: I Gusti Ayu Krisna Kusuma Dewi
                  (2205551072)
-    Merapikan kode dan memeriksa bug:
-                 Ni Kadek Ari Lestari
-                (2205551069)
+    Kontributor 2: Ni Kadek Ari Diah Lestari
+    		 (2205551069)
+		 - Bagian manage membership dan 
+		 merapikan kode
     Informasi lengkap dapat dilihat pada history
     commit GitHub
 ==================================================
